@@ -1,0 +1,1 @@
+<link rel="shortcut icon" href="gfx/favicon.ico" type="image/x-icon">

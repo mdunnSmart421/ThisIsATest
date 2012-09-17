@@ -1,0 +1,1541 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions  xmlns:wsr="http://www.openuri.org/2002/10/soap/reliability/"
+  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:soap12enc="http://www.w3.org/2003/05/soap-encoding"
+  xmlns:s="http://www.w3.org/2001/XMLSchema"
+  xmlns:tns="http://www.o2.com/broadband/AvatarService"
+  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+  xmlns:conv="http://www.openuri.org/2002/04/wsdl/conversation/"
+  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+  targetNamespace="http://www.o2.com/broadband/AvatarService">
+ <types>
+  <xsd:schema    xmlns:avns="http://www.o2.com/broadband/AvatarTypes"
+    xmlns:tns="http://www.o2.com/broadband/AvatarService"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    targetNamespace="http://www.o2.com/broadband/AvatarTypes"
+    elementFormDefault="qualified">
+   <xsd:simpleType     name="broadbandStatusType">
+    <xsd:annotation>
+     <xsd:documentation>O2 Broadband service status</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction      base="xsd:string">
+     <xsd:enumeration       value="Activated">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Ceased">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Ordered">
+     </xsd:enumeration>
+     <xsd:enumeration       value="PartiallyOrdered">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Terminated">
+     </xsd:enumeration>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType     name="broadbandPackageType">
+    <xsd:annotation>
+     <xsd:documentation>O2 Broadband package type</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction      base="xsd:string">
+     <xsd:enumeration       value="O2 Home Broadband Standard">
+     </xsd:enumeration>
+     <xsd:enumeration       value="O2 Home Broadband Premium">
+     </xsd:enumeration>
+     <xsd:enumeration       value="O2 Home Broadband Ultimate">
+     </xsd:enumeration>
+     <xsd:enumeration       value="O2 Home Broadband Access">
+     </xsd:enumeration>
+     <xsd:enumeration       value="O2 Business Broadband Standard">
+     </xsd:enumeration>
+     <xsd:enumeration       value="O2 Business Broadband Premium">
+     </xsd:enumeration>
+     <xsd:enumeration       value="O2 Business Broadband Ultimate">
+     </xsd:enumeration>
+     <xsd:enumeration       value="O2 Business Broadband Access">
+     </xsd:enumeration>
+     <xsd:enumeration       value="PRO">
+     </xsd:enumeration>
+     <xsd:enumeration       value="O2 Home Broadband Standard 12M">
+     </xsd:enumeration>
+     <xsd:enumeration       value="O2 Home Broadband Premium 12M">
+     </xsd:enumeration>
+     <xsd:enumeration       value="O2 Home Broadband Access 12M">
+     </xsd:enumeration>
+     <xsd:enumeration       value="O2 Home Broadband PRO 12M">
+     </xsd:enumeration>
+     <xsd:enumeration       value="The Basics">
+     </xsd:enumeration>
+     <xsd:enumeration       value="The All Rounder">
+     </xsd:enumeration>
+     <xsd:enumeration       value="The Works">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Access">
+     </xsd:enumeration>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType     name="contactMediumType">
+    <xsd:annotation>
+     <xsd:documentation>User-preferred method of contact for marketing purposes</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction      base="xsd:string">
+     <xsd:enumeration       value="Voice">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Email">
+     </xsd:enumeration>
+     <xsd:enumeration       value="SMS">
+     </xsd:enumeration>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType     name="crudType">
+    <xsd:annotation>
+     <xsd:documentation>Action type (Create, Read, Update, Delete) for O2 Orange operations</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction      base="xsd:string">
+     <xsd:enumeration       value="Create">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Read">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Update">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Delete">
+     </xsd:enumeration>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType     name="customerRoleSummaryType">
+    <xsd:annotation>
+     <xsd:documentation>Customer role summary - values not yet defined</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction      base="xsd:string">
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType     name="customerSegmentationType">
+    <xsd:annotation>
+     <xsd:documentation>Customer account segmentation type</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction      base="xsd:string">
+     <xsd:enumeration       value="Platinum">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Gold">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Silver">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Bronze">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Select">
+     </xsd:enumeration>
+     <xsd:enumeration       value="none">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Sel_Inv">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Sel_Few">
+     </xsd:enumeration>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType     name="emailAddressType">
+    <xsd:annotation>
+     <xsd:documentation>Email address string, username at domain</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction      base="xsd:string">
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType     name="genderType">
+    <xsd:annotation>
+     <xsd:documentation>Gender indication; Male, Female, Undefined (M, F, U)</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction      base="xsd:string">
+     <xsd:enumeration       value="M">
+     </xsd:enumeration>
+     <xsd:enumeration       value="F">
+     </xsd:enumeration>
+     <xsd:enumeration       value="U">
+     </xsd:enumeration>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType     name="listingDetailType">
+    <xsd:annotation>
+     <xsd:documentation>Directory listing detail specified by user (ex-directory etc)</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction      base="xsd:string">
+     <xsd:enumeration       value="Full">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Limited">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Ex-Directory">
+     </xsd:enumeration>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType     name="listingLevelType">
+    <xsd:annotation>
+     <xsd:documentation>Directory listing level permission specified by user</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction      base="xsd:string">
+     <xsd:enumeration       value="Not Opted">
+     </xsd:enumeration>
+     <xsd:enumeration       value="FNFA">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Online/Printed/Voice">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Online/Printed">
+     </xsd:enumeration>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType     name="o2DomainType">
+    <xsd:annotation>
+     <xsd:documentation>Domain name specification, O2 accounts only</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction      base="xsd:string">
+     <xsd:enumeration       value="o2.co.uk">
+     </xsd:enumeration>
+     <xsd:enumeration       value="systestc.o2.co.uk">
+     </xsd:enumeration>
+     <xsd:enumeration       value="systestd.o2.co.uk">
+     </xsd:enumeration>
+     <xsd:enumeration       value="ref.o2.co.uk">
+     </xsd:enumeration>
+	 <xsd:enumeration 		value="stf.ref.o2.co.uk">
+	 </xsd:enumeration>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType     name="owningBusinessDivisionType">
+    <xsd:annotation>
+     <xsd:documentation>O2 owning business division</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction      base="xsd:string">
+     <xsd:enumeration       value="Online">
+     </xsd:enumeration>
+     <xsd:enumeration       value="O2UK">
+     </xsd:enumeration>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType     name="phoneNumberType">
+    <xsd:annotation>
+     <xsd:documentation>Telephone number, legal characters only</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction      base="xsd:string">
+     <xsd:maxLength       value="13">
+     </xsd:maxLength>
+     <xsd:minLength       value="0">
+     </xsd:minLength>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType     name="mobilePhoneType">
+    <xsd:annotation>
+     <xsd:documentation>Telephone number, legal characters only</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction      base="xsd:string">
+     <xsd:maxLength       value="13">
+     </xsd:maxLength>
+     <xsd:minLength       value="0">
+     </xsd:minLength>
+     <xsd:pattern       value="(07)[0-9]{9}">
+     </xsd:pattern>
+     <xsd:pattern       value="(447)[0-9]{9}">
+     </xsd:pattern>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType     name="portalMSISDNStatusType">
+    <xsd:annotation>
+     <xsd:documentation>Mobile phone number status within portal</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction      base="xsd:string">
+     <xsd:enumeration       value="Yes">
+     </xsd:enumeration>
+     <xsd:enumeration       value="No">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Info">
+     </xsd:enumeration>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType     name="postcodeType">
+    <xsd:annotation>
+     <xsd:documentation>Postcode text, valid formats only</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction      base="xsd:string">
+     <xsd:pattern       value="[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][A-Z-[CIKMOV]]{2}">
+     </xsd:pattern>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType     name="sectorType">
+    <xsd:annotation>
+     <xsd:documentation>Business sector type</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction      base="xsd:string">
+     <xsd:enumeration       value="Advertising and Design">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Agriculture">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Architect Services">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Construction">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Education">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Engineering">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Financial Services">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Government/Council Services">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Health">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Information Technology">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Legal">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Leisure">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Consultant">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Manufacturing">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Office/General Supplies">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Estate Management">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Utilities">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Other">
+     </xsd:enumeration>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType     name="typeOfAccountType">
+    <xsd:annotation>
+     <xsd:documentation>Account type (L2M/RevenueShare/Consumer)</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction      base="xsd:string">
+     <xsd:enumeration       value="L2M">
+     </xsd:enumeration>
+     <xsd:enumeration       value="RevenueShare">
+     </xsd:enumeration>
+     <xsd:enumeration       value="Consumer">
+     </xsd:enumeration>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType     name="typeOfCustomerType">
+    <xsd:annotation>
+     <xsd:documentation>Customer type (CON/SOL/PAR/LTD/CHA)</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction      base="xsd:string">
+     <xsd:enumeration       value="CON">
+     </xsd:enumeration>
+     <xsd:enumeration       value="SOL">
+     </xsd:enumeration>
+     <xsd:enumeration       value="PAR">
+     </xsd:enumeration>
+     <xsd:enumeration       value="LTD">
+     </xsd:enumeration>
+     <xsd:enumeration       value="CHA">
+     </xsd:enumeration>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType     name="userRegistrationType">
+    <xsd:annotation>
+     <xsd:documentation>User registration type (P/B)</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction      base="xsd:string">
+     <xsd:enumeration       value="P">
+     </xsd:enumeration>
+     <xsd:enumeration       value="B">
+     </xsd:enumeration>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:simpleType     name="yesNoType">
+    <xsd:annotation>
+     <xsd:documentation>Yes/No boolean indicators</xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction      base="xsd:string">
+     <xsd:enumeration       value="Yes">
+     </xsd:enumeration>
+     <xsd:enumeration       value="No">
+     </xsd:enumeration>
+    </xsd:restriction>
+   </xsd:simpleType>
+   <xsd:complexType     name="addressType">
+    <xsd:annotation>
+     <xsd:documentation>Orange account registration address details</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+     <xsd:element       name="houseNumber"
+       type="xsd:string"
+       minOccurs="0">
+     </xsd:element>
+     <xsd:element       name="houseName"
+       type="xsd:string"
+       minOccurs="0">
+     </xsd:element>
+     <xsd:element       name="addressLine1"
+       type="xsd:string">
+     </xsd:element>
+     <xsd:element       name="addressLine2"
+       type="xsd:string"
+       minOccurs="0">
+     </xsd:element>
+     <xsd:element       name="townCity"
+       type="xsd:string">
+     </xsd:element>
+     <xsd:element       name="county"
+       type="xsd:string"
+       minOccurs="0">
+     </xsd:element>
+     <xsd:element       name="postcode"
+       type="avns:postcodeType">
+     </xsd:element>
+     <xsd:element       name="country"
+       type="xsd:string">
+     </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute      use="optional"
+      name="status"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="PTCABS"
+      type="xsd:string">
+    </xsd:attribute>
+   </xsd:complexType>
+   <xsd:complexType     name="chooserRoleType">
+    <xsd:annotation>
+     <xsd:documentation>Orange account registration chooser role</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+     <xsd:element       name="genevaAccountId"
+       type="xsd:string">
+     </xsd:element>
+     <xsd:element       name="genevaAccountName"
+       type="xsd:string"
+       minOccurs="0">
+     </xsd:element>
+     <xsd:element       name="genevaCustomerId"
+       type="xsd:string">
+     </xsd:element>
+     <xsd:element       name="genevaCustomerName"
+       type="xsd:string">
+     </xsd:element>
+     <xsd:element       name="companyCustomerType"
+       type="avns:typeOfCustomerType">
+     </xsd:element>
+     <xsd:element       name="horizonCompanyCustnum"
+       type="xsd:integer">
+     </xsd:element>
+     <xsd:element       name="accountType"
+       type="avns:typeOfAccountType"
+       minOccurs="0">
+     </xsd:element>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType     name="rolesType">
+    <xsd:annotation>
+     <xsd:documentation>Orange account registration roles and ids</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+     <xsd:element       name="roleSet"
+       type="avns:roleSetType">
+     </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute      use="optional"
+      name="custnum"
+      type="xsd:integer">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="id"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="domain"
+      type="avns:o2DomainType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="action"
+      type="avns:crudType">
+    </xsd:attribute>
+   </xsd:complexType>
+   <xsd:complexType     name="roleSetType">
+    <xsd:annotation>
+     <xsd:documentation>Orange account registration role set (user, chooser, superchooser)</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+     <xsd:element       maxOccurs="unbounded"
+       name="userRole"
+       type="avns:userRoleType"
+       minOccurs="0">
+     </xsd:element>
+     <xsd:element       maxOccurs="unbounded"
+       name="chooserRole"
+       type="avns:chooserRoleType"
+       minOccurs="0">
+     </xsd:element>
+     <xsd:element       maxOccurs="unbounded"
+       name="superchooserRole"
+       type="avns:superChooserRoleType"
+       minOccurs="0">
+     </xsd:element>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType     name="superChooserRoleType">
+    <xsd:annotation>
+     <xsd:documentation>Orange account registration super-chooser role data</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+     <xsd:element       name="genevaCustomerId"
+       type="xsd:string">
+     </xsd:element>
+     <xsd:element       name="genevaCustomerName"
+       type="xsd:string">
+     </xsd:element>
+     <xsd:element       name="horizonCompanyCustnum"
+       type="xsd:integer">
+     </xsd:element>
+     <xsd:element       name="companyCustomerType"
+       type="avns:typeOfCustomerType">
+     </xsd:element>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType     name="namePairType">
+    <xsd:annotation>
+     <xsd:documentation>First and last names, for suggested Orange account usernames</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+     <xsd:element       name="forename"
+       type="xsd:string">
+     </xsd:element>
+     <xsd:element       name="lastname"
+       type="xsd:string">
+     </xsd:element>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType     name="usernameSuggestionsType">
+    <xsd:annotation>
+     <xsd:documentation>Suggested username list</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+     <xsd:element       maxOccurs="2"
+       name="suggestion"
+       type="xsd:string"
+       minOccurs="2">
+     </xsd:element>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType     name="userRoleType">
+    <xsd:annotation>
+     <xsd:documentation>Orange account registration user role data</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+     <xsd:element       name="genevaAccountId"
+       type="xsd:string">
+     </xsd:element>
+     <xsd:element       name="genevaAccountName"
+       type="xsd:string"
+       minOccurs="0">
+     </xsd:element>
+     <xsd:element       name="genevaCustomerId"
+       type="xsd:string">
+     </xsd:element>
+     <xsd:element       name="genevaCustomerName"
+       type="xsd:string">
+     </xsd:element>
+     <xsd:element       name="horizonCompanyCustnum"
+       type="xsd:integer">
+     </xsd:element>
+     <xsd:element       name="companyCustomerType"
+       type="avns:typeOfCustomerType">
+     </xsd:element>
+     <xsd:element       name="msisdn"
+       type="avns:mobilePhoneType">
+     </xsd:element>
+     <xsd:element       name="accountType"
+       type="avns:typeOfAccountType"
+       minOccurs="0">
+     </xsd:element>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType     name="userCreationType">
+    <xsd:annotation>
+     <xsd:documentation>Orange registration user account creation details</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+     <xsd:element       name="address"
+       type="avns:addressType"
+       minOccurs="0">
+     </xsd:element>
+     <xsd:element       name="roleSet"
+       type="avns:roleSetType"
+       minOccurs="0">
+     </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute      use="optional"
+      name="accountManagerEmail"
+      type="avns:emailAddressType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="accountManagerName"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="alternativeContactNumber"
+      type="avns:phoneNumberType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="alternativeEmail"
+      type="avns:emailAddressType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      default="No"
+      name="broadbandUser"
+      type="avns:yesNoType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="broadbandActivatedDate"
+      type="xsd:dateTime">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="broadbandCeasedDate"
+      type="xsd:dateTime">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="broadbandOrderedDate"
+      type="xsd:dateTime">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="broadbandPartialOrderedDate"
+      type="xsd:dateTime">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="broadbandTerminatedDate"
+      type="xsd:dateTime">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="broadbandStatus"
+      type="avns:broadbandStatusType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="broadbandPackage"
+      type="avns:broadbandPackageType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="companyName"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="companyRegistrationNumber"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="companyTelephoneNumber"
+      type="avns:phoneNumberType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="contactMedium"
+      type="avns:contactMediumType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="creditVetDate"
+      type="xsd:date">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="creditVetPassed"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="customerType"
+      type="avns:typeOfCustomerType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="custnum"
+      type="xsd:integer">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="dateOfBirth"
+      type="xsd:date">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      default="No"
+      name="discountEligibilityFlag"
+      type="avns:yesNoType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      default="Ex-Directory"
+      name="dqListingDetail"
+      type="avns:listingDetailType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      default="Not Opted"
+      name="dqListingLevel"
+      type="avns:listingLevelType">
+    </xsd:attribute>
+    <xsd:attribute      use="required"
+      name="domain"
+      type="avns:o2DomainType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="emailAddress"
+      type="avns:emailAddressType">
+    </xsd:attribute>
+    <xsd:attribute      use="required"
+      name="forename"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="gender"
+      type="avns:genderType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="genevaCustomerId"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      default="No"
+      name="hasBeenBillingContact"
+      type="avns:yesNoType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      default="No"
+      name="hasHadRole"
+      type="avns:yesNoType">
+    </xsd:attribute>
+    <xsd:attribute      use="required"
+      name="id"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="initials"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="isESMECustomer"
+      type="avns:yesNoType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="jobFunction"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="jobTitle"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="key"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="required"
+      name="lastname"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="level2Password"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="msisdn"
+      type="avns:mobilePhoneType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="msisdnValid"
+      type="avns:portalMSISDNStatusType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="network"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="numberOfEmployees"
+      type="xsd:integer">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="owningBusinessDivision"
+      type="avns:owningBusinessDivisionType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="partner"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="required"
+      name="password"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="phoneMake"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="posBusinessUnit"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      default="No"
+      name="primaryAccountUser"
+      type="avns:yesNoType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="referral"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="referralDate"
+      type="xsd:date">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="registrationType"
+      type="avns:userRegistrationType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="riskThreshold"
+      type="xsd:integer">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="riskThresholdDate"
+      type="xsd:date">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="roleSummary"
+      type="avns:customerRoleSummaryType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="saleDate"
+      type="xsd:date">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="sector"
+      type="avns:sectorType">
+    </xsd:attribute>
+    <xsd:attribute      use="required"
+      name="securityQuestion"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="required"
+      name="securityAnswer"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="segmentation"
+      type="avns:customerSegmentationType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="timeStamp"
+      type="xsd:dateTime">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="title"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="wantsGenieMarketing"
+      type="avns:yesNoType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="wantsOtherMarketing"
+      type="avns:yesNoType">
+    </xsd:attribute>
+   </xsd:complexType>
+   <xsd:complexType     name="userListType">
+    <xsd:annotation>
+     <xsd:documentation>List of [zero or more] Orange user summary details</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+     <xsd:element       maxOccurs="unbounded"
+       name="user"
+       type="avns:userSummaryType"
+       minOccurs="0">
+     </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute      use="required"
+      name="total"
+      type="xsd:integer">
+    </xsd:attribute>
+   </xsd:complexType>
+   <xsd:complexType     name="userDataType">
+    <xsd:annotation>
+     <xsd:documentation>Orange account user details, for database updates</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+     <xsd:element       name="address"
+       type="avns:addressType"
+       minOccurs="0">
+     </xsd:element>
+     <xsd:element       name="roleSet"
+       type="avns:roleSetType"
+       minOccurs="0">
+     </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute      use="optional"
+      name="accountManagerEmail"
+      type="avns:emailAddressType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="accountManagerName"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="alternativeContactNumber"
+      type="avns:phoneNumberType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="alternativeEmail"
+      type="avns:emailAddressType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="broadbandUser"
+      type="avns:yesNoType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="broadbandActivatedDate"
+      type="xsd:dateTime">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="broadbandCeasedDate"
+      type="xsd:dateTime">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="broadbandOrderedDate"
+      type="xsd:dateTime">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="broadbandPartialOrderedDate"
+      type="xsd:dateTime">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="broadbandTerminatedDate"
+      type="xsd:dateTime">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="broadbandStatus"
+      type="avns:broadbandStatusType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="broadbandPackage"
+      type="avns:broadbandPackageType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="companyName"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="companyRegistrationNumber"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="companyTelephoneNumber"
+      type="avns:phoneNumberType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="contactMedium"
+      type="avns:contactMediumType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="creditVetDate"
+      type="xsd:date">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="creditVetPassed"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="customerType"
+      type="avns:typeOfCustomerType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="custnum"
+      type="xsd:integer">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="dateOfBirth"
+      type="xsd:date">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="discountEligibilityFlag"
+      type="avns:yesNoType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="dqListingDetail"
+      type="avns:listingDetailType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="dqListingLevel"
+      type="avns:listingLevelType">
+    </xsd:attribute>
+    <xsd:attribute      use="required"
+      name="domain"
+      type="avns:o2DomainType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="emailAddress"
+      type="avns:emailAddressType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="forename"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="gender"
+      type="avns:genderType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="genevaCustomerId"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="hasBeenBillingContact"
+      type="avns:yesNoType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="hasHadRole"
+      type="avns:yesNoType">
+    </xsd:attribute>
+    <xsd:attribute      use="required"
+      name="id"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="initials"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="isESMECustomer"
+      type="avns:yesNoType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="jobFunction"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="jobTitle"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="key"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="lastname"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="level2Password"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="msisdn"
+      type="avns:mobilePhoneType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="msisdnValid"
+      type="avns:portalMSISDNStatusType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="network"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="numberOfEmployees"
+      type="xsd:integer">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="owningBusinessDivision"
+      type="avns:owningBusinessDivisionType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="partner"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="password"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="phoneMake"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="posBusinessUnit"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="primaryAccountUser"
+      type="avns:yesNoType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="referral"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="referralDate"
+      type="xsd:date">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="registrationType"
+      type="avns:userRegistrationType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="riskThreshold"
+      type="xsd:integer">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="riskThresholdDate"
+      type="xsd:date">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="roleSummary"
+      type="avns:customerRoleSummaryType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="saleDate"
+      type="xsd:date">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="sector"
+      type="avns:sectorType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="securityQuestion"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="securityAnswer"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="segmentation"
+      type="avns:customerSegmentationType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="timeStamp"
+      type="xsd:dateTime">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="title"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="wantsGenieMarketing"
+      type="avns:yesNoType">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="wantsOtherMarketing"
+      type="avns:yesNoType">
+    </xsd:attribute>
+   </xsd:complexType>
+   <xsd:complexType     name="userSummaryType">
+    <xsd:annotation>
+     <xsd:documentation>Orange account user summary fields, for search results</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute      use="required"
+      name="custnum"
+      type="xsd:integer">
+    </xsd:attribute>
+    <xsd:attribute      use="required"
+      name="id"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="required"
+      name="domain"
+      type="avns:o2DomainType">
+    </xsd:attribute>
+    <xsd:attribute      use="required"
+      name="forename"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="required"
+      name="lastname"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="required"
+      name="msisdn"
+      type="avns:mobilePhoneType">
+    </xsd:attribute>
+    <xsd:attribute      use="required"
+      name="securityQuestion"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="required"
+      name="securityAnswer"
+      type="xsd:string">
+    </xsd:attribute>
+    <xsd:attribute      use="optional"
+      name="dateOfBirth"
+      type="xsd:date">
+    </xsd:attribute>
+   </xsd:complexType>
+   <xsd:complexType     name="createUserRequestType">
+    <xsd:annotation>
+     <xsd:documentation>Request to create an Orange user account</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+     <xsd:element       name="user"
+       type="avns:userCreationType">
+     </xsd:element>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType     name="createUserResponseType">
+    <xsd:annotation>
+     <xsd:documentation>Response from creation of Orange user account</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+     <xsd:element       name="user"
+       type="avns:userDataType">
+     </xsd:element>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType     name="searchForUsersByCustNumRequestType">
+    <xsd:annotation>
+     <xsd:documentation>Request to search for Orange accounts matching the supplied CustNum</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+     <xsd:element       name="custnum"
+       type="xsd:int">
+     </xsd:element>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType     name="searchForUsersByCustNumResponseType">
+    <xsd:annotation>
+     <xsd:documentation>Response for Orange account search against CustNum</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+     <xsd:element       name="custnum"
+       type="xsd:int">
+     </xsd:element>
+     <xsd:element       name="users"
+       type="avns:userListType">
+     </xsd:element>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType     name="searchForUsersByMSISDNRequestType">
+    <xsd:annotation>
+     <xsd:documentation>Request to search for Orange accounts matching the supplied MSISDN</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+     <xsd:element       name="msisdn"
+       type="avns:mobilePhoneType">
+     </xsd:element>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType     name="searchForUsersByMSISDNResponseType">
+    <xsd:annotation>
+     <xsd:documentation>Response for Orange account search against MSISDN</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+     <xsd:element       name="msisdn"
+       type="avns:mobilePhoneType">
+     </xsd:element>
+     <xsd:element       name="users"
+       type="avns:userListType">
+     </xsd:element>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType     name="searchForUsersByUserNameRequestType">
+    <xsd:annotation>
+     <xsd:documentation>Request to search for Orange accounts matching the supplied Username (id)</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+     <xsd:element       name="id"
+       type="xsd:string">
+     </xsd:element>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType     name="searchForUsersByUserNameResponseType">
+    <xsd:annotation>
+     <xsd:documentation>Response for Orange account search against Username/id</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+     <xsd:element       name="id"
+       type="xsd:string">
+     </xsd:element>
+     <xsd:element       name="users"
+       type="avns:userListType">
+     </xsd:element>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType     name="suggestUserNameRequestType">
+    <xsd:annotation>
+     <xsd:documentation>Request for Orange account username suggestion, based on first and last name</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+     <xsd:element       name="userNameComponents"
+       type="avns:namePairType">
+     </xsd:element>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType     name="suggestUserNameResponseType">
+    <xsd:annotation>
+     <xsd:documentation>Response for Orange account username suggestions</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+     <xsd:element       name="userNameComponents"
+       type="avns:namePairType">
+     </xsd:element>
+     <xsd:element       name="usernameSuggestions"
+       type="avns:usernameSuggestionsType">
+     </xsd:element>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType     name="updateUserRequestType">
+    <xsd:annotation>
+     <xsd:documentation>Request to update an Orange user account</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+     <xsd:element       name="user"
+       type="avns:userDataType">
+     </xsd:element>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType     name="updateUserResponseType">
+    <xsd:annotation>
+     <xsd:documentation>Response from update of Orange user account</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+     <xsd:element       name="user"
+       type="avns:userDataType">
+     </xsd:element>
+    </xsd:sequence>
+   </xsd:complexType>
+   <xsd:element     name="createUserRequest"
+     type="avns:createUserRequestType">
+    <xsd:annotation>
+     <xsd:documentation>Request message to create an Orange user account</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element     name="createUserResponse"
+     type="avns:createUserResponseType">
+    <xsd:annotation>
+     <xsd:documentation>Response message from creation of Orange user account</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element     name="searchForUsersByCustNumRequest"
+     type="avns:searchForUsersByCustNumRequestType">
+    <xsd:annotation>
+     <xsd:documentation>Request message to search for Orange accounts matching the supplied CustNum</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element     name="searchForUsersByCustNumResponse"
+     type="avns:searchForUsersByCustNumResponseType">
+    <xsd:annotation>
+     <xsd:documentation>Response message for Orange account search against CustNum</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element     name="searchForUsersByMSISDNRequest"
+     type="avns:searchForUsersByMSISDNRequestType">
+    <xsd:annotation>
+     <xsd:documentation>Request message to search for Orange accounts matching the supplied MSISDN</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element     name="searchForUsersByMSISDNResponse"
+     type="avns:searchForUsersByMSISDNResponseType">
+    <xsd:annotation>
+     <xsd:documentation>Response message for Orange account search against MSISDN</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element     name="searchForUsersByUserNameRequest"
+     type="avns:searchForUsersByUserNameRequestType">
+    <xsd:annotation>
+     <xsd:documentation>Request message to search for Orange accounts matching the supplied Username (id)</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element     name="searchForUsersByUserNameResponse"
+     type="avns:searchForUsersByUserNameResponseType">
+    <xsd:annotation>
+     <xsd:documentation>Response message for Orange account search against Username/id</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element     name="suggestUserNameRequest"
+     type="avns:suggestUserNameRequestType">
+    <xsd:annotation>
+     <xsd:documentation>Request message for Orange account username suggestion, based on first and last name</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element     name="suggestUserNameResponse"
+     type="avns:suggestUserNameResponseType">
+    <xsd:annotation>
+     <xsd:documentation>Response message for Orange account username suggestions</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element     name="updateUserRequest"
+     type="avns:updateUserRequestType">
+    <xsd:annotation>
+     <xsd:documentation>Request message to update an Orange user account</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+   <xsd:element     name="updateUserResponse"
+     type="avns:updateUserResponseType">
+    <xsd:annotation>
+     <xsd:documentation>Response message from update of Orange user account</xsd:documentation>
+    </xsd:annotation>
+   </xsd:element>
+  </xsd:schema>
+ </types>
+ <message   name="createUser">
+  <part    xmlns:partns="http://www.o2.com/broadband/AvatarTypes"
+    element="partns:createUserRequest"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="createUserResponse">
+  <part    xmlns:partns="http://www.o2.com/broadband/AvatarTypes"
+    element="partns:createUserResponse"
+    name="result">
+  </part>
+ </message>
+ <message   name="searchForUsersByUserName">
+  <part    xmlns:partns="http://www.o2.com/broadband/AvatarTypes"
+    element="partns:searchForUsersByUserNameRequest"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="searchForUsersByUserNameResponse">
+  <part    xmlns:partns="http://www.o2.com/broadband/AvatarTypes"
+    element="partns:searchForUsersByUserNameResponse"
+    name="result">
+  </part>
+ </message>
+ <message   name="suggestUserName">
+  <part    xmlns:partns="http://www.o2.com/broadband/AvatarTypes"
+    element="partns:suggestUserNameRequest"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="suggestUserNameResponse">
+  <part    xmlns:partns="http://www.o2.com/broadband/AvatarTypes"
+    element="partns:suggestUserNameResponse"
+    name="result">
+  </part>
+ </message>
+ <message   name="searchForUsersByCustNum">
+  <part    xmlns:partns="http://www.o2.com/broadband/AvatarTypes"
+    element="partns:searchForUsersByCustNumRequest"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="searchForUsersByCustNumResponse">
+  <part    xmlns:partns="http://www.o2.com/broadband/AvatarTypes"
+    element="partns:searchForUsersByCustNumResponse"
+    name="result">
+  </part>
+ </message>
+ <message   name="searchForUsersByMSISDN">
+  <part    xmlns:partns="http://www.o2.com/broadband/AvatarTypes"
+    element="partns:searchForUsersByMSISDNRequest"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="searchForUsersByMSISDNResponse">
+  <part    xmlns:partns="http://www.o2.com/broadband/AvatarTypes"
+    element="partns:searchForUsersByMSISDNResponse"
+    name="result">
+  </part>
+ </message>
+ <message   name="updateUser">
+  <part    xmlns:partns="http://www.o2.com/broadband/AvatarTypes"
+    element="partns:updateUserRequest"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="updateUserResponse">
+  <part    xmlns:partns="http://www.o2.com/broadband/AvatarTypes"
+    element="partns:updateUserResponse"
+    name="result">
+  </part>
+ </message>
+ <portType   name="AvatarPortType">
+  <operation    name="createUser">
+   <input     message="tns:createUser">
+   </input>
+   <output     message="tns:createUserResponse">
+   </output>
+  </operation>
+  <operation    name="searchForUsersByUserName">
+   <input     message="tns:searchForUsersByUserName">
+   </input>
+   <output     message="tns:searchForUsersByUserNameResponse">
+   </output>
+  </operation>
+  <operation    name="suggestUserName">
+   <input     message="tns:suggestUserName">
+   </input>
+   <output     message="tns:suggestUserNameResponse">
+   </output>
+  </operation>
+  <operation    name="searchForUsersByCustNum">
+   <input     message="tns:searchForUsersByCustNum">
+   </input>
+   <output     message="tns:searchForUsersByCustNumResponse">
+   </output>
+  </operation>
+  <operation    name="searchForUsersByMSISDN">
+   <input     message="tns:searchForUsersByMSISDN">
+   </input>
+   <output     message="tns:searchForUsersByMSISDNResponse">
+   </output>
+  </operation>
+  <operation    name="updateUser">
+   <input     message="tns:updateUser">
+   </input>
+   <output     message="tns:updateUserResponse">
+   </output>
+  </operation>
+ </portType>
+ <binding   name="AvatarServicePort"
+   type="tns:AvatarPortType">
+   <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+  <operation    name="createUser">
+    <soap:operation style="document" soapAction="" />
+   <input>
+     <soap:body use="literal" />
+   </input>
+   <output>
+     <soap:body use="literal" />
+   </output>
+  </operation>
+  <operation    name="searchForUsersByUserName">
+    <soap:operation style="document" soapAction="" />
+   <input>
+     <soap:body use="literal" />
+   </input>
+   <output>
+     <soap:body use="literal" />
+   </output>
+  </operation>
+  <operation    name="suggestUserName">
+    <soap:operation style="document" soapAction="" />
+   <input>
+     <soap:body use="literal" />
+   </input>
+   <output>
+     <soap:body use="literal" />
+   </output>
+  </operation>
+  <operation    name="searchForUsersByCustNum">
+    <soap:operation style="document" soapAction="" />
+   <input>
+     <soap:body use="literal" />
+   </input>
+   <output>
+     <soap:body use="literal" />
+   </output>
+  </operation>
+  <operation    name="searchForUsersByMSISDN">
+    <soap:operation style="document" soapAction="" />
+   <input>
+     <soap:body use="literal" />
+   </input>
+   <output>
+     <soap:body use="literal" />
+   </output>
+  </operation>
+  <operation    name="updateUser">
+    <soap:operation style="document" soapAction="" />
+   <input>
+     <soap:body use="literal" />
+   </input>
+   <output>
+     <soap:body use="literal" />
+   </output>
+  </operation>
+ </binding>
+ <service   name="AvatarService">
+  <port    name="AvatarServicePort"
+    binding="tns:AvatarServicePort">
+    <soap:address location="https://speedy.london.02.net:8443/broadband/AvatarService" />
+  </port>
+ </service>
+</definitions>

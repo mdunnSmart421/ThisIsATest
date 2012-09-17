@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd 
+                           http://www.springframework.org/schema/aop 
+                           http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+    <bean name="/initiate.do" 
+          class="com.o2.finance.spring.controller.InitiateController">
+        <property name="localModel"    ref="localModel"/>
+        <property name="errorView"     value="applicationError"/>
+        <property name="successView"   value="redirect:initialLoginCheck.do"/>
+        <property name="facade"        ref="financeFacade"/>
+
+    </bean>
+
+    <bean name="/initialLoginCheck.do" 
+          class="com.o2.finance.spring.controller.PostLoginController">
+        <property name="localModel"    ref="localModel"/>
+        <property name="formView"      value="redirect:enterMpn.do"/>
+        <property name="successView"   value="redirect:handoff.do"/>
+        <property name="invalidFlowView"   value="error" />
+        <property name="facade"        ref="financeFacade"/>
+    </bean>
+
+    <bean name="/enterMpn.do" 
+          class="com.o2.finance.spring.controller.EnterMpnController">
+        <property name="commandClass"    value="com.o2.finance.beans.EnterMpnForm"/>
+        <property name="commandName"     value="enterMpnForm"/>
+        <property name="formView"        value="enterMpn"/>
+        <property name="existingMpnView" value="existingMpn"/>
+        <property name="successView"     value="redirect:enterOtac.do"/>
+        <property name="localModel"      ref="localModel"/>
+        <property name="invalidFlowView"   value="error" />
+        <property name="facade"          ref="financeFacade"/>
+        
+        <property name="validator">
+            <bean class="com.o2.finance.beans.validator.EnterMpnFormValidator">
+            	
+            </bean>
+        </property>       
+    </bean>
+    
+    <bean name="/enterOtac.do" 
+          class="com.o2.finance.spring.controller.EnterOtacController">
+        <property name="commandClass"          value="com.o2.finance.beans.EnterOtacForm"/>
+        <property name="commandName"           value="enterOtacForm"/>
+        <property name="formView"              value="enterOtac"/>
+      <!--  <property name="successView"           value="redirect:chooseAccount.do"/> -->
+       <property name="successView" value="redirect:legacyDataValidation.do" /> 
+       
+        <property name="localModel"            ref="localModel"/>
+        <property name="invalidFlowView"   value="error" />
+        <property name="facade"                ref="financeFacade"/>
+         
+        <property name="validator">
+            <bean class="com.o2.finance.beans.validator.EnterOtacFormValidator"/>
+        </property>
+       
+    </bean>
+
+    <bean name="/chooseAccount.do"
+          class="com.o2.finance.spring.controller.ChooseAccountController">
+        <property name="commandClass"   value="com.o2.finance.beans.ChooseAccountForm"/>
+        <property name="commandName"    value="chooseAccountForm"/>
+        <property name="formView"       value="chooseAccount"/>
+        <property name="successView"    value="redirect:updateUserDetails.do"/>
+        <property name="newAccountView" value="redirect:enterUserDetails.do"/>
+        <property name="invalidFlowView"   value="error" />
+        <property name="localModel"     ref="localModel"/>
+        <property name="facade"         ref="financeFacade"/>
+         
+        <property name="validator">
+            <bean class="com.o2.finance.beans.validator.DisplayAssociatedAccountsFormValidator"/>
+        </property>
+        
+    </bean>
+
+	    <bean name="/legacyDataValidation.do"
+          class="com.o2.finance.spring.controller.LegacyDataValidationController">
+        	<property name="localModel"    ref="localModel"/>        	
+        	 <property name="successView"   value="redirect:updateUserDetails.do"/>         	
+        	<property name="chooseAccountView"  value="redirect:chooseAccount.do"/>
+          	<property name="updateDetailsView" value="redirect:updateUserDetails.do"/>  
+          	 <property name="handoffView" value="redirect:handoff.do"/>
+        	<property name="facade"        ref="financeFacade"/>
+			 <property name="invalidFlowView"   value="error" />
+          </bean>
+
+
+
+
+    <bean name="/newUserLoginCheck.do"
+          class="com.o2.finance.spring.controller.PostLoginNewAccountController">
+        <property name="localModel"    ref="localModel"/>
+        <property name="successView"   value="redirect:updateUserDetails.do"/>
+        <property name="invalidFlowView"   value="error" />
+        <property name="facade"        ref="financeFacade"/>
+          </bean>
+
+
+
+    <bean name="/accountChangeLoginCheck.do" 
+          class="com.o2.finance.spring.controller.PostLoginController">
+        <property name="localModel"    ref="localModel"/>
+        <property name="formView"      value="redirect:enterMpn.do"/>
+        <property name="successView"   value="redirect:legacyDataValidation.do"/>
+        <property name="invalidFlowView"   value="error" />
+        <property name="facade"        ref="financeFacade"/>
+    </bean>
+
+    <bean name="/pafLookup.do" class="com.o2.finance.spring.controller.PafLookupController">
+        <property name="commandClass" value="com.o2.finance.beans.PafLookupForm"/>
+        <property name="commandName"  value="pafLookupForm"/>
+        <property name="formView"     value="pafConfirm"/>
+        <property name="successView"  value="redirect:updateUserDetails.do"/>
+        <property name="invalidFlowView"   value="error" />
+        <property name="localModel"   ref="localModel"/>
+        <property name="facade"       ref="financeFacade"/>
+    </bean>
+
+    <bean name="/enterUserDetails.do" 
+          class="com.o2.finance.spring.controller.EnterUserDetailsController">
+        <property name="commandClass"      value="com.o2.finance.beans.EnterUserDetailsForm"/>
+        <property name="commandName"       value="enterUserDetailsForm"/>
+        <property name="formView"          value="enterUserDetails"/>
+        <property name="successView"       value="redirect:updateUserDetails.do"/>
+        <property name="silentLoginView"   value="redirect:silentLogin.do"/>
+        <property name="addressLookupView" value="redirect:pafLookup.do" />
+        <property name="pafCallback"       value="redirect:enterUserDetails.do" />
+        <property name="invalidFlowView"   value="error" />
+        <property name="localModel"        ref="localModel"/>
+        <property name="facade"            ref="financeFacade"/>
+
+        <property name="validator">
+            <bean class="com.o2.finance.beans.validator.EnterUserDetailsFormValidator">
+            	<property name="pafValidator" ref="pafValidator"/>
+            </bean>
+        </property>
+    </bean>
+    
+    <bean name="/updateUserDetails.do" 
+          class="com.o2.finance.spring.controller.UpdateUserDetailsController">
+        <property name="commandClass"           			value="com.o2.finance.beans.UpdateUserDetailsForm"/>
+        <property name="commandName"            			value="updateUserDetailsForm"/>
+        <property name="confirmUserDetailsView" 			value="confirmUserDetails"/>
+        <property name="updateUserDetailsView"  			value="updateUserDetails"/>
+        <property name="addressLookupView"      			value="redirect:pafLookup.do"/>
+        <property name="successView"            			value="redirect:handoff.do"/>
+        <property name="pafCallbackActivatedByFindAddress"  value="redirect:updateUserDetails.do?activatedBy=FindAddress" />
+        <property name="pafCallbackActivatedByContinue"     value="redirect:updateUserDetails.do?activatedBy=Continue" />
+        <property name="saveUserUpdatesView"        		value="redirect:saveUserUpdates.do" />
+        <property name="invalidFlowView"        			value="error" />
+        <property name="localModel"             			ref="localModel"/>
+        <property name="facade"                 			ref="financeFacade"/>
+         
+        <property name="validator">
+            <bean class="com.o2.finance.beans.validator.UpdateUserDetailsFormValidator">
+            	<property name="pafValidator" ref="pafValidator"/>
+            </bean>
+        </property>
+         
+    </bean>
+    
+    <bean name="/saveUserUpdates.do" 
+          class="com.o2.finance.spring.controller.SaveUserUpdatesController">
+        <property name="successView"            value="redirect:updateUserDetails.do"/>
+        <property name="localModel"             ref="localModel"/>
+        <property name="facade"                 ref="financeFacade"/>
+         
+    </bean>
+    
+   <bean name="/handoff.do" 
+          class="com.o2.finance.spring.controller.HandoffController">
+        <property name="localModel"        ref="localModel"/>
+        <property name="errorView"         value="applicationError"/>
+        <property name="invalidFlowView"   value="error" />
+        <property name="bacRequestBuilder" ref="bacRequestBuilder"/>
+   </bean>
+
+   <bean name="bacRequestBuilder" class="com.o2.finance.external.boa.BACNameValuePairBuilder"/>
+   
+   <bean name="/usernameSuggestions.do" class="com.o2.finance.spring.controller.UsernameSuggestionsController">
+        <property name="successView"   value="usernameSuggestions"/>
+        <property name="facade"        ref="financeFacade"/>
+   </bean>
+    
+    <bean name="/silentLogin.do" class="com.o2.finance.spring.controller.SilentLoginController">
+     	<property name="commandClass"  value="com.o2.finance.beans.SilentLoginForm"/>
+        <property name="commandName"   value="silentLoginForm"/>
+        <property name="successView"   value="silentLogin"/>        
+        <property name="errorView"     value="applicationError"/>
+        <property name="localModel"    ref  ="localModel"/>
+        <property name="facade"        ref  ="financeFacade"/>        
+   </bean>
+
+
+    <bean name="/login.do" class="com.o2.finance.spring.controller.LoginController" >
+        <property name="commandClass" value="com.o2.finance.beans.LoginForm" />
+        <property name="commandName" value="loginForm"/>
+
+        <property name="successView" value="login" />
+
+        <property name="localModel"  ref="localModel" />
+
+    </bean>
+
+
+
+    <!--<bean name="/testLogin.do" class="com.o2.finance.spring.controller.TestController" >-->
+        <!--<property name="successView"   value="silentLogin"/>-->
+        <!--<property name="commandClass" value="com.o2.finance.beans.LoginForm" />-->
+        <!--<property name="commandName"  value="loginForm" />-->
+        <!--<property name="localModel" ref="localModel" />-->
+    <!--</bean>-->
+
+
+    <!--<bean name="/testGetUser.do" class="com.o2.finance.spring.controller.TestLoginResultController" >-->
+
+
+        <!--<property name="localModel" ref="localModel" />-->
+
+        <!--<property name="facade" ref="financeFacade"/>-->
+    <!--</bean>-->
+
+
+
+
+
+    <!-- end of controller beans -->
+
+	<bean name="pafValidator" class="com.o2.finance.beans.validator.PafFormValidator" />
+
+    <bean id="mobilizationInterceptor"
+          class="com.o2.finance.spring.interceptor.MobilizationHandlerInterceptor">
+          <property name="localModel" ref="localModel" />
+    </bean>
+
+
+
+    <bean id="handlerMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
+        <property name="interceptors">
+            <list>
+                <ref bean="mobilizationInterceptor"/>
+                <ref bean="sessionInterceptor"/>
+            </list>
+        </property>
+    </bean>
+    
+    
+    <bean id="sessionInterceptor"  class="com.o2.finance.spring.interceptor.SessionHandlerInterceptor">
+  		<property name="localModel" ref="localModel" />
+  		<property name="timeoutMapping" value="initiate.do" />
+  		 <property name="errorView"     value="applicationError"/>
+    </bean>
+
+    <!--<bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">-->
+        <!--<property name="interceptors">-->
+            <!--<list>-->
+                <!--<ref bean="mobilizationInterceptor"/>-->
+            <!--</list>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+
+    <bean id="viewResolver" 
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix"    value="/WEB-INF/jsp/"/>
+        <property name="suffix"    value=".jsp"/>
+    </bean>
+
+
+    <bean id="handlerExceptionResolver" class="com.o2.finance.exception.FinanceExceptionResolver">
+        <property name="errorView"     value="error"/>
+        <property name="busyView"      value="busy"/>
+        <property name="localModel"    ref  ="localModel"/>
+        <property name="error2View"     value="error2"/>        
+        <property name="portalMSISDNView"     value="portalMSISDNError"/>
+		<property name="authFailView"     value="authFail"/>
+		<property name="sessionTimedOut" value="sessionTimedOut" /> 
+    </bean>
+
+
+    <!-- define source of validation messages -->
+    <bean id="messageSource" 
+          class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>Messages</value>
+            </list>
+        </property>
+    </bean>
+
+
+    <bean id="localModel" class="com.o2.finance.model.FinanceLocalModel" scope="session">
+        <aop:scoped-proxy/>
+    </bean>
+
+    <bean id="themeSource" class="org.springframework.ui.context.support.ResourceBundleThemeSource">
+     <property name="basenamePrefix" value="finance/theme/" />
+    </bean>
+
+    <bean name="themeResolver" class="com.o2.finance.spring.theme.MobileThemeResolver">
+        <property name="localModel" ref="localModel"/>
+    </bean>
+
+	<bean name="splashHelper" class="com.o2.finance.splash.SplashHelperImpl" init-method="readState">
+    </bean>
+    
+    <bean name="splashServlet" class="com.o2.finance.servlet.SplashServlet">
+    	<property name="splashHelper" ref="splashHelper"/>
+    </bean>
+    
+    <bean name="splashFilter" class="com.o2.finance.filters.SplashFilter">
+    	<property name="splashHelper" ref="splashHelper"/>
+    </bean>
+
+</beans>

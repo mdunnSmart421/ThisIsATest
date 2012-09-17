@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="OnlineCustomer" targetNamespace="http://soa.o2.co.uk/onlinecustomerservice_1" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ocs="http://soa.o2.co.uk/onlinecustomerservice_1" xmlns:ocd="http://soa.o2.co.uk/onlinecustomerdata_1">
+
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import namespace="http://soa.o2.co.uk/onlinecustomerdata_1" schemaLocation="onlinecustomerdata_1_1.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="getProfile">
+		<wsdl:part name="getProfile" element="ocd:getProfile"/>
+	</wsdl:message>
+	<wsdl:message name="getProfileResponse">
+		<wsdl:part name="getProfileResponse" element="ocd:getProfileResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getProfileFault">
+		<wsdl:part name="getProfileFault" element="ocd:getProfileFault"/>
+	</wsdl:message>
+	<wsdl:message name="verify">
+		<wsdl:part name="verify" element="ocd:verify"/>
+	</wsdl:message>
+	<wsdl:message name="verifyResponse">
+		<wsdl:part name="verifyResponse" element="ocd:verifyResponse"/>
+	</wsdl:message>
+	<wsdl:message name="verifyFault">
+		<wsdl:part name="verifyFault" element="ocd:verifyFault"/>
+	</wsdl:message>
+	<wsdl:message name="getPortalProfile">
+		<wsdl:part name="getPortalProfile" element="ocd:getPortalProfile"/>
+	</wsdl:message>
+	<wsdl:message name="getPortalProfileResponse">
+		<wsdl:part name="getPortalProfileResponse" element="ocd:getPortalProfileResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getPortalProfileFault">
+		<wsdl:part name="getPortalProfileFault" element="ocd:getPortalProfileFault"/>
+	</wsdl:message>
+	<wsdl:message name="getSubscriberProfile">
+		<wsdl:part name="getSubscriberProfile" element="ocd:getSubscriberProfile"/>
+	</wsdl:message>
+	<wsdl:message name="getSubscriberProfileResponse">
+		<wsdl:part name="getSubscriberProfileResponse" element="ocd:getSubscriberProfileResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getSubscriberProfileFault">
+		<wsdl:part name="getSubscriberProfileFault" element="ocd:getSubscriberProfileFault"/>
+	</wsdl:message>
+	<wsdl:message name="getPersonalProfile">
+		<wsdl:part name="getPersonalProfile" element="ocd:getPersonalProfile"/>
+	</wsdl:message>
+	<wsdl:message name="getPersonalProfileResponse">
+		<wsdl:part name="getPersonalProfileResponse" element="ocd:getPersonalProfileResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getPersonalProfileFault">
+		<wsdl:part name="getPersonalProfileFault" element="ocd:getPersonalProfileFault"/>
+	</wsdl:message>
+	<wsdl:message name="getFullProfile">
+		<wsdl:part name="getFullProfile" element="ocd:getFullProfile"/>
+	</wsdl:message>
+	<wsdl:message name="getFullProfileResponse">
+		<wsdl:part name="getFullProfileResponse" element="ocd:getFullProfileResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getFullProfileFault">
+		<wsdl:part name="getFullProfileFault" element="ocd:getFullProfileFault"/>
+	</wsdl:message>
+	<wsdl:message name="login">
+		<wsdl:part name="login" element="ocd:login"/>
+	</wsdl:message>
+	<wsdl:message name="loginResponse">
+		<wsdl:part name="loginResponse" element="ocd:loginResponse"/>
+	</wsdl:message>
+	<wsdl:message name="loginFault">
+		<wsdl:part name="loginFault" element="ocd:loginFault"/>
+	</wsdl:message>
+	<wsdl:message name="logout">
+		<wsdl:part name="logout" element="ocd:logout"/>
+	</wsdl:message>
+	<wsdl:message name="logoutResponse">
+		<wsdl:part name="logoutResponse" element="ocd:logoutResponse"/>
+	</wsdl:message>
+	<wsdl:message name="logoutFault">
+		<wsdl:part name="logoutFault" element="ocd:logoutFault"/>
+	</wsdl:message>
+	<wsdl:message name="getPortalSubscriberProfile">
+		<wsdl:part name="getPortalSubscriberProfile" element="ocd:getPortalSubscriberProfile"/>
+	</wsdl:message>
+	<wsdl:message name="getPortalSubscriberProfileResponse">
+		<wsdl:part name="getPortalSubscriberProfileResponse" element="ocd:getPortalSubscriberProfileResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getPortalSubscriberProfileFault">
+		<wsdl:part name="getPortalSubscriberProfileFault" element="ocd:getPortalSubscriberProfileFault"/>
+	</wsdl:message>
+	<wsdl:message name="getDefaultProfile">
+		<wsdl:part name="getDefaultProfile" element="ocd:getDefaultProfile"/>
+	</wsdl:message>
+	<wsdl:message name="getDefaultProfileResponse">
+		<wsdl:part name="getDefaultProfileResponse" element="ocd:getDefaultProfileResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getDefaultProfileFault">
+		<wsdl:part name="getDefaultProfileFault" element="ocd:getDefaultProfileFault"/>
+	</wsdl:message>
+	<wsdl:message name="getBillingProfile">
+		<wsdl:part name="getBillingProfile" element="ocd:getBillingProfile"/>
+	</wsdl:message>
+	<wsdl:message name="getBillingProfileResponse">
+		<wsdl:part name="getBillingProfileResponse" element="ocd:getBillingProfileResponse"/>
+	</wsdl:message>
+	<wsdl:message name="getBillingProfileFault">
+		<wsdl:part name="getBillingProfileFault" element="ocd:getBillingProfileFault"/>
+	</wsdl:message>
+	<wsdl:portType name="OnlineCustomerPort">
+		<wsdl:operation name="getProfile">
+			<wsdl:input name="getProfile" message="ocs:getProfile"/>
+			<wsdl:output name="getProfileResponse" message="ocs:getProfileResponse"/>
+			<wsdl:fault name="getProfileFault" message="ocs:getProfileFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="verify">
+			<wsdl:input name="verify" message="ocs:verify"/>
+			<wsdl:output name="verifyResponse" message="ocs:verifyResponse"/>
+			<wsdl:fault name="verifyFault" message="ocs:verifyFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="getPortalProfile">
+			<wsdl:input name="getPortalProfile" message="ocs:getPortalProfile"/>
+			<wsdl:output name="getPortalProfileResponse" message="ocs:getPortalProfileResponse"/>
+			<wsdl:fault name="getPortalProfileFault" message="ocs:getPortalProfileFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="getSubscriberProfile">
+			<wsdl:input name="getSubscriberProfile" message="ocs:getSubscriberProfile"/>
+			<wsdl:output name="getSubscriberProfileResponse" message="ocs:getSubscriberProfileResponse"/>
+			<wsdl:fault name="getSubscriberProfileFault" message="ocs:getSubscriberProfileFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="getPersonalProfile">
+			<wsdl:input name="getPersonalProfile" message="ocs:getPersonalProfile"/>
+			<wsdl:output name="getPersonalProfileResponse" message="ocs:getPersonalProfileResponse"/>
+			<wsdl:fault name="getPersonalProfileFault" message="ocs:getPersonalProfileFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="getFullProfile">
+			<wsdl:input name="getFullProfile" message="ocs:getFullProfile"/>
+			<wsdl:output name="getFullProfileResponse" message="ocs:getFullProfileResponse"/>
+			<wsdl:fault name="getFullProfileFault" message="ocs:getFullProfileFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="login">
+			<wsdl:input name="login" message="ocs:login"/>
+			<wsdl:output name="loginResponse" message="ocs:loginResponse"/>
+			<wsdl:fault name="loginFault" message="ocs:loginFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="logout">
+			<wsdl:input name="logout" message="ocs:logout"/>
+			<wsdl:output name="logoutResponse" message="ocs:logoutResponse"/>
+			<wsdl:fault name="logoutFault" message="ocs:logoutFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="getPortalSubscriberProfile">
+			<wsdl:input name="getPortalSubscriberProfile" message="ocs:getPortalSubscriberProfile"/>
+			<wsdl:output name="getPortalSubscriberProfileResponse" message="ocs:getPortalSubscriberProfileResponse"/>
+			<wsdl:fault name="getPortalSubscriberProfileFault" message="ocs:getPortalSubscriberProfileFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="getDefaultProfile">
+			<wsdl:input name="getDefaultProfile" message="ocs:getDefaultProfile"/>
+			<wsdl:output name="getDefaultProfileResponse" message="ocs:getDefaultProfileResponse"/>
+			<wsdl:fault name="getDefaultProfileFault" message="ocs:getDefaultProfileFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="getBillingProfile">
+			<wsdl:input name="getBillingProfile" message="ocs:getBillingProfile"/>
+			<wsdl:output name="getBillingProfileResponse" message="ocs:getBillingProfileResponse"/>
+			<wsdl:fault name="getBillingProfileFault" message="ocs:getBillingProfileFault"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="OnlineCustomerBinding" type="ocs:OnlineCustomerPort">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="getProfile">
+			<soap:operation soapAction=""/>
+			<wsdl:input name="getProfile">
+				<soap:body parts="getProfile" use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getProfileResponse">
+				<soap:body parts="getProfileResponse" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="getProfileFault">
+				<soap:fault name="getProfileFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="verify">
+			<soap:operation soapAction=""/>
+			<wsdl:input name="verify">
+				<soap:body parts="verify" use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="verifyResponse">
+				<soap:body parts="verifyResponse" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="verifyFault">
+				<soap:fault name="verifyFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getPortalProfile">
+			<soap:operation soapAction=""/>
+			<wsdl:input name="getPortalProfile">
+				<soap:body parts="getPortalProfile" use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getPortalProfileResponse">
+				<soap:body parts="getPortalProfileResponse" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="getPortalProfileFault">
+				<soap:fault name="getPortalProfileFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getSubscriberProfile">
+			<soap:operation soapAction=""/>
+			<wsdl:input name="getSubscriberProfile">
+				<soap:body parts="getSubscriberProfile" use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getSubscriberProfileResponse">
+				<soap:body parts="getSubscriberProfileResponse" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="getSubscriberProfileFault">
+				<soap:fault name="getSubscriberProfileFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getPersonalProfile">
+			<soap:operation soapAction=""/>
+			<wsdl:input name="getPersonalProfile">
+				<soap:body parts="getPersonalProfile" use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getPersonalProfileResponse">
+				<soap:body parts="getPersonalProfileResponse" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="getPersonalProfileFault">
+				<soap:fault name="getPersonalProfileFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getFullProfile">
+			<soap:operation soapAction=""/>
+			<wsdl:input name="getFullProfile">
+				<soap:body parts="getFullProfile" use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getFullProfileResponse">
+				<soap:body parts="getFullProfileResponse" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="getFullProfileFault">
+				<soap:fault name="getFullProfileFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="login">
+			<soap:operation soapAction=""/>
+			<wsdl:input name="login">
+				<soap:body parts="login" use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="loginResponse">
+				<soap:body parts="loginResponse" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="loginFault">
+				<soap:fault name="loginFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="logout">
+			<soap:operation soapAction=""/>
+			<wsdl:input name="logout">
+				<soap:body parts="logout" use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="logoutResponse">
+				<soap:body parts="logoutResponse" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="logoutFault">
+				<soap:fault name="logoutFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getPortalSubscriberProfile">
+			<soap:operation soapAction=""/>
+			<wsdl:input name="getPortalSubscriberProfile">
+				<soap:body parts="getPortalSubscriberProfile" use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getPortalSubscriberProfileResponse">
+				<soap:body parts="getPortalSubscriberProfileResponse" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="getPortalSubscriberProfileFault">
+				<soap:fault name="getPortalSubscriberProfileFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getDefaultProfile">
+			<soap:operation soapAction=""/>
+			<wsdl:input name="getDefaultProfile">
+				<soap:body parts="getDefaultProfile" use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getDefaultProfileResponse">
+				<soap:body parts="getDefaultProfileResponse" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="getDefaultProfileFault">
+				<soap:fault name="getDefaultProfileFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="getBillingProfile">
+			<soap:operation soapAction=""/>
+			<wsdl:input name="getBillingProfile">
+				<soap:body parts="getBillingProfile" use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getBillingProfileResponse">
+				<soap:body parts="getBillingProfileResponse" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="getBillingProfileFault">
+				<soap:fault name="getBillingProfileFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="OnlineCustomerService">
+		<wsdl:port name="OnlineCustomerPort" binding="ocs:OnlineCustomerBinding">
+			<soap:address location="https://sdpapi.o2.co.uk/services/OnlineCustomer_1_1"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

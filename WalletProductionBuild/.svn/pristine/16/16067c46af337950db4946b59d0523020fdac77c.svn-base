@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s0:definitions xmlns:s3="http://schemas.xmlsoap.org/wsdl/soap/"
+                xmlns:s2="http://soa.o2.co.uk/sdp/paaservice_1"
+                xmlns:s1="http://soa.o2.co.uk/sdp/paadata_1"
+                xmlns:s0="http://schemas.xmlsoap.org/wsdl/"
+                targetNamespace="http://soa.o2.co.uk/sdp/paaservice_1" name="Paa">
+	<s0:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:pas="http://soa.o2.co.uk/sdp/paaservice_1" xmlns:pad="http://soa.o2.co.uk/sdp/paadata_1">
+			<xsd:import schemaLocation="PAAService.xsd" namespace="http://soa.o2.co.uk/sdp/paadata_1"/>
+		</xsd:schema>
+	</s0:types>
+	<s0:message name="authByName">
+		<s0:part name="authByName" element="s1:authByName"/>
+	</s0:message>
+	<s0:message name="authByNameResponse">
+		<s0:part name="authByNameResponse" element="s1:authByNameResponse"/>
+	</s0:message>
+	<s0:message name="authByNameFault">
+		<s0:part name="authByNameFault" element="s1:authByNameFault"/>
+	</s0:message>
+	<s0:message name="validateAuthToken">
+		<s0:part name="validateAuthToken" element="s1:validateAuthToken"/>
+	</s0:message>
+	<s0:message name="validateAuthTokenResponse">
+		<s0:part name="validateAuthTokenResponse" element="s1:validateAuthTokenResponse"/>
+	</s0:message>
+	<s0:message name="validateAuthTokenFault">
+		<s0:part name="validateAuthTokenFault" element="s1:validateAuthTokenFault"/>
+	</s0:message>
+	<s0:message name="getMSISDN">
+		<s0:part name="getMSISDN" element="s1:getMSISDN"/>
+	</s0:message>
+	<s0:message name="getMSISDNResponse">
+		<s0:part name="getMSISDNResponse" element="s1:getMSISDNResponse"/>
+	</s0:message>
+	<s0:message name="getMSISDNFault">
+		<s0:part name="getMSISDNFault" element="s1:getMSISDNFault"/>
+	</s0:message>
+	<s0:message name="getUserDetails">
+		<s0:part name="getUserDetails" element="s1:getUserDetails"/>
+	</s0:message>
+	<s0:message name="getUserDetailsResponse">
+		<s0:part name="getUserDetailsResponse" element="s1:getUserDetailsResponse"/>
+	</s0:message>
+	<s0:message name="getUserDetailsFault">
+		<s0:part name="getUserDetailsFault" element="s1:getUserDetailsFault"/>
+	</s0:message>
+	<s0:message name="lockUser">
+		<s0:part name="lockUser" element="s1:lockUser"/>
+	</s0:message>
+	<s0:message name="lockUserResponse">
+		<s0:part name="lockUserResponse" element="s1:lockUserResponse"/>
+	</s0:message>
+	<s0:message name="lockUserFault">
+		<s0:part name="lockUserFault" element="s1:lockUserFault"/>
+	</s0:message>
+	<s0:message name="unlockUser">
+		<s0:part name="unlockUser" element="s1:unlockUser"/>
+	</s0:message>
+	<s0:message name="unlockUserResponse">
+		<s0:part name="unlockUserResponse" element="s1:unlockUserResponse"/>
+	</s0:message>
+	<s0:message name="unlockUserFault">
+		<s0:part name="unlockUserFault" element="s1:unlockUserFault"/>
+	</s0:message>
+	<s0:message name="getIdentityToken">
+		<s0:part name="getIdentityToken" element="s1:getIdentityToken"/>
+	</s0:message>
+	<s0:message name="getIdentityTokenResponse">
+		<s0:part name="getIdentityTokenResponse" element="s1:getIdentityTokenResponse"/>
+	</s0:message>
+	<s0:message name="getIdentityTokenFault">
+		<s0:part name="getIdentityTokenFault" element="s1:getIdentityTokenFault"/>
+	</s0:message>
+	<s0:message name="validateIdentityToken">
+		<s0:part name="validateIdentityToken" element="s1:validateIdentityToken"/>
+	</s0:message>
+	<s0:message name="validateIdentityTokenResponse">
+		<s0:part name="validateIdentityTokenResponse" element="s1:validateIdentityTokenResponse"/>
+	</s0:message>
+	<s0:message name="validateIdentityTokenFault">
+		<s0:part name="validateIdentityTokenFault" element="s1:validateIdentityTokenFault"/>
+	</s0:message>
+	<s0:portType name="PaaPort">
+		<s0:operation name="authByName">
+			<s0:input name="authByName" message="s2:authByName"/>
+			<s0:output name="authByNameResponse" message="s2:authByNameResponse"/>
+			<s0:fault name="authByNameFault" message="s2:authByNameFault"/>
+		</s0:operation>
+		<s0:operation name="validateAuthToken">
+			<s0:input name="validateAuthToken" message="s2:validateAuthToken"/>
+			<s0:output name="validateAuthTokenResponse" message="s2:validateAuthTokenResponse"/>
+			<s0:fault name="validateAuthTokenFault" message="s2:validateAuthTokenFault"/>
+		</s0:operation>
+		<s0:operation name="getMSISDN">
+			<s0:input name="getMSISDN" message="s2:getMSISDN"/>
+			<s0:output name="getMSISDNResponse" message="s2:getMSISDNResponse"/>
+			<s0:fault name="getMSISDNFault" message="s2:getMSISDNFault"/>
+		</s0:operation>
+		<s0:operation name="getUserDetails">
+			<s0:input name="getUserDetails" message="s2:getUserDetails"/>
+			<s0:output name="getUserDetailsResponse" message="s2:getUserDetailsResponse"/>
+			<s0:fault name="getUserDetailsFault" message="s2:getUserDetailsFault"/>
+		</s0:operation>
+		<s0:operation name="lockUser">
+			<s0:input name="lockUser" message="s2:lockUser"/>
+			<s0:output name="lockUserResponse" message="s2:lockUserResponse"/>
+			<s0:fault name="lockUserFault" message="s2:lockUserFault"/>
+		</s0:operation>
+		<s0:operation name="unlockUser">
+			<s0:input name="unlockUser" message="s2:unlockUser"/>
+			<s0:output name="unlockUserResponse" message="s2:unlockUserResponse"/>
+			<s0:fault name="unlockUserFault" message="s2:unlockUserFault"/>
+		</s0:operation>
+		<s0:operation name="getIdentityToken">
+			<s0:input name="getIdentityToken" message="s2:getIdentityToken"/>
+			<s0:output name="getIdentityTokenResponse" message="s2:getIdentityTokenResponse"/>
+			<s0:fault name="getIdentityTokenFault" message="s2:getIdentityTokenFault"/>
+		</s0:operation>
+		<s0:operation name="validateIdentityToken">
+			<s0:input name="validateIdentityToken" message="s2:validateIdentityToken"/>
+			<s0:output name="validateIdentityTokenResponse" message="s2:validateIdentityTokenResponse"/>
+			<s0:fault name="validateIdentityTokenFault" message="s2:validateIdentityTokenFault"/>
+		</s0:operation>
+	</s0:portType>
+	<s0:binding name="PaaBinding" type="s2:PaaPort">
+		<s3:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+		<s0:operation name="authByName">
+			<s3:operation soapAction=""/>
+			<s0:input name="authByName">
+				<s3:body use="literal" parts="authByName"/>
+			</s0:input>
+			<s0:output name="authByNameResponse">
+				<s3:body use="literal" parts="authByNameResponse"/>
+			</s0:output>
+			<s0:fault name="authByNameFault">
+				<s3:fault name="authByNameFault" use="literal"/>
+			</s0:fault>
+		</s0:operation>
+		<s0:operation name="validateAuthToken">
+			<s3:operation soapAction=""/>
+			<s0:input name="validateAuthToken">
+				<s3:body use="literal" parts="validateAuthToken"/>
+			</s0:input>
+			<s0:output name="validateAuthTokenResponse">
+				<s3:body use="literal" parts="validateAuthTokenResponse"/>
+			</s0:output>
+			<s0:fault name="validateAuthTokenFault">
+				<s3:fault name="validateAuthTokenFault" use="literal"/>
+			</s0:fault>
+		</s0:operation>
+		<s0:operation name="getMSISDN">
+			<s3:operation soapAction=""/>
+			<s0:input name="getMSISDN">
+				<s3:body use="literal" parts="getMSISDN"/>
+			</s0:input>
+			<s0:output name="getMSISDNResponse">
+				<s3:body use="literal" parts="getMSISDNResponse"/>
+			</s0:output>
+			<s0:fault name="getMSISDNFault">
+				<s3:fault name="getMSISDNFault" use="literal"/>
+			</s0:fault>
+		</s0:operation>
+		<s0:operation name="getUserDetails">
+			<s3:operation soapAction=""/>
+			<s0:input name="getUserDetails">
+				<s3:body use="literal" parts="getUserDetails"/>
+			</s0:input>
+			<s0:output name="getUserDetailsResponse">
+				<s3:body use="literal" parts="getUserDetailsResponse"/>
+			</s0:output>
+			<s0:fault name="getUserDetailsFault">
+				<s3:fault name="getUserDetailsFault" use="literal"/>
+			</s0:fault>
+		</s0:operation>
+		<s0:operation name="lockUser">
+			<s3:operation soapAction=""/>
+			<s0:input name="lockUser">
+				<s3:body use="literal" parts="lockUser"/>
+			</s0:input>
+			<s0:output name="lockUserResponse">
+				<s3:body use="literal" parts="lockUserResponse"/>
+			</s0:output>
+			<s0:fault name="lockUserFault">
+				<s3:fault name="lockUserFault" use="literal"/>
+			</s0:fault>
+		</s0:operation>
+		<s0:operation name="unlockUser">
+			<s3:operation soapAction=""/>
+			<s0:input name="unlockUser">
+				<s3:body use="literal" parts="unlockUser"/>
+			</s0:input>
+			<s0:output name="unlockUserResponse">
+				<s3:body use="literal" parts="unlockUserResponse"/>
+			</s0:output>
+			<s0:fault name="unlockUserFault">
+				<s3:fault name="unlockUserFault" use="literal"/>
+			</s0:fault>
+		</s0:operation>
+		<s0:operation name="getIdentityToken">
+			<s3:operation soapAction=""/>
+			<s0:input name="getIdentityToken">
+				<s3:body use="literal" parts="getIdentityToken"/>
+			</s0:input>
+			<s0:output name="getIdentityTokenResponse">
+				<s3:body use="literal" parts="getIdentityTokenResponse"/>
+			</s0:output>
+			<s0:fault name="getIdentityTokenFault">
+				<s3:fault name="getIdentityTokenFault" use="literal"/>
+			</s0:fault>
+		</s0:operation>
+		<s0:operation name="validateIdentityToken">
+			<s3:operation soapAction=""/>
+			<s0:input name="validateIdentityToken">
+				<s3:body use="literal" parts="validateIdentityToken"/>
+			</s0:input>
+			<s0:output name="validateIdentityTokenResponse">
+				<s3:body use="literal" parts="validateIdentityTokenResponse"/>
+			</s0:output>
+			<s0:fault name="validateIdentityTokenFault">
+				<s3:fault name="validateIdentityTokenFault" use="literal"/>
+			</s0:fault>
+		</s0:operation>
+	</s0:binding>
+	<s0:service name="PaaService">
+		<s0:port name="PaaPort" binding="s2:PaaBinding">
+			<s3:address location="http://hackney:8080/services/sdp/Paa_1_0"/>
+		</s0:port>
+	</s0:service>
+</s0:definitions>

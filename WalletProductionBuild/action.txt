@@ -1,0 +1,50 @@
+Date: 14:09 18/05/2011
+
+EnterMobileDetailsPrepare
+PROCESS_OK
+
+EnterMobileDetailsSubmit
+MISSING_MPN
+""
+
+InitialiseSession
+SUCCESS
+
+Initiate
+PROCESS_PRODUCT_ID_MISSING
+INVALID_PRODUCT_ID
+PROCESS_OK
+
+LoginCheck
+USER_LOGGED_IN_WITH_MSDN
+USER_NOT_LOGGED_IN_WITH_MSDN
+USER_LOGGED_IN
+USER_NOT_LOGGED_IN
+
+MobileDetailsSubmit
+badger
+
+SendOTAC
+MISSING_MPN
+OTAC_GEN_FAILED
+OTAC_GEN_FAILED
+PROCESS_OK
+
+
+ValidateProductId
+PROCESS_PRODUCT_ID_MISSING
+INVALID_PRODUCT_ID
+PROCESS_OK
+
+
+List of Constants:
+SUCCESS = "success";
+PROCESS_PRODUCT_ID_MISSING = "productIdMissing";
+PROCESS_OK = "ok";
+INVALID_PRODUCT_ID = "invalidProductId";
+USER_LOGGED_IN = "loggedIn";
+USER_NOT_LOGGED_IN = "notLoggedIn";
+USER_LOGGED_IN_WITH_MSDN = "loggedInWithMsdn";
+USER_NOT_LOGGED_IN_WITH_MSDN = "notLoggedInWithMsdn";
+MISSING_MPN = "missingMpn";
+OTAC_GEN_FAILED = "otacGenerateFail";

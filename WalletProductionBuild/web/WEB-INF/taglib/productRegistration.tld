@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+<taglib>
+	<tlibversion>1.0</tlibversion>
+	<jspversion>1.1</jspversion>
+	<shortname></shortname>
+    <tag>
+    	<name>ProductRegistrationCancel</name>
+    	<tagclass>com.o2.finance.taglib.ProductRegistrationCancel</tagclass>
+    	<bodycontent>JSP</bodycontent>
+    </tag> 
+    <tag>
+    	<name>ProductRegistrationExit</name>
+    	<tagclass>com.o2.finance.taglib.ProductRegistrationExit</tagclass>
+    	<bodycontent>JSP</bodycontent>
+    </tag>   
+    <tag>
+    	<name>SendVerificationCodeWait</name>
+    	<tagclass>com.o2.finance.taglib.SendVerificationCodeWait</tagclass>
+    	<bodycontent>JSP</bodycontent>
+    </tag>
+    <tag>
+        <name>PageTitle</name>
+        <tagclass>com.o2.finance.taglib.PageTitle</tagclass>
+        <bodycontent>JSP</bodycontent>
+        <attribute>
+            <name>value</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
+    	<name>ProductRegistrationCancelForMobile</name>
+    	<tagclass>com.o2.finance.taglib.ProductRegistrationCancelForMobile</tagclass>
+    	<bodycontent>JSP</bodycontent>
+    </tag> 
+    <tag>
+    	<name>ProductRegistrationLoginForMobile</name>
+    	<tagclass>com.o2.finance.taglib.ProductRegistrationLoginForMobile</tagclass>
+    	<bodycontent>JSP</bodycontent>
+    </tag> 
+
+</taglib>

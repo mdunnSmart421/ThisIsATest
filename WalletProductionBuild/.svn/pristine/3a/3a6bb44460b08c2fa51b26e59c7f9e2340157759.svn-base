@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"
+"http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+<taglib>
+    <tlibversion>1.0</tlibversion>
+    <jspversion>1.1</jspversion>
+    <shortname></shortname>
+    <tag>
+        <name>phoneMake</name>
+        <tagclass>com.o2.taglib.display.PhoneMake</tagclass>
+        <bodycontent>JSP</bodycontent>
+    </tag>
+    
+    <tag>
+        <name>securityQuestionList</name>
+        <tagclass>com.o2.taglib.display.SecurityQuestionList</tagclass>
+        <bodycontent>JSP</bodycontent>
+    </tag>   
+    
+    <tag>
+        <name>alternativeEmail</name>
+        <tagclass>com.o2.taglib.display.AlternativeEmail</tagclass>
+        <bodycontent>JSP</bodycontent>
+    </tag>
+    
+     <tag>
+        <name>genderMale</name>
+        <tagclass>com.o2.taglib.display.GenderMale</tagclass>
+        <bodycontent>JSP</bodycontent>
+    </tag>
+    
+    <tag>
+        <name>genderFemale</name>
+        <tagclass>com.o2.taglib.display.GenderFemale</tagclass>
+        <bodycontent>JSP</bodycontent>
+    </tag>
+    
+    <tag>
+        <name>username</name>
+        <tagclass>com.o2.taglib.display.Username</tagclass>
+        <bodycontent>JSP</bodycontent>
+    </tag>
+    
+    <tag>
+        <name>forename</name>
+        <tagclass>com.o2.taglib.display.Forename</tagclass>
+        <bodycontent>JSP</bodycontent>
+    </tag>
+    
+    <tag>
+        <name>lastname</name>
+        <tagclass>com.o2.taglib.display.Lastname</tagclass>
+        <bodycontent>JSP</bodycontent>
+    </tag>
+    
+    <tag>
+        <name>birthDay</name>
+        <tagclass>com.o2.taglib.display.BirthDay</tagclass>
+        <bodycontent>JSP</bodycontent>
+    </tag>
+    
+    <tag>
+        <name>birthMonth</name>
+        <tagclass>com.o2.taglib.display.BirthMonth</tagclass>
+        <bodycontent>JSP</bodycontent>
+    </tag>
+    
+    <tag>
+        <name>birthYear</name>
+        <tagclass>com.o2.taglib.display.BirthYear</tagclass>
+        <bodycontent>JSP</bodycontent>
+    </tag>
+    
+    <tag>
+        <name>wantsO2Marketing</name>
+        <tagclass>com.o2.taglib.display.WantsO2Marketing</tagclass>
+        <bodycontent>JSP</bodycontent>
+    </tag>
+    
+    <tag>
+        <name>wantsOtherMarketing</name>
+        <tagclass>com.o2.taglib.display.WantsOtherMarketing</tagclass>
+        <bodycontent>JSP</bodycontent>
+    </tag>
+    
+    <tag>
+        <name>houseName</name>
+        <tagclass>com.o2.taglib.display.HouseName</tagclass>
+        <bodycontent>JSP</bodycontent>
+    </tag>
+
+    <tag>
+        <name>houseNumber</name>
+        <tagclass>com.o2.taglib.display.HouseNumber</tagclass>
+        <bodycontent>JSP</bodycontent>
+    </tag>
+
+    <tag>
+        <name>streetName1</name>
+        <tagclass>com.o2.taglib.display.StreetName1</tagclass>
+        <bodycontent>JSP</bodycontent>
+    </tag>
+    
+    <tag>
+        <name>streetName2</name>
+        <tagclass>com.o2.taglib.display.StreetName2</tagclass>
+        <bodycontent>JSP</bodycontent>
+    </tag>
+    
+    <tag>
+        <name>townCity</name>
+        <tagclass>com.o2.taglib.display.TownCity</tagclass>
+        <bodycontent>JSP</bodycontent>
+    </tag>
+    
+    <tag>
+        <name>county</name>
+        <tagclass>com.o2.taglib.display.County</tagclass>
+        <bodycontent>JSP</bodycontent>
+    </tag>
+    
+    <tag>
+        <name>postcode</name>
+        <tagclass>com.o2.taglib.display.Postcode</tagclass>
+        <bodycontent>JSP</bodycontent>
+    </tag>
+    
+    <tag>
+        <name>securityAnswer</name>
+        <tagclass>com.o2.taglib.display.SecurityAnswer</tagclass>
+        <bodycontent>JSP</bodycontent>
+    </tag>
+    
+    <tag>
+    	<name>currentAddress</name>
+    	<tagclass>com.o2.taglib.display.CurrentAddress</tagclass>
+    	<bodycontent>JSP</bodycontent>
+    </tag>
+</taglib>

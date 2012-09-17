@@ -1,0 +1,214 @@
+# New user registration domain
+
+registration.domain=o2.co.uk
+
+
+#############################################
+#Two way SSL 
+#############################################
+# Axis/SOA/Java 1.6
+two.way.ssl.keystore=/finance/keystores/o2finance-keys
+two.way.ssl.keystore.passwd=password
+
+
+
+
+# JaxRPC/SOA/Java 1.4
+# Trust
+# Keystore for SSL trust Ð SOA calls
+# two.way.ssl.trusted.store=properties/finance/keystores/ThawteSGCCA.pem
+two.way.ssl.trusted.store=properties/finance/keystores/O2AG_sdpapi_o2_co_uk_cert20151024.pem
+# Password for SSL trust keystore Ð SOA calls
+two.way.ssl.trusted.store.passwd=oshta421
+
+# Client identity key store
+two.way.ssl.identity.key.file=/finance/keystores/o2_timberlakeweb_cert20130820.pem
+# Client identity keystore password
+two.way.ssl.identity.key.password=5wall5tLiv5
+
+# Axis/SOA/Java 1.6
+two.way.ssl.check.host.name=false
+
+#############################################
+#Two way SSL       # Axis/SOA/Java 1.6
+#############################################
+axis2.config=/finance/axis2/axis2.xml
+axis2.repository=/finance/axis2/repository
+axis2.rampart.policy=/finance/axis2/policy.xml
+
+#############################################
+#Authorisation mechanism through PAA service 
+#############################################
+authorise.from.request=false
+
+########################################################################
+# For two ways SSL
+# paa.service.end.point=http://sdpapi.ref.o2.co.uk/services/sdp/Paa_1_0
+########################################################################
+
+paa.auth.token.cookie=MAT
+paa.auth.userid.cookie=MID
+paa.auth.ws.security.on=true
+paa.auth.ws.security.username=timberlakeweb_4934
+paa.auth.ws.security.passwd=2aspesweBRay7fR
+#paa.auth.ws.security.passwd=kac78pHE
+
+########################################################################
+# For two ways SSL
+
+# SOA service (Sendmessage) endpoint
+#sms.service.end.point=httpc://sdpapi.ref.o2.co.uk/services/sdp/SendMessage_1_1
+#sms.service.end.point=https://sdpapi.ref.o2.co.uk/services/SendMessage_1_1
+sms.service.end.point=https://sdpapi.o2.co.uk/services/SendMessage_1_1
+########################################################################
+# SOA service (Sendmessage) time to live parameter for sendSMS call
+sms.service.ttl=10000
+sms.service.receipt.url=http://o2.com
+# SOA service (Sendmessage) MTProfile parameter for sendSMS call
+sms.service.mt.profile=o2/timberlakeweb/money
+# SOA service (Sendmessage) type of message parameter for sendSMS call
+sms.service.message.type=TXT
+sms.service.application.reference=eWallet
+
+
+# NB - DO NOT SET THIS PROPERTY TO FALSE IN REF/LIVE ENV AS IT TURNS OFF SENDING OF SMS MESSAGE
+sms.send.message=true
+
+
+
+
+############################################################
+#Avatar Service in Orange to Create and Update User Details 
+############################################################
+# Orange Avatar service end point
+avatar.service.end.point=http://registration.o2.co.uk/broadband/AvatarService
+
+# Orange registration service end point
+registration.service.end.point=http://registration.o2.co.uk/registration/RegistrationService
+
+# Orange OTAC service end point
+otac.service.end.point=http://registration.o2.co.uk/ws/OtacService?wsdl
+
+# Orange PAF service end point
+paf.service.end.point=http://registration.o2.co.uk/ws/PafService?wsdl
+
+# SOA service (onlineCustomer) end point
+onlineCustomer.service.end.point=https://sdpapi.o2.co.uk/services/OnlineCustomer_1_1
+
+
+onlineCustomer.auth.ws.security.on=true
+onlineCustomer.auth.ws.security.username=timberlakeweb_4934
+onlineCustomer.auth.ws.security.passwd=2aspesweBRay7fR
+
+# SOA Ð sets whether or not to communicate with SOA using two way SSL
+soa.auth.security.on=true
+
+# SOA Ð username of SOA account
+soa.auth.security.username=timberlakeweb_4934
+
+# SOA Ð password of SOA account
+soa.auth.security.passwd=2aspesweBRay7fR
+
+
+############################################################
+#Orange Search Service 
+############################################################
+orange.search.service.end.point=https://registration.o2.co.uk/orangeServices-JaxWs/SearchService
+orange.search.service.ws.security.password=Inn0c3ntBystand3r
+orange.search.service.identities.exceeded.error.code=10007
+############################
+#
+# Customer Care search results limit
+# custcare.search.limit = n  - limits the number of results that may be returned to
+#                         the search page. NB this is also limited to 200 by the
+#                         search page jsp. So effectively value is limited to
+#                         0 <= n <= 200. This is subject to the ldap limits and
+#                         the registration.getUsers() maximum row counts.
+#
+############################
+
+custcare.search.limit=90
+search.customer.by.msisdn.count=50
+
+
+###############################################################
+# URL for the CANCEL button/link
+###############################################################
+registration.cancel.link.protocol.setting=http://
+registration.cancel.link.setting=www.o2.co.uk/login?sendTo=http://www.o2.co.uk
+registration.service.xml.date.format=yyyy-MM-dd
+
+#Mobile
+registration.mobile.cancel.link.protocol=https://
+registration.mobile.cancel.link.uri=mobilewallet.o2.co.uk 
+registration.mobile.login.link.protocol=https://
+registration.mobile.login.link.uri=mobilewallet.o2.co.uk
+
+###############################################################
+# URL for the Login forward  (existing user has changed account)
+###############################################################
+o2.login.page.url=https://www.o2.co.uk/login?sendTo=https://apply.o2.co.uk/finance/accountChangeLoginCheck.do
+
+
+###############################################################
+# URL for the Silent Login  (A new user has just been created)
+###############################################################
+
+# *******************************************************************************************************************
+o2.login.new.user.url=https://access.o2.co.uk/login
+# *******************************************************************************************************************
+o2.login.new.user.return.url=https://apply.o2.co.uk/finance/newUserLoginCheck.do
+# *******************************************************************************************************************
+o2.login.new.user.failure.url=https://apply.o2.co.uk/finance/newUserLoginCheck.do
+# *******************************************************************************************************************
+
+
+##############################################################
+# How long before another code can be sent
+###############################################################
+verification.code.max.wait.minutes=10
+
+###############################################################
+# O2 encryption
+###############################################################
+o2.key.store=/finance/keystores/o2finance-keys
+o2.key.store.type=jks
+o2.key.store.password=password
+o2.key.store.alias=importkey
+
+###############################################################
+# BAC encryption
+###############################################################
+boa.product.offer.code=poc123456
+boa.advert.code=12345
+
+#bac.digest.algorithm=SHA-512
+bac.signature.algorithm=SHA512withRSA
+bac.encrypt.algorithm=AES
+bac.encrypt.transport=AES/CBC/PKCS5Padding
+bac.encrypt.vector=1111111111111111
+#bac.key.encrypt.algorithm=RSA
+bac.key.encrypt.algorithm=RSA/ECB/PKCS1Padding
+
+bac.public.key.store=/finance/keystores/bac_public_key_20110810.jks
+bac.public.key.store.type=jks
+bac.public.key.store.password=oshta421
+bac.public.key.store.alias=bac_cert_20110810
+
+####################################################################
+# SPLASH PROPERTIES
+####################################################################
+# URI used for reloading splash configuration
+splash.uri=/splash/reload
+
+# IPs allowed to splash (comma separated list)
+splash.whitelist=127.0.0.1
+
+# Keyword used to determine if 'all' of a device or product should be splashed
+splash.all.keyword=all
+
+# Keyword used to determine if 'all' mobile devices should be splashed
+splash.all.mobile.keyword=allmobile
+
+# URL for splash page
+splash.page.url=https://apply.o2.co.uk/finance/splash/splash.jsp

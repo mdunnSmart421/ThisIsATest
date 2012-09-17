@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tns="http://www.o2.com/msisdn/OtacService"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  name="OtacService"
+                  targetNamespace="http://www.o2.com/msisdn/OtacService">
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://www.o2.com/msisdn/OtacService"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+			<xsd:simpleType name="MsisdnType">
+			<xsd:annotation>
+				<xsd:documentation>Msisdn</xsd:documentation>
+			</xsd:annotation>
+			<xsd:restriction base="xsd:string">
+			</xsd:restriction>
+		</xsd:simpleType>
+		<xsd:simpleType name="ProcessFlowType">
+			<xsd:annotation>
+				<xsd:documentation>Process Flow</xsd:documentation>
+			</xsd:annotation>
+			<xsd:restriction base="xsd:string">
+				<!--<xsd:enumeration value="password"/> &lt;!&ndash; forgotten password &ndash;&gt;-->
+				<!--<xsd:enumeration value="userpwd"/> &lt;!&ndash; forgotten username and password &ndash;&gt;-->
+				<!--<xsd:enumeration value="username"/> &lt;!&ndash; forgotten username &ndash;&gt;-->
+				<!--<xsd:enumeration value="link"/>-->
+				<!--<xsd:enumeration value="unlink"/>-->
+				<!--<xsd:enumeration value="switch"/>-->
+				<!--<xsd:enumeration value="manageidentity"/>-->
+				<!--<xsd:enumeration value="editidentity"/>-->
+				<!--<xsd:enumeration value="changeusernamepwd"/>-->
+				<xsd:enumeration value="verifymsisdn"/>
+			</xsd:restriction>
+		</xsd:simpleType>
+			<xsd:simpleType name="OtacType">
+			<xsd:annotation>
+				<xsd:documentation>OTAC</xsd:documentation>
+			</xsd:annotation>
+			<xsd:restriction base="xsd:string">
+			</xsd:restriction>
+		</xsd:simpleType>
+		<xsd:complexType name="GenerateOtacRequestType">
+			<xsd:sequence>
+				<xsd:element name="msisdn" type="tns:MsisdnType" />
+				<xsd:element name="flow" type="tns:ProcessFlowType" />
+			</xsd:sequence>
+		</xsd:complexType>	
+		<xsd:complexType name="GenerateOtacResponseType">
+			<xsd:sequence>
+				<xsd:element name="otac" type="tns:OtacType" minOccurs="0" maxOccurs="1"/>
+				<xsd:element name="fault" type="tns:FaultType" minOccurs="0" maxOccurs="1"/>
+			</xsd:sequence>
+		</xsd:complexType>
+		<xsd:complexType name="VerifyOtacRequestType">
+			<xsd:sequence>
+				<xsd:element name="msisdn" type="tns:MsisdnType" />
+				<xsd:element name="otac" type="tns:OtacType" />
+				<xsd:element name="flow" type="tns:ProcessFlowType" />
+			</xsd:sequence>
+		</xsd:complexType>	
+			<xsd:complexType name="VerifyOtacResponseType">
+			<xsd:sequence>
+				<xsd:element name="valid" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
+				<xsd:element name="fault" type="tns:FaultType" minOccurs="0" maxOccurs="1"/>
+			</xsd:sequence>
+		</xsd:complexType>
+		<xsd:complexType name="FaultType">
+			<xsd:sequence>
+				<xsd:element name="faultcode" type="xsd:string" maxOccurs="1" /> 
+				<xsd:element name="faultstring" type="xsd:string" maxOccurs="1" /> 
+			  	<xsd:element name="faultactor" type="xsd:string" maxOccurs="1" /> 
+			  	<xsd:element name="detail" type="xsd:string" maxOccurs="1" /> 
+			</xsd:sequence>
+	 	</xsd:complexType>
+    </xsd:schema>
+    </wsdl:types>
+
+
+    <wsdl:message name="generateOtacRequest">
+        <wsdl:part name="request" type="tns:GenerateOtacRequestType"/>
+    </wsdl:message>
+    <wsdl:message name="generateOtacResponse">
+        <wsdl:part name="response" type="tns:GenerateOtacResponseType"/>
+    </wsdl:message>
+    <wsdl:message name="verifyOtacRequest">
+        <wsdl:part name="request" type="tns:VerifyOtacRequestType"/>
+    </wsdl:message>
+    <wsdl:message name="verifyOtacResponse">
+        <wsdl:part name="response" type="tns:VerifyOtacResponseType"/>
+    </wsdl:message>    
+    
+    <wsdl:portType name="OtacServicePortType">
+        <wsdl:operation name="generateOtac">
+            <wsdl:input message="tns:generateOtacRequest"/>
+            <wsdl:output message="tns:generateOtacResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="verifyOtac">
+            <wsdl:input message="tns:verifyOtacRequest"/>
+            <wsdl:output message="tns:verifyOtacResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+
+    <wsdl:binding name="OtacServiceSoapBinding"
+                  type="tns:OtacServicePortType">
+
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"
+                      style="rpc"/>
+
+        <wsdl:operation name="generateOtac">
+
+            <soap:operation soapAction="generateOtac"/>
+
+            <wsdl:input>
+                <soap:body use="literal"  namespace="http://www.o2.com/msisdn/OtacService" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" namespace="http://www.o2.com/msisdn/OtacService"/>
+            </wsdl:output>
+
+        </wsdl:operation>
+
+
+        <wsdl:operation name="verifyOtac">
+            <soap:operation soapAction="verifyOtac"/>
+            <wsdl:input>
+                <soap:body use="literal" namespace="http://www.o2.com/msisdn/OtacService"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" namespace="http://www.o2.com/msisdn/OtacService"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+
+    <wsdl:service name="OtacService">
+        <documentation xmlns="http://schemas.xmlsoap.org/wsdl/"/>
+        <wsdl:port name="OtacServicePort"
+                   binding="tns:OtacServiceSoapBinding">
+            <soap:address location="http://localhost:8080/otac/OtacService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

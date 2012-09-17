@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://soa.o2.co.uk/onlinecustomerdata_1" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xcore="http://soa.o2.co.uk/coredata_1" xmlns:ocd="http://soa.o2.co.uk/onlinecustomerdata_1">
+	
+	<xsd:import namespace="http://soa.o2.co.uk/coredata_1" schemaLocation="coredata_1_1.xsd"/>
+	
+	<xsd:element name="verify" type="ocd:verify">
+		<xsd:annotation>
+			<xsd:documentation>simple check that token is valid</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="verify">
+		<xsd:annotation>
+			<xsd:documentation>simple check that token is valid</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="customerID" type="xcore:customerIDType"/>
+			<xsd:element name="portalID" type="xcore:portalIDType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>The portal username</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="authToken" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:element name="verifyResponse" type="ocd:verifyResponse">
+		<xsd:annotation>
+			<xsd:documentation>result of authToken check</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="verifyResponse">
+		<xsd:annotation>
+			<xsd:documentation>result of authToken check</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="result" type="xcore:StatusCodeType"/>
+			<xsd:element name="description" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:element name="verifyFault" type="xcore:SOAFaultType">
+		<xsd:annotation>
+			<xsd:documentation>Verify Authtoken Fault</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:element name="getProfile" type="ocd:getProfile">
+		<xsd:annotation>
+			<xsd:documentation>gets list of product IDs associated with Customer</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="getProfile">
+		<xsd:annotation>
+			<xsd:documentation>gets list of product IDs associated with Customer</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="customerID" type="xcore:customerIDType"/>
+			<xsd:element name="authToken" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:element name="getProfileResponse" type="ocd:getProfileResponse">
+		<xsd:annotation>
+			<xsd:documentation>
+				Returns identifiers that can be used to select further context
+			</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="getProfileResponse">
+		<xsd:annotation>
+			<xsd:documentation>
+				Returns identifiers that can be used to select further context
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="onlineCustomer" type="ocd:onlineCustomer"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:element name="getProfileFault" type="xcore:SOAFaultType">
+		<xsd:annotation>
+			<xsd:documentation>getProfile Fault</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:element name="getPersonalProfile" type="ocd:getPersonalProfile">
+		<xsd:annotation>
+			<xsd:documentation>Gets all personal details for primary customer ID</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="getPersonalProfile">
+		<xsd:annotation>
+			<xsd:documentation>Gets all personal details for primary customer ID</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="customerID" type="xcore:customerIDType"/>
+			<xsd:element name="authToken" type="xsd:string"/>
+			<xsd:element name="productID" type="xcore:productIDType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:element name="getPersonalProfileResponse" type="ocd:getPersonalProfileResponse">
+		<xsd:annotation>
+			<xsd:documentation>Returns main name, address, DoB, etc</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="getPersonalProfileResponse">
+		<xsd:annotation>
+			<xsd:documentation>Returns main name, address, DoB, etc</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="personalProfile" type="ocd:personalProfile"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:element name="getPersonalProfileFault" type="xcore:SOAFaultType">
+		<xsd:annotation>
+			<xsd:documentation>For a specific portal ID, return the profile</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:element name="getPortalProfile" type="ocd:getPortalProfile">
+		<xsd:annotation>
+			<xsd:documentation>For a specific portal ID, return the profile</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="getPortalProfile">
+		<xsd:annotation>
+			<xsd:documentation>For a specific portal ID, return the profile</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="customerID" type="xcore:customerIDType"/>
+			<xsd:element name="portalID" type="xcore:portalIDType" minOccurs="0"/>
+			<xsd:element name="authToken" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:element name="getPortalProfileResponse" type="ocd:getPortalProfileResponse">
+		<xsd:annotation>
+			<xsd:documentation>Returns name and list of products with alternative ID</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="getPortalProfileResponse">
+		<xsd:annotation>
+			<xsd:documentation>Returns name and list of products with alternative ID</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="portalProfile" type="ocd:portalProfile"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:element name="getPortalProfileFault" type="xcore:SOAFaultType">
+		<xsd:annotation>
+			<xsd:documentation>getPortalProfile Fault</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:element name="getPortalSubscriberProfile" type="ocd:getPortalSubscriberProfile">
+		<xsd:annotation>
+			<xsd:documentation>For a specific portal ID, get the profile and subcriber segment of registered MSISDN in one call</xsd:documentation>
+		</xsd:annotation>	
+	</xsd:element>
+	
+	<xsd:complexType name="getPortalSubscriberProfile">
+		<xsd:annotation>
+			<xsd:documentation>For a specific portal ID, get the profile and subcriber segment of registered MSISDN in one call</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="customerID" type="xcore:customerIDType"/>
+			<xsd:element name="portalID" type="xcore:portalIDType" minOccurs="0"/>
+			<xsd:element name="authToken" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:element name="getPortalSubscriberProfileResponse" type="ocd:getPortalSubscriberProfileResponse">
+		<xsd:annotation>
+			<xsd:documentation>Returns profile and subscriber profile for single portal ID</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>	
+	
+	<xsd:complexType name="getPortalSubscriberProfileResponse">
+		<xsd:annotation>
+			<xsd:documentation>Returns profile and subscriber profile for single portal ID</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="portalSubscriberProfile" type="ocd:portalSubscriberProfile"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:element name="getPortalSubscriberProfileFault" type="xcore:SOAFaultType">
+		<xsd:annotation>
+			<xsd:documentation>getPortalSubscriberProfile Fault</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:element name="getSubscriberProfile" type="ocd:getSubscriberProfile">
+		<xsd:annotation>
+			<xsd:documentation>For a mobile subscription, return the details</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>	
+	
+	<xsd:complexType name="getSubscriberProfile">
+		<xsd:annotation>
+			<xsd:documentation>For a mobile subscription, return the details</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="customerID" type="xcore:customerIDType"/>
+			<xsd:element name="subscriberID" type="xcore:msisdnType" minOccurs="0"/>
+			<xsd:element name="authToken" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:element name="getSubscriberProfileResponse" type="ocd:getSubscriberProfileResponse">
+		<xsd:annotation>
+			<xsd:documentation>Returns details of the subscription</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="getSubscriberProfileResponse">
+		<xsd:annotation>
+			<xsd:documentation>Returns details of the subscription</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="subscriberProfile" type="xcore:SubscriberProfileType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:element name="getSubscriberProfileFault" type="xcore:SOAFaultType">
+		<xsd:annotation>
+			<xsd:documentation>getSubscriberProfile Fault</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:element name="getBillingProfile" type="ocd:getBillingProfile">
+		<xsd:annotation>
+			<xsd:documentation>For a billing association get details</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="getBillingProfile">
+		<xsd:annotation>
+			<xsd:documentation>For a billing association get details</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="accountID" type="xcore:accountType"/>
+			<xsd:element name="authToken" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:element name="getBillingProfileResponse" type="ocd:getBillingProfileResponse">
+		<xsd:annotation>
+			<xsd:documentation>Returns basic profile of tariff, etc.for the user</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="getBillingProfileResponse">
+		<xsd:annotation>
+			<xsd:documentation>Returns basic profile of tariff, etc.for the user</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="accountNumber" type="xcore:billingAccountNumberType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:element name="getBillingProfileFault" type="xcore:SOAFaultType">
+		<xsd:annotation>
+			<xsd:documentation>getBillingProfile Fault</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:element name="getFullProfile" type="ocd:getFullProfile">
+		<xsd:annotation>
+			<xsd:documentation>One call that can be used to lazy-load all data</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="getFullProfile">
+		<xsd:annotation>
+			<xsd:documentation>One call that can be used to lazy-load all data</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="customerID" type="xcore:customerIDType"/>
+			<xsd:element name="authToken" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:element name="getFullProfileResponse" type="ocd:getFullProfileResponse">
+		<xsd:annotation>
+			<xsd:documentation>Returns all customer details in one call (large structure)</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="getFullProfileResponse">
+		<xsd:annotation>
+			<xsd:documentation>Returns all customer details in one call (large structure)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="onlineCustomerDetails" type="ocd:onlineCustomerDetails"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:element name="getFullProfileFault" type="xcore:SOAFaultType">
+		<xsd:annotation>
+			<xsd:documentation>getFullProfile Fault</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:element name="getDefaultProfile" type="ocd:getDefaultProfile">
+		<xsd:annotation>
+			<xsd:documentation>Gets the PortalSubscriberProfile of the default Registered MSISDN</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+		
+	<xsd:complexType name="getDefaultProfile">
+		<xsd:annotation>
+			<xsd:documentation>Gets the PortalSubscriberProfile of the default Registered MSISDN</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="customerID" type="xcore:customerIDType"/>
+			<xsd:element name="authToken" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:element name="getDefaultProfileResponse" type="ocd:getDefaultProfileResponse">
+		<xsd:annotation>
+			<xsd:documentation>Returns the portal details and segmentation for the registered MSISDN only</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="getDefaultProfileResponse">
+		<xsd:annotation>
+			<xsd:documentation>Returns the portal details and segmentation for the registered MSISDN only</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="portalSubscriberProfile" type="ocd:portalSubscriberProfile"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:element name="getDefaultProfileFault" type="xcore:SOAFaultType">
+		<xsd:annotation>
+			<xsd:documentation>getDefaultProfile Fault</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:element name="login" type="ocd:login">
+		<xsd:annotation>
+			<xsd:documentation>The Login request</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="login">
+		<xsd:annotation>
+			<xsd:documentation>The Login request</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="username" type="xcore:portalIDType"/>
+			<xsd:element name="password" type="xsd:string"/>
+			<xsd:element name="profile" type="xsd:boolean" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:element name="loginResponse" type="ocd:loginResponse">
+		<xsd:annotation>
+			<xsd:documentation>result of the login check</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="loginResponse">
+		<xsd:annotation>
+			<xsd:documentation>result of the login check</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="result" type="xcore:StatusCodeType"/>
+			<xsd:element name="description" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="customerID" type="xcore:customerIDType" minOccurs="0"/>
+			<xsd:element name="authToken" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="onlineCustomer" type="ocd:onlineCustomer" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:element name="loginFault" type="xcore:SOAFaultType">
+		<xsd:annotation>
+			<xsd:documentation>login Fault</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:element name="logout" type="ocd:logout">
+		<xsd:annotation>
+			<xsd:documentation>Request to log a customer out</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="logout">
+		<xsd:annotation>
+			<xsd:documentation>Request to log a customer out</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="username" type="xcore:portalIDType"/>
+			<xsd:element name="authToken" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:element name="logoutResponse" type="ocd:logoutResponse">
+		<xsd:annotation>
+			<xsd:documentation>The response back when you log out</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="logoutResponse">
+		<xsd:annotation>
+			<xsd:documentation>The response back when you log out</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="result" type="xcore:StatusCodeType"/>
+			<xsd:element name="description" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:element name="logoutFault" type="xcore:SOAFaultType">
+		<xsd:annotation>
+			<xsd:documentation>logout Fault</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="onlineCustomer">
+		<xsd:annotation>
+			<xsd:documentation>The complex type that defines the online customer</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="customerID" type="xcore:customerIDType"/>
+			<xsd:element name="customerRole" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>
+						This is the old User, Chooser, thing from the registration system. Not sure this really belongs at the top level
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="portalID" type="xcore:portalIDType" maxOccurs="unbounded"/>
+			<xsd:element name="SubscriberID" type="xcore:msisdnType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="productID" type="xcore:productIDType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="onlineCustomerDetails">
+		<xsd:annotation>
+			<xsd:documentation>This profile is the FULL profile with all known data.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="customerID" type="xcore:customerIDType"/>
+			<xsd:element name="customerRole" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>This is the old User, Chooser, thing from Orange</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="personalProfile" type="ocd:personalProfile"/>
+			<xsd:element name="portalProfile" type="ocd:portalProfile" maxOccurs="unbounded"/>
+			<xsd:element name="subscriberProfile" type="xcore:SubscriberProfileType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="productID" type="xcore:productIDType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>
+						Each customer login can potentially have lots of different available
+						products to manage. Defined so far are just the products associated with a
+						specific portal ID and a phone number. In most cases these will be one-to-one
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="portalProfile">
+		<xsd:annotation>
+			<xsd:documentation>The portal profile type definitions</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="customerID" type="xcore:customerIDType">
+				<xsd:annotation>
+					<xsd:documentation>
+						The ID that uniquely identifies the customer in the portal and is placed in the ID cookies.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="portalID" type="xcore:portalIDType">
+				<xsd:annotation>
+					<xsd:documentation>Input parameter is the login name on the portal, often in the format firstname.lastname</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="status" type="ocd:status"/>
+			<xsd:element name="firstName" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>First name or could be the label assigned to the portal</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="lastName" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Last name of the person as recorded in the portal profile.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="subscriberID" type="xcore:msisdnType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>The main mobile phone number registered to, and verified against, the ID.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="validatedDate" type="xsd:dateTime" minOccurs="0"/>
+			<xsd:element name="label" type="xsd:string" nillable="true" minOccurs="0"/>
+			<xsd:element name="portalProduct" type="xsd:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="portalSubscriberProfile">
+		<xsd:annotation>
+			<xsd:documentation>The portal profile type definitions</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="customerID" type="xcore:customerIDType">
+				<xsd:annotation>
+					<xsd:documentation>The ID that uniquely identifies the customer in the portal and is placed in the ID cookies.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="portalID" type="xcore:portalIDType">
+				<xsd:annotation>
+					<xsd:documentation>Input parameter is the login name on the portal, often in the format firstname.lastname</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="status" type="ocd:status">
+				<xsd:annotation><xsd:documentation>The portal status, A = active, etc.</xsd:documentation></xsd:annotation>
+			</xsd:element>
+			<xsd:element name="firstName" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>First name or could be the label assigned to the portal</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="lastName" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Last name of the person as recorded in the portal profile.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="subscriber" type="xcore:SubscriberProfileType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>The main mobile phone number registered to, and verified against, the ID.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="validatedDate" type="xsd:dateTime" minOccurs="0"/>
+			<xsd:element name="label" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="portalProduct" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="personalProfile">
+		<xsd:annotation>
+			<xsd:documentation>The type of the personal profile structure</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="customerID" type="xcore:customerIDType">
+				<xsd:annotation>
+					<xsd:documentation>The key to the personal data for the customer. Initially the 15 digit o2BFid</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="firstName" type="xsd:string"/>
+			<xsd:element name="middleName" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="lastName" type="xsd:string"/>
+			<xsd:element name="gender" type="ocd:gender"/>
+			<xsd:element name="address" type="ocd:address"/>
+			<xsd:element name="dateOfBirth" type="xsd:date"/>
+			<xsd:element name="title" type="xsd:string" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Could use a standard enumeration here rather than free text
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="O2EmailAddress" type="xsd:string"/>
+			<xsd:element name="alternateEmailAddress" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="contactPhone" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="contactMobile" type="xcore:msisdnType" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:simpleType name="status">
+		<xsd:annotation>
+			<xsd:documentation>The portal status, A = active, etc.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Active"/>
+			<xsd:enumeration value="Enabled"/>
+			<xsd:enumeration value="Disabled"/>
+			<xsd:enumeration value="Unknown"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:simpleType name="gender">
+		<xsd:annotation>
+			<xsd:documentation>Gender</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="male"/>
+			<xsd:enumeration value="female"/>
+			<xsd:enumeration value="unknown"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:complexType name="address">
+		<xsd:annotation>
+			<xsd:documentation>Standard-ish address structure</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="postalCode" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="addressLineOne" type="xsd:string"/>
+			<xsd:element name="addressLineTwo" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="houseNumber" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="houseName" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="townOrCity" type="xsd:string"/>
+			<xsd:element name="countyOrState" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="country" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Could use a standard enumeration here rather than free text</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

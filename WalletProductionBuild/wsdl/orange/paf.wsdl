@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="Paf" targetNamespace="http://com.o2.paf"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:paf="http://com.o2.paf">
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://com.o2.paf"
+                    elementFormDefault="qualified"
+                    attributeFormDefault="unqualified">
+
+            <xsd:element name="searchAddress" type="paf:searchAddress">
+                <xsd:annotation>
+                    <xsd:documentation>This operation on searches on any address parameter</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+
+            <xsd:complexType name="searchAddress">
+                <xsd:annotation>
+                    <xsd:documentation>Returns addresses matching the provided address parameters
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:element name="address" type="paf:requestAddressType"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+
+            <xsd:complexType name="searchAddressResponse">
+                <xsd:annotation>
+                    <xsd:documentation>matching addresses else empty response</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:element name="address" type="paf:addressType" minOccurs="0" maxOccurs="unbounded"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+
+            <xsd:simpleType name="stringSize255">
+                <xsd:annotation>
+                    <xsd:documentation>Generic type that can be used for an string field, max
+                        length 255.
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string">
+                    <xsd:minLength value="0"/>
+                    <xsd:maxLength value="255"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+
+
+            <xsd:simpleType name="postcode">
+                <xsd:annotation>
+                    <xsd:documentation>Post code</xsd:documentation>
+                </xsd:annotation>
+                <xsd:restriction base="xsd:string">
+                    <xsd:minLength value="0"/>
+                    <xsd:maxLength value="25"/>
+                </xsd:restriction>
+            </xsd:simpleType>
+
+
+            <xsd:complexType name="requestAddressType">
+                <xsd:annotation>
+                    <xsd:documentation>address details</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:element name="organisation" type="paf:stringSize255" minOccurs="0"/>
+                    <xsd:element name="subBuildingName" type="paf:stringSize255" minOccurs="0"/>
+                    <xsd:element name="buildingName" type="paf:stringSize255" minOccurs="0"/>
+                    <xsd:element name="buildingNumber" type="paf:stringSize255" minOccurs="0"/>
+                    <xsd:element name="dependentStreet" type="paf:stringSize255" minOccurs="0"/>
+                    <xsd:element name="street" type="paf:stringSize255" minOccurs="0"/>
+                    <xsd:element name="dependentLocality" type="paf:stringSize255" minOccurs="0"/>
+                    <xsd:element name="locality" type="paf:stringSize255" minOccurs="0"/>
+                    <xsd:element name="postTown" type="paf:stringSize255" minOccurs="0"/>
+                    <xsd:element name="county" type="paf:stringSize255" minOccurs="0"/>
+                    <xsd:element name="postcode" type="paf:postcode" minOccurs="1"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+
+            <xsd:complexType name="addressType">
+                <xsd:annotation>
+                    <xsd:documentation>address details</xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:element name="organisation" type="paf:stringSize255" minOccurs="0"/>
+                    <xsd:element name="subBuildingName" type="paf:stringSize255" minOccurs="0"/>
+                    <xsd:element name="buildingName" type="paf:stringSize255" minOccurs="0"/>
+                    <xsd:element name="buildingNumber" type="paf:stringSize255" minOccurs="0"/>
+                    <xsd:element name="dependentStreet" type="paf:stringSize255" minOccurs="0"/>
+                    <xsd:element name="street" type="paf:stringSize255" minOccurs="0"/>
+                    <xsd:element name="dependentLocality" type="paf:stringSize255" minOccurs="0"/>
+                    <xsd:element name="locality" type="paf:stringSize255" minOccurs="0"/>
+                    <xsd:element name="postTown" type="paf:stringSize255" minOccurs="0"/>
+                    <xsd:element name="county" type="paf:stringSize255" minOccurs="0"/>
+                    <xsd:element name="postcode" type="paf:postcode" minOccurs="0"/>
+                </xsd:sequence>
+            </xsd:complexType>
+
+
+            <xsd:element name="searchAddressFault" type="paf:PafFaultType">
+                <xsd:annotation>
+                    <xsd:documentation>Fault generated during searchAddress</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+            <xsd:complexType name="PafFaultType">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        The type of the response sent to the calling
+                        application, if something goes wrong.
+                    </xsd:documentation>
+                </xsd:annotation>
+                <xsd:sequence>
+                    <xsd:element ref="paf:FaultOriginator"/>
+                    <xsd:element name="faultDescription" type="xsd:string"
+                                 minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation>
+                                A human readable description of the error.
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                    <xsd:element name="faultTrace" type="xsd:string"
+                                 minOccurs="0">
+                        <xsd:annotation>
+                            <xsd:documentation>
+                                A computer generated dump of the fault (may help
+                                in debugging problems).
+                            </xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:element>
+                </xsd:sequence>
+            </xsd:complexType>
+
+
+            <xsd:element name="FaultOriginator" type="xsd:string">
+                <xsd:annotation>
+                    <xsd:documentation>
+                        A representation of where a fault originates (should be
+                        included in errors.xml).
+                    </xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+
+            <xsd:element name="searchAddressResponse" type="paf:searchAddressResponse">
+                <xsd:annotation>
+                    <xsd:documentation>The response to the searchAddress request</xsd:documentation>
+                </xsd:annotation>
+            </xsd:element>
+
+
+        </xsd:schema>
+    </wsdl:types>
+
+
+    <wsdl:message name="searchAddress">
+        <wsdl:part name="searchAddress" element="paf:searchAddress"/>
+    </wsdl:message>
+    <wsdl:message name="searchAddressResponse">
+        <wsdl:part name="searchAddressResponse" element="paf:searchAddressResponse"/>
+    </wsdl:message>
+    <wsdl:message name="searchAddressFault">
+        <wsdl:part name="searchAddressFault" element="paf:searchAddressFault"/>
+    </wsdl:message>
+
+
+    <wsdl:portType name="PafPortType">
+        <wsdl:operation name="searchAddress">
+            <wsdl:input name="searchAddress" message="paf:searchAddress"/>
+            <wsdl:output name="searchAddressResponse" message="paf:searchAddressResponse"/>
+            <wsdl:fault name="searchAddressFault" message="paf:searchAddressFault"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+
+    <wsdl:binding name="PafBinding" type="paf:PafPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+        <wsdl:operation name="searchAddress">
+            <soap:operation soapAction="searchAddress"/>
+
+            <wsdl:input name="searchAddress">
+                <soap:body parts="searchAddress" use="literal"/>
+            </wsdl:input>
+
+            <wsdl:output name="searchAddressResponse">
+                <soap:body parts="searchAddressResponse" use="literal"/>
+            </wsdl:output>
+
+            <wsdl:fault name="searchAddressFault">
+                <soap:fault name="searchAddressFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+
+
+    <wsdl:service name="PafService">
+        <wsdl:port name="PafPort" binding="paf:PafBinding">
+            <soap:address location="https://localhost:8080/ws/PafService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

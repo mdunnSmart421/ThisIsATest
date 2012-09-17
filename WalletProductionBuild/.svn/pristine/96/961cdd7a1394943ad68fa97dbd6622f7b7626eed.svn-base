@@ -1,0 +1,3 @@
+<script language="javascript1.2" src="https://www.o2.co.uk/assets/O2HybridNav/Static-files/coremetrics/eluminate.js" type="text/javascript"></script>
+<script language="javascript1.2" src="https://www.o2.co.uk/assets/O2HybridNav/Static-files/coremetrics/cmdatatagutils.js" type="text/javascript"></script>
+<script language="javascript1.2" src="https://www.o2.co.uk/assets/O2HybridNav/Static-files/coremetrics/Registration.js" type="text/javascript"></script>

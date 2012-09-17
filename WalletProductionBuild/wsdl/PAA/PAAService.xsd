@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema targetNamespace="http://soa.o2.co.uk/sdp/paadata_1" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xcore="http://soa.o2.co.uk/coredata_1" xmlns:pad="http://soa.o2.co.uk/sdp/paadata_1">
+
+	<xsd:import namespace="http://soa.o2.co.uk/coredata_1" schemaLocation="PAAServiceCore.xsd"/>
+	
+	<xsd:element name="authByName" type="pad:authByName">
+		<xsd:annotation>
+			<xsd:documentation>Authenticate By Name</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+		
+	<xsd:complexType name="authByName">
+		<xsd:annotation>
+			<xsd:documentation>Authenticate By Name</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="username" type="xsd:string"/>
+			<xsd:element name="password" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="authByNameResponse" type="pad:authByNameResponse">
+		<xsd:annotation>
+			<xsd:documentation>Authenticate By Name Response</xsd:documentation>
+		</xsd:annotation>	
+	</xsd:element>
+	
+	<xsd:complexType name="authByNameResponse">		
+		<xsd:annotation>
+			<xsd:documentation>Authenticate By Name Response</xsd:documentation>
+		</xsd:annotation>	
+		<xsd:sequence>
+			<xsd:element name="code" type="xsd:string"/>
+			<xsd:element name="description" type="xsd:string"/>
+			<xsd:element name="userId" type="xsd:string"/>
+			<xsd:element name="msisdn" type="xcore:msisdnType"/>
+			<xsd:element name="authToken" type="xsd:string"/>
+			<xsd:element name="accountStatus" type="xsd:string"/>
+			<xsd:element name="firstName" type="xsd:string"/>
+			<xsd:element name="lastName" type="xsd:string"/>
+			<xsd:element name="msisdnValidatedDate" type="xsd:string"/>
+		</xsd:sequence>				
+	</xsd:complexType>
+	
+	<xsd:element name="authByNameFault" type="xcore:SOAFaultType">
+		<xsd:annotation>
+			<xsd:documentation>Authenticate By Name Fault</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+
+	<xsd:element name="validateAuthToken" type="pad:validateAuthToken">
+		<xsd:annotation>
+			<xsd:documentation>Validate Authentication Token</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="validateAuthToken">
+		<xsd:annotation>
+			<xsd:documentation>Validate Authentication Token</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="authToken" type="xsd:string"/>
+			<xsd:element name="userId" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="validateAuthTokenResponse" type="pad:validateAuthTokenResponse">
+		<xsd:annotation>
+			<xsd:documentation>Validated Authentication Token Response</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>	
+	
+	<xsd:complexType name="validateAuthTokenResponse">
+		<xsd:annotation>
+			<xsd:documentation>Validated Authentication Token Response</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="code" type="xsd:string"/>
+			<xsd:element name="description" type="xsd:string"/>
+			<xsd:element name="result" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType> 
+	
+	<xsd:element name="validateAuthTokenFault" type="xcore:SOAFaultType">
+		<xsd:annotation>
+			<xsd:documentation>Validated Authentication Token Fault</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:element name="getMSISDN" type="pad:getMSISDN">
+		<xsd:annotation>
+			<xsd:documentation>Gets MSISDN</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="getMSISDN">
+		<xsd:annotation>
+			<xsd:documentation>Gets MSISDN</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="authToken" type="xsd:string"/>
+			<xsd:element name="userId" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="getMSISDNResponse" type="pad:getMSISDNResponse">
+		<xsd:annotation>
+			<xsd:documentation>Gets MSISDN Response</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="getMSISDNResponse">
+		<xsd:annotation>
+			<xsd:documentation>Gets MSISDN Response</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="code" type="xsd:string"/>
+			<xsd:element name="description" type="xsd:string"/>
+			<xsd:element name="msisdn" type="xcore:msisdnType"/>
+			<xsd:element name="msisdnValidatedDate" type="xsd:string"/>	
+			<xsd:element name="validated" type="xsd:string"/>					
+		</xsd:sequence>
+	</xsd:complexType> 
+
+	<xsd:element name="getMSISDNFault" type="xcore:SOAFaultType">
+		<xsd:annotation>
+			<xsd:documentation>Gets MSISDN Fault</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:element name="getUserDetails" type="pad:getUserDetails">
+		<xsd:annotation>
+			<xsd:documentation>Gets User Details</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="getUserDetails">
+		<xsd:annotation>
+			<xsd:documentation>Gets User Details</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="authToken" type="xsd:string"/>
+			<xsd:element name="userId" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="getUserDetailsResponse" type="pad:getUserDetailsResponse">
+		<xsd:annotation>
+			<xsd:documentation>Gets User Details Response</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="getUserDetailsResponse">
+		<xsd:annotation>
+			<xsd:documentation>Gets User Details Response</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="code" type="xsd:string"/>
+			<xsd:element name="description" type="xsd:string"/>
+			<xsd:element name="portalUserName" type="xsd:string"/>
+			<xsd:element name="firstName" type="xsd:string"/>	
+			<xsd:element name="lastName" type="xsd:string"/>					
+			<xsd:element name="email" type="xsd:string"/>					
+			<xsd:element name="msisdn" type="xcore:msisdnType"/>					
+			<xsd:element name="msisdnValidatedDate" type="xsd:string"/>					
+			<xsd:element name="validated" type="xsd:string"/>					
+			<xsd:element name="accountStatus" type="xsd:string"/>					
+			<xsd:element name="userId" type="xsd:string"/>					
+		</xsd:sequence>				
+	</xsd:complexType> 
+
+	<xsd:element name="getUserDetailsFault" type="xcore:SOAFaultType">
+		<xsd:annotation>
+			<xsd:documentation>Gets User Details Fault</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:element name="lockUser" type="pad:lockUser">
+		<xsd:annotation>
+			<xsd:documentation>Locks the User</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="lockUser">
+		<xsd:annotation>
+			<xsd:documentation>Locks the User</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="userName" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="lockUserResponse" type="pad:lockUserResponse">
+		<xsd:annotation>
+			<xsd:documentation>Lock User Response</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+
+	<xsd:complexType name="lockUserResponse">		
+		<xsd:annotation>
+			<xsd:documentation>Lock User Response</xsd:documentation>
+		</xsd:annotation>	
+		<xsd:sequence>
+			<xsd:element name="code" type="xsd:string"/>
+			<xsd:element name="description" type="xsd:string"/>
+			<xsd:element name="result" type="xsd:string"/>
+			</xsd:sequence>				
+	</xsd:complexType>
+
+	<xsd:element name="lockUserFault" type="xcore:SOAFaultType">
+		<xsd:annotation>
+			<xsd:documentation>Lock User Fault</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+
+	<xsd:element name="unlockUser" type="pad:unlockUser">
+		<xsd:annotation>
+			<xsd:documentation>UnLock User</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>	
+
+	<xsd:complexType name="unlockUser">
+		<xsd:annotation>
+			<xsd:documentation>UnLock User</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="userName" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="unlockUserResponse" type="pad:unlockUserResponse">
+		<xsd:annotation>
+			<xsd:documentation>UnLock User Response</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="unlockUserResponse">
+		<xsd:annotation>
+			<xsd:documentation>UnLock User Response</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="code" type="xsd:string"/>
+			<xsd:element name="description" type="xsd:string"/>
+			<xsd:element name="result" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType> 
+
+	<xsd:element name="unlockUserFault" type="xcore:SOAFaultType">
+		<xsd:annotation>
+			<xsd:documentation>UnLock User Fault</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:element name="getIdentityToken" type="pad:getIdentityToken">
+		<xsd:annotation>
+			<xsd:documentation>Get Identity token</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="getIdentityToken">
+		<xsd:annotation>
+			<xsd:documentation>Get Identity token</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="authToken" type="xsd:string"/>
+			<xsd:element name="userId" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="getIdentityTokenResponse" type="pad:getIdentityTokenResponse">
+		<xsd:annotation>
+			<xsd:documentation>Get Identity token Response</xsd:documentation>
+		</xsd:annotation>	
+	</xsd:element>
+		
+	<xsd:complexType name="getIdentityTokenResponse">		
+		<xsd:annotation>
+			<xsd:documentation>Get Identity token Response</xsd:documentation>
+		</xsd:annotation>	
+		<xsd:sequence>
+			<xsd:element name="code" type="xsd:string"/>
+			<xsd:element name="description" type="xsd:string"/>
+			<xsd:element name="identityToken" type="xsd:string"/>
+			<xsd:element name="userId" type="xsd:string"/>
+			<xsd:element name="userName" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType> 
+
+	<xsd:element name="getIdentityTokenFault" type="xcore:SOAFaultType">
+		<xsd:annotation>
+			<xsd:documentation>Get Identity token Fault</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:element name="validateIdentityToken" type="pad:validateIdentityToken">
+		<xsd:annotation>
+			<xsd:documentation>Validate Identity token</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="validateIdentityToken">
+		<xsd:annotation>
+			<xsd:documentation>Validate Identity token</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="identityToken" type="xsd:string"/>
+			<xsd:element name="userId" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="validateIdentityTokenResponse" type="pad:validateIdentityTokenResponse">
+		<xsd:annotation>
+			<xsd:documentation>Validate Identity token Response</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="validateIdentityTokenResponse">
+		<xsd:annotation>
+			<xsd:documentation>Validate Identity token Response</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="code" type="xsd:string"/>
+			<xsd:element name="description" type="xsd:string"/>
+			<xsd:element name="givenName" type="xsd:string"/>
+			<xsd:element name="userName" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="validateIdentityTokenFault" type="xcore:SOAFaultType">	
+		<xsd:annotation>
+			<xsd:documentation>Validate Identity token Fault</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+</xsd:schema>

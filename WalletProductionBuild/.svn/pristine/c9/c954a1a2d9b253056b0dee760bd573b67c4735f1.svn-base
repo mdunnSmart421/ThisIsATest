@@ -1,0 +1,21 @@
+paf.address.found.header.copy=Please select an address
+paf.address.not.found.header.copy=Address not found
+paf.address.found.body.copy=<p>Choose your address from the list. If it's not there pick the nearest one</p> \
+							<p>then update or add your flat/apartment number or house name details</P> \
+							<p>on the next page.</p> 
+paf.address.found.body.mobile.copy=
+paf.address.not.found.body.copy=<p>We can't find an address for that postcode. Please use the back button, check your postcode and try again.</p>
+
+
+busy.header.text=System Busy
+busy.body.text=<p>We're sorry, but the system is too busy to process your request. </p> \
+               <p>Please use the back button to return to the start of the application process. </p>
+
+busy.return.url=http://o2.co.uk/money
+
+# For live:
+#busy.return.url=http://o2.co.uk/money
+
+
+busy.button.label=Back
+

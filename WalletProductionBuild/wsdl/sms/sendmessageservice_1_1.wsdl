@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--26/03/2010  		1.0.1         		Subramanyam	Added new operations queryReceiptStatus,sendDynamicSMS and sendMultiSMS-->
+<!--18/12/2008  		1.0.0         		Sumanth AV		Initial Version-->
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:mss="http://soa.o2.co.uk/sendmessageservice_1" xmlns:msd="http://soa.o2.co.uk/sendmessagedata_1" name="SendMessage" targetNamespace="http://soa.o2.co.uk/sendmessageservice_1">
+	<wsdl:types>
+		<xsd:schema>
+			<xsd:import namespace="http://soa.o2.co.uk/sendmessagedata_1" schemaLocation="sendmessagedata_1_1.xsd"/>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="sendSMS">
+		<wsdl:part name="sendSMS" element="msd:sendSMS"/>
+	</wsdl:message>
+	<wsdl:message name="sendSMSResponse">
+		<wsdl:part name="sendSMSResponse" element="msd:sendSMSResponse"/>
+	</wsdl:message>
+	<wsdl:message name="sendSMSFault">
+		<wsdl:part name="sendSMSFault" element="msd:sendSMSFault"/>
+	</wsdl:message>
+	<wsdl:message name="sendMMS">
+		<wsdl:part name="sendMMS" element="msd:sendMMS"/>
+	</wsdl:message>
+	<wsdl:message name="sendMMSResponse">
+		<wsdl:part name="sendMMSResponse" element="msd:sendMMSResponse"/>
+	</wsdl:message>
+	<wsdl:message name="sendMMSFault">
+		<wsdl:part name="sendMMSFault" element="msd:sendMMSFault"/>
+	</wsdl:message>
+	<wsdl:message name="sendEmail">
+		<wsdl:part name="sendEmail" element="msd:sendEmail"/>
+	</wsdl:message>
+	<wsdl:message name="sendEmailResponse">
+		<wsdl:part name="sendEmailResponse" element="msd:sendEmailResponse"/>
+	</wsdl:message>
+	<wsdl:message name="sendEmailFault">
+		<wsdl:part name="sendEmailFault" element="msd:sendEmailFault"/>
+	</wsdl:message>
+	<wsdl:message name="queryReceiptStatus">
+		<wsdl:part name="queryReceiptStatus" element="msd:queryReceiptStatus"/>
+	</wsdl:message>
+	<wsdl:message name="queryReceiptStatusResponse">
+		<wsdl:part name="queryReceiptStatusResponse" element="msd:queryReceiptStatusResponse"/>
+	</wsdl:message>
+	<wsdl:message name="queryReceiptStatusFault">
+		<wsdl:part name="queryReceiptStatusFault" element="msd:queryReceiptStatusFault"/>
+	</wsdl:message>
+	<wsdl:message name="sendDynamicSMS">
+		<wsdl:part name="sendDynamicSMS" element="msd:sendDynamicSMS"/>
+	</wsdl:message>
+	<wsdl:message name="sendDynamicSMSResponse">
+		<wsdl:part name="sendDynamicSMSResponse" element="msd:sendDynamicSMSResponse"/>
+	</wsdl:message>
+	<wsdl:message name="sendDynamicSMSFault">
+		<wsdl:part name="sendDynamicSMSFault" element="msd:sendDynamicSMSFault"/>
+	</wsdl:message>
+	<wsdl:message name="sendMultiSMS">
+		<wsdl:part name="sendMultiSMS" element="msd:sendMultiSMS"/>
+	</wsdl:message>
+	<wsdl:message name="sendMultiSMSResponse">
+		<wsdl:part name="sendMultiSMSResponse" element="msd:sendMultiSMSResponse"/>
+	</wsdl:message>
+	<wsdl:message name="sendMultiSMSFault">
+		<wsdl:part name="sendMultiSMSFault" element="msd:sendMultiSMSFault"/>
+	</wsdl:message>
+	<wsdl:portType name="SendMessagePortType">
+		<wsdl:operation name="sendSMS">
+			<wsdl:documentation>This operation is used to send SMS message</wsdl:documentation>
+			<wsdl:input name="sendSMS" message="mss:sendSMS"/>
+			<wsdl:output name="sendSMSResponse" message="mss:sendSMSResponse"/>
+			<wsdl:fault name="sendSMSFault" message="mss:sendSMSFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="sendMMS">
+			<wsdl:documentation>This operation is used send MMS messages</wsdl:documentation>
+			<wsdl:input name="sendMMS" message="mss:sendMMS"/>
+			<wsdl:output name="sendMMSResponse" message="mss:sendMMSResponse"/>
+			<wsdl:fault name="sendMMSFault" message="mss:sendMMSFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="sendEmail">
+			<wsdl:documentation>This operation is used to send Email messages</wsdl:documentation>
+			<wsdl:input name="sendEmail" message="mss:sendEmail"/>
+			<wsdl:output name="sendEmailResponse" message="mss:sendEmailResponse"/>
+			<wsdl:fault name="sendEmailFault" message="mss:sendEmailFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="queryReceiptStatus">
+			<wsdl:input name="queryReceiptStatus" message="mss:queryReceiptStatus"/>
+			<wsdl:output name="queryReceiptStatusResponse" message="mss:queryReceiptStatusResponse"/>
+			<wsdl:fault name="queryReceiptStatusFault" message="mss:queryReceiptStatusFault"/>
+		</wsdl:operation>
+		<wsdl:operation name="sendDynamicSMS">
+			<wsdl:input name="sendDynamicSMS" message="mss:sendDynamicSMS"/>
+			<wsdl:output name="sendDynamicSMSResponse" message="mss:sendDynamicSMSResponse"/>
+			<wsdl:fault name="sendDynamicSMSFault" message="mss:sendDynamicSMSFault"/>
+		</wsdl:operation>		
+		<wsdl:operation name="sendMultiSMS">
+			<wsdl:input name="sendMultiSMS" message="mss:sendMultiSMS"/>
+			<wsdl:output name="sendMultiSMSResponse" message="mss:sendMultiSMSResponse"/>
+			<wsdl:fault name="sendMultiSMSFault" message="mss:sendMultiSMSFault"/>
+		</wsdl:operation>		
+	</wsdl:portType>
+	<wsdl:binding name="SendMessageBinding" type="mss:SendMessagePortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="sendSMS">
+			<soap:operation soapAction=""/>
+			<wsdl:input name="sendSMS">
+				<soap:body parts="sendSMS" use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="sendSMSResponse">
+				<soap:body parts="sendSMSResponse" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="sendSMSFault">
+				<soap:fault name="sendSMSFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="sendMMS">
+			<soap:operation soapAction=""/>
+			<wsdl:input name="sendMMS">
+				<soap:body parts="sendMMS" use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="sendMMSResponse">
+				<soap:body parts="sendMMSResponse" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="sendMMSFault">
+				<soap:fault name="sendMMSFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="sendEmail">
+			<soap:operation soapAction=""/>
+			<wsdl:input name="sendEmail">
+				<soap:body parts="sendEmail" use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="sendEmailResponse">
+				<soap:body parts="sendEmailResponse" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="sendEmailFault">
+				<soap:fault name="sendEmailFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="queryReceiptStatus">
+			<soap:operation soapAction=""/>
+			<wsdl:input name="queryReceiptStatus">
+				<soap:body parts="queryReceiptStatus" use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="queryReceiptStatusResponse">
+				<soap:body parts="queryReceiptStatusResponse" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="queryReceiptStatusFault">
+				<soap:fault name="queryReceiptStatusFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="sendDynamicSMS">
+			<soap:operation soapAction=""/>
+			<wsdl:input name="sendDynamicSMS">
+				<soap:body parts="sendDynamicSMS" use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="sendDynamicSMSResponse">
+				<soap:body parts="sendDynamicSMSResponse" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="sendDynamicSMSFault">
+				<soap:fault name="sendDynamicSMSFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="sendMultiSMS">
+			<soap:operation soapAction=""/>
+			<wsdl:input name="sendMultiSMS">
+				<soap:body parts="sendMultiSMS" use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="sendMultiSMSResponse">
+				<soap:body parts="sendMultiSMSResponse" use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="sendMultiSMSFault">
+				<soap:fault name="sendMultiSMSFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>	
+	</wsdl:binding>
+	<wsdl:service name="SendMessage">
+		<wsdl:port name="SendMessagePortType" binding="mss:SendMessageBinding">
+			<soap:address location="https://sdpapi.o2.co.uk/services/SendMessage_1_1"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

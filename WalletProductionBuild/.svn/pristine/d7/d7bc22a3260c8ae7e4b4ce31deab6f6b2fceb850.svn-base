@@ -1,0 +1,88 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.o2</groupId>
+	<artifactId>e-Wallet</artifactId>
+	<version>O2 Finance</version>
+	<name>finance</name>
+<!-- 
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>Build e-Wallet</id>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<phase>compile</phase>
+						<configuration>
+							<tasks>
+								<ant antfile="${basedir}/build.xml" inheritRefs="true">
+									<target name="build" />
+								</ant>
+							</tasks>
+						</configuration>
+					</execution>				
+				</executions>
+				<dependencies>
+
+					<dependency>
+						<groupId>sun.jdk</groupId>
+					      <artifactId>tools</artifactId>
+					      <version>1.6.0</version>
+					      <scope>system</scope>
+					      <systemPath>${java.home}/../lib/tools.jar</systemPath>
+				      </dependency>
+				</dependencies>
+			</plugin>
+
+		</plugins>
+	</build> -->
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<configLocation>${directory.common.lib}/checkstyle-5.0/config/smart421_strict_checks.xml</configLocation>
+					<propertyExpansion>checkstyle.package.pattern=^uk.co.o2.[a-z]+(\.[a-z][a-z0-9]*)*$</propertyExpansion>
+					<includeTestSourceDirectory>true</includeTestSourceDirectory>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<formats>
+						<format>html</format>
+						<format>xml</format>
+					</formats>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>2.0.1</version>
+				<configuration>
+					<findbugsXmlOutput>true</findbugsXmlOutput>
+					<findbugsXmlWithMessages>true</findbugsXmlWithMessages>
+					<xmlOutput>true</xmlOutput>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<show>public</show>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</reporting>
+</project>

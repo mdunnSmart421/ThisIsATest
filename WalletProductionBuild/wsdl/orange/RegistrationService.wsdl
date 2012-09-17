@@ -1,0 +1,2384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions  xmlns:wsr="http://www.openuri.org/2002/10/soap/reliability/"
+  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+  xmlns="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:soap12enc="http://www.w3.org/2003/05/soap-encoding"
+  xmlns:s="http://www.w3.org/2001/XMLSchema"
+  xmlns:tns="http://registration.o2.co.uk/Registration/RegistrationService"
+  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+  xmlns:conv="http://www.openuri.org/2002/04/wsdl/conversation/"
+  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+  targetNamespace="http://registration.o2.co.uk/Registration/RegistrationService">
+ <types   xmlns="http://schemas.xmlsoap.org/wsdl/"
+   xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+   xmlns:wsr="http://www.openuri.org/2002/10/soap/reliability/"
+   xmlns:soap12enc="http://www.w3.org/2003/05/soap-encoding"
+   xmlns:s="http://www.w3.org/2001/XMLSchema"
+   xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+   xmlns:tns="http://registration.o2.co.uk/Registration/RegistrationService"
+   xmlns:conv="http://www.openuri.org/2002/04/wsdl/conversation/"
+   xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+   xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+   xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+  <s:schema    xmlns="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:wsr="http://www.openuri.org/2002/10/soap/reliability/"
+    xmlns:ns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:rsns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+    xmlns:soap12enc="http://www.w3.org/2003/05/soap-encoding"
+    xmlns:s="http://www.w3.org/2001/XMLSchema"
+    xmlns:tns="http://registration.o2.co.uk/Registration/RegistrationService"
+    xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:conv="http://www.openuri.org/2002/04/wsdl/conversation/"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+    xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+    targetNamespace="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    elementFormDefault="qualified">
+   <s:simpleType     name="registrationSourceType">
+    <s:annotation>
+     <s:documentation>Calling application (e.g. bluebook)</s:documentation>
+    </s:annotation>
+    <s:restriction      base="s:string">
+     <s:enumeration       value="bluebook">
+     </s:enumeration>
+    </s:restriction>
+   </s:simpleType>
+   <s:simpleType     name="registrationContactMediumType">
+    <s:annotation>
+     <s:documentation>User-preferred method of contact for marketing purposes</s:documentation>
+    </s:annotation>
+    <s:restriction      base="s:string">
+     <s:enumeration       value="Voice">
+     </s:enumeration>
+     <s:enumeration       value="Email">
+     </s:enumeration>
+     <s:enumeration       value="SMS">
+     </s:enumeration>
+    </s:restriction>
+   </s:simpleType>
+   <s:simpleType     name="registrationCRUDType">
+    <s:annotation>
+     <s:documentation>Action type (Create, Read, Update, Delete) for O2 Orange operations</s:documentation>
+    </s:annotation>
+    <s:restriction      base="s:string">
+     <s:enumeration       value="Create">
+     </s:enumeration>
+     <s:enumeration       value="Read">
+     </s:enumeration>
+     <s:enumeration       value="Update">
+     </s:enumeration>
+     <s:enumeration       value="Delete">
+     </s:enumeration>
+    </s:restriction>
+   </s:simpleType>
+   <s:simpleType     name="registrationCustomerRoleSummaryType">
+    <s:annotation>
+     <s:documentation>Customer role summary values not yet defined</s:documentation>
+    </s:annotation>
+    <s:restriction      base="s:string">
+    </s:restriction>
+   </s:simpleType>
+   <s:simpleType     name="registrationCustomerSegmentationType">
+    <s:annotation>
+     <s:documentation>Customer account segmentation type</s:documentation>
+    </s:annotation>
+    <s:restriction      base="s:string">
+     <s:enumeration       value="Platinum">
+     </s:enumeration>
+     <s:enumeration       value="Gold">
+     </s:enumeration>
+     <s:enumeration       value="Silver">
+     </s:enumeration>
+     <s:enumeration       value="Bronze">
+     </s:enumeration>
+     <s:enumeration       value="Select">
+     </s:enumeration>
+     <s:enumeration       value="none">
+     </s:enumeration>
+     <s:enumeration       value="Sel_Inv">
+     </s:enumeration>
+     <s:enumeration       value="Sel_Few">
+     </s:enumeration>
+    </s:restriction>
+   </s:simpleType>
+   <s:simpleType     name="registrationEmailAddressType">
+    <s:annotation>
+     <s:documentation>Email address string, username at domain</s:documentation>
+    </s:annotation>
+    <s:restriction      base="s:string">
+     <s:pattern       value="([\.a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(([a-zA-Z0-9_-])*\.([a-zA-Z0-9_-])+)+">
+     </s:pattern>
+    </s:restriction>
+   </s:simpleType>
+   <s:simpleType     name="registrationGenderType">
+    <s:annotation>
+     <s:documentation>Gender indication; Male, Female, Undefined (M, F, U)</s:documentation>
+    </s:annotation>
+    <s:restriction      base="s:string">
+     <s:enumeration       value="M">
+     </s:enumeration>
+     <s:enumeration       value="F">
+     </s:enumeration>
+     <s:enumeration       value="U">
+     </s:enumeration>
+    </s:restriction>
+   </s:simpleType>
+   <s:simpleType     name="registrationListingDetailType">
+    <s:annotation>
+     <s:documentation>Directory listing detail specified by user (ex-directory etc)</s:documentation>
+    </s:annotation>
+    <s:restriction      base="s:string">
+     <s:enumeration       value="Full">
+     </s:enumeration>
+     <s:enumeration       value="Limited">
+     </s:enumeration>
+     <s:enumeration       value="Ex-Directory">
+     </s:enumeration>
+    </s:restriction>
+   </s:simpleType>
+   <s:simpleType     name="registrationListingLevelType">
+    <s:annotation>
+     <s:documentation>Directory listing level permission specified by user</s:documentation>
+    </s:annotation>
+    <s:restriction      base="s:string">
+     <s:enumeration       value="Not Opted">
+     </s:enumeration>
+     <s:enumeration       value="FNFA">
+     </s:enumeration>
+     <s:enumeration       value="Online/Printed/Voice">
+     </s:enumeration>
+     <s:enumeration       value="Online/Printed">
+     </s:enumeration>
+    </s:restriction>
+   </s:simpleType>
+   <s:simpleType     name="registrationO2DomainType">
+    <s:annotation>
+     <s:documentation>Domain name specification, O2 accounts only</s:documentation>
+    </s:annotation>
+    <s:restriction      base="s:string">
+     <s:enumeration       value="o2.co.uk">
+     </s:enumeration>
+     <s:enumeration       value="systestb.o2.co.uk">
+     </s:enumeration>
+     <s:enumeration       value="systestc.o2.co.uk">
+     </s:enumeration>
+     <s:enumeration       value="systestd.o2.co.uk">
+     </s:enumeration>
+     <s:enumeration       value="systeste.o2.co.uk">
+     </s:enumeration>
+     <s:enumeration       value="ref.o2.co.uk">
+     </s:enumeration>
+     <s:enumeration       value="stf.ref.o2.co.uk">
+     </s:enumeration>
+    </s:restriction>
+   </s:simpleType>
+   <s:simpleType     name="registrationOwningBusinessDivisionType">
+    <s:annotation>
+     <s:documentation>O2 owning business division</s:documentation>
+    </s:annotation>
+    <s:restriction      base="s:string">
+     <s:enumeration       value="Online">
+     </s:enumeration>
+     <s:enumeration       value="O2UK">
+     </s:enumeration>
+    </s:restriction>
+   </s:simpleType>
+   <s:simpleType     name="registrationPhoneNumberType">
+    <s:annotation>
+     <s:documentation>Telephone number, legal characters only</s:documentation>
+    </s:annotation>
+    <s:restriction      base="s:string">
+     <s:maxLength       value="13">
+     </s:maxLength>
+     <s:minLength       value="0">
+     </s:minLength>
+    </s:restriction>
+   </s:simpleType>
+   <s:simpleType     name="registrationMobilePhoneType">
+    <s:annotation>
+     <s:documentation>Telephone number, legal characters only</s:documentation>
+    </s:annotation>
+    <s:restriction      base="s:string">
+     <s:maxLength       value="13">
+     </s:maxLength>
+     <s:minLength       value="0">
+     </s:minLength>
+     <s:pattern       value="(07)[0-9]{9}">
+     </s:pattern>
+     <s:pattern       value="(447)[0-9]{9}">
+     </s:pattern>
+    </s:restriction>
+   </s:simpleType>
+   <s:simpleType     name="registrationPortalMSISDNStatusType">
+    <s:annotation>
+     <s:documentation>Mobile phone number status within portal</s:documentation>
+    </s:annotation>
+    <s:restriction      base="s:string">
+     <s:enumeration       value="Yes">
+     </s:enumeration>
+     <s:enumeration       value="No">
+     </s:enumeration>
+     <s:enumeration       value="Info">
+     </s:enumeration>
+    </s:restriction>
+   </s:simpleType>
+   <s:simpleType     name="registrationPostcodeType">
+    <s:annotation>
+     <s:documentation>Postcode text, valid formats only</s:documentation>
+    </s:annotation>
+    <s:restriction      base="s:string">
+     <s:pattern       value="[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][A-Z-[CIKMOV]]{2}">
+     </s:pattern>
+    </s:restriction>
+   </s:simpleType>
+   <s:simpleType     name="registrationSectorType">
+    <s:annotation>
+     <s:documentation>Business sector type</s:documentation>
+    </s:annotation>
+    <s:restriction      base="s:string">
+     <s:enumeration       value="Advertising and Design">
+     </s:enumeration>
+     <s:enumeration       value="Agriculture">
+     </s:enumeration>
+     <s:enumeration       value="Architect Services">
+     </s:enumeration>
+     <s:enumeration       value="Construction">
+     </s:enumeration>
+     <s:enumeration       value="Education">
+     </s:enumeration>
+     <s:enumeration       value="Engineering">
+     </s:enumeration>
+     <s:enumeration       value="Financial Services">
+     </s:enumeration>
+     <s:enumeration       value="Government/Council Services">
+     </s:enumeration>
+     <s:enumeration       value="Health">
+     </s:enumeration>
+     <s:enumeration       value="Information Technology">
+     </s:enumeration>
+     <s:enumeration       value="Legal">
+     </s:enumeration>
+     <s:enumeration       value="Leisure">
+     </s:enumeration>
+     <s:enumeration       value="Consultant">
+     </s:enumeration>
+     <s:enumeration       value="Manufacturing">
+     </s:enumeration>
+     <s:enumeration       value="Office/General Supplies">
+     </s:enumeration>
+     <s:enumeration       value="Estate Management">
+     </s:enumeration>
+     <s:enumeration       value="Utilities">
+     </s:enumeration>
+     <s:enumeration       value="Other">
+     </s:enumeration>
+    </s:restriction>
+   </s:simpleType>
+   <s:simpleType     name="registrationTypeOfAccountType">
+    <s:annotation>
+     <s:documentation>Account type (L2M/RevenueShare/Consumer)</s:documentation>
+    </s:annotation>
+    <s:restriction      base="s:string">
+     <s:enumeration       value="L2M">
+     </s:enumeration>
+     <s:enumeration       value="RevenueShare">
+     </s:enumeration>
+     <s:enumeration       value="Consumer">
+     </s:enumeration>
+    </s:restriction>
+   </s:simpleType>
+   <s:simpleType     name="registrationTypeOfCustomerType">
+    <s:annotation>
+     <s:documentation>Customer type (CON/SOL/PAR/LTD/CHA)</s:documentation>
+    </s:annotation>
+    <s:restriction      base="s:string">
+     <s:enumeration       value="CON">
+     </s:enumeration>
+     <s:enumeration       value="SOL">
+     </s:enumeration>
+     <s:enumeration       value="PAR">
+     </s:enumeration>
+     <s:enumeration       value="LTD">
+     </s:enumeration>
+     <s:enumeration       value="CHA">
+     </s:enumeration>
+    </s:restriction>
+   </s:simpleType>
+   <s:simpleType     name="registrationUserRegistrationType">
+    <s:annotation>
+     <s:documentation>User registration type (P/B)</s:documentation>
+    </s:annotation>
+    <s:restriction      base="s:string">
+     <s:enumeration       value="P">
+     </s:enumeration>
+     <s:enumeration       value="B">
+     </s:enumeration>
+    </s:restriction>
+   </s:simpleType>
+   <s:simpleType     name="registrationYesNoType">
+    <s:annotation>
+     <s:documentation>Yes/No boolean indicators</s:documentation>
+    </s:annotation>
+    <s:restriction      base="s:string">
+     <s:enumeration       value="Yes">
+     </s:enumeration>
+     <s:enumeration       value="No">
+     </s:enumeration>
+    </s:restriction>
+   </s:simpleType>
+   <s:simpleType     name="registrationMsisdnStatus">
+    <s:restriction      base="s:string">
+     <s:enumeration       value="ACTIVE">
+     </s:enumeration>
+     <s:enumeration       value="INACTIVE">
+     </s:enumeration>
+    </s:restriction>
+   </s:simpleType>
+   <s:simpleType     name="registrationMsisdnType">
+    <s:restriction      base="s:string">
+     <s:enumeration       value="PRE-PAY">
+     </s:enumeration>
+     <s:enumeration       value="POST-PAY">
+     </s:enumeration>
+    </s:restriction>
+   </s:simpleType>
+   <s:simpleType     name="registrationMsisdnServiceStatus">
+    <s:restriction      base="s:string">
+     <s:enumeration       value="INSTALL">
+     </s:enumeration>
+     <s:enumeration       value="DISCONNECT">
+     </s:enumeration>
+     <s:enumeration       value="RECONNECT">
+     </s:enumeration>
+     <s:enumeration       value="PIN">
+     </s:enumeration>
+     <s:enumeration       value="POUT">
+     </s:enumeration>
+    </s:restriction>
+   </s:simpleType>
+   <s:complexType     name="registrationAddressType">
+    <s:annotation>
+     <s:documentation>Orange account registration address details</s:documentation>
+    </s:annotation>
+    <s:sequence>
+     <s:element       name="houseNumber"
+       type="s:string"
+       minOccurs="0">
+     </s:element>
+     <s:element       name="houseName"
+       type="s:string"
+       minOccurs="0">
+     </s:element>
+     <s:element       name="addressLine1"
+       type="s:string">
+     </s:element>
+     <s:element       name="addressLine2"
+       type="s:string"
+       minOccurs="0">
+     </s:element>
+     <s:element       name="townCity"
+       type="s:string">
+     </s:element>
+     <s:element       name="county"
+       type="s:string"
+       minOccurs="0">
+     </s:element>
+     <s:element       name="postcode"
+       type="ns:registrationPostcodeType">
+     </s:element>
+     <s:element       name="country"
+       type="s:string">
+     </s:element>
+    </s:sequence>
+    <s:attribute      use="optional"
+      name="status"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="PTCABS"
+      type="s:string">
+    </s:attribute>
+   </s:complexType>
+   <s:complexType     name="registrationChooserRoleType">
+    <s:annotation>
+     <s:documentation>Orange account registration chooser role</s:documentation>
+    </s:annotation>
+    <s:sequence>
+     <s:element       name="genevaAccountId"
+       type="s:string">
+     </s:element>
+     <s:element       name="genevaAccountName"
+       type="s:string"
+       minOccurs="0">
+     </s:element>
+     <s:element       name="genevaCustomerId"
+       type="s:string">
+     </s:element>
+     <s:element       name="genevaCustomerName"
+       type="s:string">
+     </s:element>
+     <s:element       name="companyCustomerType"
+       type="ns:registrationTypeOfCustomerType">
+     </s:element>
+     <s:element       name="horizonCompanyCustnum"
+       type="s:integer">
+     </s:element>
+     <s:element       name="accountType"
+       type="ns:registrationTypeOfAccountType"
+       minOccurs="0">
+     </s:element>
+    </s:sequence>
+   </s:complexType>
+   <s:complexType     name="registrationRolesType">
+    <s:annotation>
+     <s:documentation>Orange account registration roles and ids</s:documentation>
+    </s:annotation>
+    <s:sequence>
+     <s:element       name="roleSet"
+       type="ns:registrationRoleSetType">
+     </s:element>
+    </s:sequence>
+    <s:attribute      use="optional"
+      name="custnum"
+      type="s:integer">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="id"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="domain"
+      type="ns:registrationO2DomainType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="action"
+      type="ns:registrationCRUDType">
+    </s:attribute>
+   </s:complexType>
+   <s:complexType     name="registrationRoleSetType">
+    <s:annotation>
+     <s:documentation>Orange account registration role set (user, chooser, superchooser)</s:documentation>
+    </s:annotation>
+    <s:sequence>
+     <s:element       maxOccurs="unbounded"
+       name="userRole"
+       type="ns:registrationUserRoleType"
+       minOccurs="0">
+     </s:element>
+     <s:element       maxOccurs="unbounded"
+       name="chooserRole"
+       type="ns:registrationChooserRoleType"
+       minOccurs="0">
+     </s:element>
+     <s:element       maxOccurs="unbounded"
+       name="superchooserRole"
+       type="ns:registrationSuperChooserRoleType"
+       minOccurs="0">
+     </s:element>
+    </s:sequence>
+   </s:complexType>
+   <s:complexType     name="registrationSuperChooserRoleType">
+    <s:annotation>
+     <s:documentation>Orange account registration super-chooser role data</s:documentation>
+    </s:annotation>
+    <s:sequence>
+     <s:element       name="genevaCustomerId"
+       type="s:string">
+     </s:element>
+     <s:element       name="genevaCustomerName"
+       type="s:string">
+     </s:element>
+     <s:element       name="horizonCompanyCustnum"
+       type="s:integer">
+     </s:element>
+     <s:element       name="companyCustomerType"
+       type="ns:registrationTypeOfCustomerType">
+     </s:element>
+    </s:sequence>
+   </s:complexType>
+   <s:complexType     name="registrationNamePairType">
+    <s:annotation>
+     <s:documentation>First and last names, for suggested Orange account usernames</s:documentation>
+    </s:annotation>
+    <s:sequence>
+     <s:element       name="forename"
+       type="s:string">
+     </s:element>
+     <s:element       name="lastname"
+       type="s:string">
+     </s:element>
+    </s:sequence>
+   </s:complexType>
+   <s:simpleType     name="registrationPhoneMakeType">
+    <s:annotation>
+     <s:documentation>Phone make type (i.e. Nokia)</s:documentation>
+    </s:annotation>
+    <s:restriction      base="s:string">
+     <s:enumeration       value="Alcatel">
+     </s:enumeration>
+     <s:enumeration       value="Benefon">
+     </s:enumeration>
+     <s:enumeration       value="Handspring">
+     </s:enumeration>
+     <s:enumeration       value="HP iPaq">
+     </s:enumeration>
+     <s:enumeration       value="Journada">
+     </s:enumeration>
+     <s:enumeration       value="LG">
+     </s:enumeration>
+     <s:enumeration       value="Mitsubishi">
+     </s:enumeration>
+     <s:enumeration       value="Motorola">
+     </s:enumeration>
+     <s:enumeration       value="NEC">
+     </s:enumeration>
+     <s:enumeration       value="Nokia">
+     </s:enumeration>
+     <s:enumeration       value="Novatel">
+     </s:enumeration>
+     <s:enumeration       value="O2">
+     </s:enumeration>
+     <s:enumeration       value="Panasonic">
+     </s:enumeration>
+     <s:enumeration       value="Philips">
+     </s:enumeration>
+     <s:enumeration       value="RIM Blackberry">
+     </s:enumeration>
+     <s:enumeration       value="Sagem">
+     </s:enumeration>
+     <s:enumeration       value="Samsung">
+     </s:enumeration>
+     <s:enumeration       value="Sendo">
+     </s:enumeration>
+     <s:enumeration       value="Sharp">
+     </s:enumeration>
+     <s:enumeration       value="Siemens">
+     </s:enumeration>
+     <s:enumeration       value="Sierra Wireless">
+     </s:enumeration>
+     <s:enumeration       value="Sony Ericsson">
+     </s:enumeration>
+     <s:enumeration       value="Not known">
+     </s:enumeration>
+    </s:restriction>
+   </s:simpleType>
+   <s:simpleType     name="registrationSecurityQuestionType">
+    <s:annotation>
+     <s:documentation>Security questions type (list of questions)</s:documentation>
+    </s:annotation>
+    <s:restriction      base="s:string">
+     <s:enumeration       value="Mother's maiden name">
+     </s:enumeration>
+     <s:enumeration       value="Name of first school attended">
+     </s:enumeration>
+     <s:enumeration       value="Name of your pet">
+     </s:enumeration>
+     <s:enumeration       value="Favourite sports team">
+     </s:enumeration>
+     <s:enumeration       value="Favourite colour">
+     </s:enumeration>
+     <s:enumeration       value="Favourite animal">
+     </s:enumeration>
+     <s:enumeration       value="Place of birth">
+     </s:enumeration>
+    </s:restriction>
+   </s:simpleType>
+   <s:complexType     name="registrationUsernameSuggestionsType">
+    <s:annotation>
+     <s:documentation>Suggested username list</s:documentation>
+    </s:annotation>
+    <s:sequence>
+     <s:element       maxOccurs="2"
+       name="suggestion"
+       type="s:string"
+       minOccurs="2">
+     </s:element>
+    </s:sequence>
+   </s:complexType>
+   <s:complexType     name="registrationUserRoleType">
+    <s:annotation>
+     <s:documentation>Orange account registration user role data</s:documentation>
+    </s:annotation>
+    <s:sequence>
+     <s:element       name="genevaAccountId"
+       type="s:string">
+     </s:element>
+     <s:element       name="genevaAccountName"
+       type="s:string"
+       minOccurs="0">
+     </s:element>
+     <s:element       name="genevaCustomerId"
+       type="s:string">
+     </s:element>
+     <s:element       name="genevaCustomerName"
+       type="s:string">
+     </s:element>
+     <s:element       name="horizonCompanyCustnum"
+       type="s:integer">
+     </s:element>
+     <s:element       name="companyCustomerType"
+       type="ns:registrationTypeOfCustomerType">
+     </s:element>
+     <s:element       name="msisdn"
+       type="ns:registrationMobilePhoneType">
+     </s:element>
+     <s:element       name="accountType"
+       type="ns:registrationTypeOfAccountType"
+       minOccurs="0">
+     </s:element>
+    </s:sequence>
+   </s:complexType>
+   <s:complexType     name="mapEntry">
+    <s:sequence>
+     <s:element       name="key"
+       type="s:anyType">
+     </s:element>
+     <s:element       name="value"
+       type="s:anyType">
+     </s:element>
+    </s:sequence>
+   </s:complexType>
+   <s:complexType     name="map">
+    <s:sequence>
+     <s:element       maxOccurs="unbounded"
+       name="mapEntry"
+       type="ns:mapEntry"
+       minOccurs="0">
+     </s:element>
+    </s:sequence>
+   </s:complexType>
+   <s:complexType     name="registrationUserCreationType">
+    <s:annotation>
+     <s:documentation>Orange registration user account creation details</s:documentation>
+    </s:annotation>
+    <s:sequence>
+     <s:element       name="address"
+       type="ns:registrationAddressType"
+       minOccurs="0">
+     </s:element>
+     <s:element       name="roleSet"
+       type="ns:registrationRoleSetType"
+       minOccurs="0">
+     </s:element>
+    </s:sequence>
+    <s:attribute      use="required"
+      name="registrationSource"
+      type="ns:registrationSourceType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="accountManagerEmail"
+      type="ns:registrationEmailAddressType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="accountManagerName"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="alternativeContactNumber"
+      type="ns:registrationPhoneNumberType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="alternativeEmail"
+      type="ns:registrationEmailAddressType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="companyName"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="companyRegistrationNumber"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="companyTelephoneNumber"
+      type="ns:registrationPhoneNumberType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="contactMedium"
+      type="ns:registrationContactMediumType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="creditVetDate"
+      type="s:date">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="creditVetPassed"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="customerType"
+      type="ns:registrationTypeOfCustomerType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="custnum"
+      type="s:integer">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="dateOfBirth"
+      type="s:date">
+    </s:attribute>
+    <s:attribute      use="optional"
+      default="No"
+      name="discountEligibilityFlag"
+      type="ns:registrationYesNoType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      default="Ex-Directory"
+      name="dqListingDetail"
+      type="ns:registrationListingDetailType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      default="Not Opted"
+      name="dqListingLevel"
+      type="ns:registrationListingLevelType">
+    </s:attribute>
+    <s:attribute      use="required"
+      name="domain"
+      type="ns:registrationO2DomainType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="emailAddress"
+      type="ns:registrationEmailAddressType">
+    </s:attribute>
+    <s:attribute      use="required"
+      name="forename"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="gender"
+      type="ns:registrationGenderType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="genevaCustomerId"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      default="No"
+      name="hasBeenBillingContact"
+      type="ns:registrationYesNoType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      default="No"
+      name="hasHadRole"
+      type="ns:registrationYesNoType">
+    </s:attribute>
+    <s:attribute      use="required"
+      name="id"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="initials"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="isESMECustomer"
+      type="ns:registrationYesNoType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="jobFunction"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="jobTitle"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="key"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="required"
+      name="lastname"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="level2Password"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="msisdn"
+      type="ns:registrationMobilePhoneType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      default="No"
+      name="msisdnValid"
+      type="ns:registrationPortalMSISDNStatusType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="network"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="numberOfEmployees"
+      type="s:integer">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="owningBusinessDivision"
+      type="ns:registrationOwningBusinessDivisionType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="partner"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="required"
+      name="password"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="phoneMake"
+      type="ns:registrationPhoneMakeType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="posBusinessUnit"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      default="No"
+      name="primaryAccountUser"
+      type="ns:registrationYesNoType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="referral"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="referralDate"
+      type="s:date">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="registrationType"
+      type="ns:registrationUserRegistrationType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="riskThreshold"
+      type="s:integer">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="riskThresholdDate"
+      type="s:date">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="roleSummary"
+      type="ns:registrationCustomerRoleSummaryType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="saleDate"
+      type="s:date">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="sector"
+      type="ns:registrationSectorType">
+    </s:attribute>
+    <s:attribute      use="required"
+      name="securityQuestion"
+      type="ns:registrationSecurityQuestionType">
+    </s:attribute>
+    <s:attribute      use="required"
+      name="securityAnswer"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="segmentation"
+      type="ns:registrationCustomerSegmentationType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="timeStamp"
+      type="s:dateTime">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="title"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="wantsGenieMarketing"
+      type="ns:registrationYesNoType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="wantsOtherMarketing"
+      type="ns:registrationYesNoType">
+    </s:attribute>
+   </s:complexType>
+   <s:complexType     name="registrationUserDataType">
+    <s:annotation>
+     <s:documentation>Orange account user details, for database updates</s:documentation>
+    </s:annotation>
+    <s:sequence>
+     <s:element       name="address"
+       type="ns:registrationAddressType"
+       minOccurs="0">
+     </s:element>
+     <s:element       name="roleSet"
+       type="ns:registrationRoleSetType"
+       minOccurs="0">
+     </s:element>
+    </s:sequence>
+    <s:attribute      use="optional"
+      name="accountManagerEmail"
+      type="ns:registrationEmailAddressType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="accountManagerName"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="alternativeContactNumber"
+      type="ns:registrationPhoneNumberType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="alternativeEmail"
+      type="ns:registrationEmailAddressType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="companyName"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="companyRegistrationNumber"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="companyTelephoneNumber"
+      type="ns:registrationPhoneNumberType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="contactMedium"
+      type="ns:registrationContactMediumType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="creditVetDate"
+      type="s:date">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="creditVetPassed"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="customerType"
+      type="ns:registrationTypeOfCustomerType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="custnum"
+      type="s:integer">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="dateOfBirth"
+      type="s:date">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="discountEligibilityFlag"
+      type="ns:registrationYesNoType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="dqListingDetail"
+      type="ns:registrationListingDetailType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="dqListingLevel"
+      type="ns:registrationListingLevelType">
+    </s:attribute>
+    <s:attribute      use="required"
+      name="domain"
+      type="ns:registrationO2DomainType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="emailAddress"
+      type="ns:registrationEmailAddressType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="forename"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="required"
+      name="gender"
+      type="ns:registrationGenderType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="genevaCustomerId"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="hasBeenBillingContact"
+      type="ns:registrationYesNoType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="hasHadRole"
+      type="ns:registrationYesNoType">
+    </s:attribute>
+    <s:attribute      use="required"
+      name="id"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="initials"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="isESMECustomer"
+      type="ns:registrationYesNoType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="jobFunction"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="jobTitle"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="key"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="lastname"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="level2Password"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="msisdn"
+      type="ns:registrationMobilePhoneType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="msisdnValid"
+      type="ns:registrationPortalMSISDNStatusType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="network"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="numberOfEmployees"
+      type="s:integer">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="owningBusinessDivision"
+      type="ns:registrationOwningBusinessDivisionType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="partner"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="password"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="phoneMake"
+      type="ns:registrationPhoneMakeType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="posBusinessUnit"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="primaryAccountUser"
+      type="ns:registrationYesNoType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="referral"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="referralDate"
+      type="s:date">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="registrationType"
+      type="ns:registrationUserRegistrationType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="riskThreshold"
+      type="s:integer">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="riskThresholdDate"
+      type="s:date">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="roleSummary"
+      type="ns:registrationCustomerRoleSummaryType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="saleDate"
+      type="s:date">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="sector"
+      type="ns:registrationSectorType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="securityQuestion"
+      type="ns:registrationSecurityQuestionType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="securityAnswer"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="segmentation"
+      type="ns:registrationCustomerSegmentationType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="timeStamp"
+      type="s:dateTime">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="title"
+      type="s:string">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="wantsGenieMarketing"
+      type="ns:registrationYesNoType">
+    </s:attribute>
+    <s:attribute      use="optional"
+      name="wantsOtherMarketing"
+      type="ns:registrationYesNoType">
+    </s:attribute>
+   </s:complexType>
+   <s:complexType     name="registrationCreateUserRequestType">
+    <s:annotation>
+     <s:documentation>Request to create an Orange user account</s:documentation>
+    </s:annotation>
+    <s:sequence>
+     <s:element       name="user"
+       type="ns:registrationUserCreationType">
+     </s:element>
+    </s:sequence>
+   </s:complexType>
+   <s:complexType     name="registrationCreateUserResponseType">
+    <s:annotation>
+     <s:documentation>Response from creation of Orange user account</s:documentation>
+    </s:annotation>
+    <s:sequence>
+     <s:element       name="user"
+       type="ns:registrationUserDataType">
+     </s:element>
+    </s:sequence>
+   </s:complexType>
+   <s:complexType     name="registrationSuggestUserNameRequestType">
+    <s:annotation>
+     <s:documentation>Request for Orange account username suggestion, based on first and last name</s:documentation>
+    </s:annotation>
+    <s:sequence>
+     <s:element       name="userNameComponents"
+       type="ns:registrationNamePairType">
+     </s:element>
+    </s:sequence>
+   </s:complexType>
+   <s:complexType     name="registrationSuggestUserNameResponseType">
+    <s:annotation>
+     <s:documentation>Response for Orange account username suggestions</s:documentation>
+    </s:annotation>
+    <s:sequence>
+     <s:element       name="userNameComponents"
+       type="ns:registrationNamePairType">
+     </s:element>
+     <s:element       name="usernameSuggestions"
+       type="ns:registrationUsernameSuggestionsType">
+     </s:element>
+    </s:sequence>
+   </s:complexType>
+   <s:element     name="createUserRequest"
+     type="ns:registrationCreateUserRequestType">
+    <s:annotation>
+     <s:documentation>Request message to create an Orange user account</s:documentation>
+    </s:annotation>
+   </s:element>
+   <s:element     name="createUserResponse"
+     type="ns:registrationCreateUserResponseType">
+    <s:annotation>
+     <s:documentation>Response message from creation of Orange user account</s:documentation>
+    </s:annotation>
+   </s:element>
+   <s:element     name="suggestUserNameRequest"
+     type="ns:registrationSuggestUserNameRequestType">
+    <s:annotation>
+     <s:documentation>Request message for Orange account username suggestion, based on first and last name</s:documentation>
+    </s:annotation>
+   </s:element>
+   <s:element     name="suggestUserNameResponse"
+     type="ns:registrationSuggestUserNameResponseType">
+    <s:annotation>
+     <s:documentation>Response message for Orange account username suggestions</s:documentation>
+    </s:annotation>
+   </s:element>
+   <s:element     name="validateMSISDNVerificationCodeRequestType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        name="username"
+        type="s:string">
+      </s:element>
+      <s:element        name="domain"
+        type="s:string">
+      </s:element>
+      <s:element        name="verificationCode"
+        type="s:string">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="validateMSISDNVerificationCodeResponseType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        name="return"
+        type="s:int">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="searchForMsisdnRequestType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        name="userId"
+        type="s:string">
+      </s:element>
+      <s:element        name="domain"
+        type="s:string">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="searchForMsisdnResponseType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        maxOccurs="unbounded"
+        nillable="true"
+        name="return"
+        type="ns:registrationMobilePhoneType"
+        minOccurs="0">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="searchByMsisdnRequestType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        name="msisdn"
+        type="ns:registrationMobilePhoneType">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="searchByMsisdnResponseType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        nillable="true"
+        name="return"
+        type="s:string"
+        minOccurs="0">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="searchRequestType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        name="start"
+        type="s:int">
+      </s:element>
+      <s:element        name="count"
+        type="s:int">
+      </s:element>
+      <s:element        nillable="true"
+        name="forename"
+        type="s:string"
+        minOccurs="1">
+      </s:element>
+      <s:element        nillable="true"
+        name="surname"
+        type="s:string"
+        minOccurs="1">
+      </s:element>
+      <s:element        nillable="true"
+        name="email"
+        type="ns:registrationEmailAddressType"
+        minOccurs="1">
+      </s:element>
+      <s:element        nillable="true"
+        name="postcode"
+        type="ns:registrationPostcodeType"
+        minOccurs="1">
+      </s:element>
+      <s:element        nillable="true"
+        name="username"
+        type="s:string"
+        minOccurs="1">
+      </s:element>
+      <s:element        nillable="true"
+        name="domain"
+        type="s:string"
+        minOccurs="1">
+      </s:element>
+      <s:element        nillable="true"
+        name="key"
+        type="s:string"
+        minOccurs="1">
+      </s:element>
+      <s:element        nillable="true"
+        name="msisdn"
+        type="ns:registrationMobilePhoneType"
+        minOccurs="1">
+      </s:element>
+      <s:element        nillable="true"
+        name="comapanyName"
+        type="s:string"
+        minOccurs="1">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="searchResponseType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        nillable="true"
+        name="return"
+        type="s:string"
+        minOccurs="0">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="getUserDetailsRequestType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        name="Custnum"
+        type="s:int"
+        minOccurs="1">
+      </s:element>
+      <s:element        nillable="true"
+        name="username"
+        type="s:string"
+        minOccurs="1">
+      </s:element>
+      <s:element        nillable="true"
+        name="domain"
+        type="s:string"
+        minOccurs="1">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="getUserDetailsResponseType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        nillable="true"
+        name="return"
+        type="s:string"
+        minOccurs="0">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="getSuperChooserRequestType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        name="genevaCustomerId"
+        type="s:string">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="getSuperChooserResponseType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        nillable="true"
+        name="return"
+        type="s:string"
+        minOccurs="0">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="getSearchCountRequestType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        nillable="true"
+        name="forename"
+        type="s:string"
+        minOccurs="1">
+      </s:element>
+      <s:element        nillable="true"
+        name="surname"
+        type="s:string"
+        minOccurs="1">
+      </s:element>
+      <s:element        nillable="true"
+        name="email"
+        type="ns:registrationEmailAddressType"
+        minOccurs="1">
+      </s:element>
+      <s:element        nillable="true"
+        name="postcode"
+        type="ns:registrationPostcodeType"
+        minOccurs="1">
+      </s:element>
+      <s:element        nillable="true"
+        name="username"
+        type="s:string"
+        minOccurs="1">
+      </s:element>
+      <s:element        nillable="true"
+        name="domain"
+        type="s:string"
+        minOccurs="1">
+      </s:element>
+      <s:element        nillable="true"
+        name="key"
+        type="s:string"
+        minOccurs="1">
+      </s:element>
+      <s:element        nillable="true"
+        name="msisdn"
+        type="ns:registrationMobilePhoneType"
+        minOccurs="1">
+      </s:element>
+      <s:element        nillable="true"
+        name="companyName"
+        type="s:string"
+        minOccurs="1">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="getSearchCountResponseType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        name="return"
+        type="s:int">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="getRolesForCustomerRequestType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        name="id"
+        type="s:string">
+      </s:element>
+      <s:element        name="domain"
+        type="s:string">
+      </s:element>
+      <s:element        nillable="true"
+        name="roleTypeFilter"
+        type="s:string"
+        minOccurs="1">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="getRolesForCustomerResponseType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        name="return"
+        type="s:string">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="getPhoneUsersRequestType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        name="msisdn"
+        type="ns:registrationMobilePhoneType">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="getPhoneUsersResponseType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        name="return"
+        type="s:string">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="getAccountChoosersRequestType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        name="genevaAccountId"
+        type="s:string">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="getAccountChoosersResponseType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        name="return"
+        type="s:string">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="createOrUpdateRoleSetRequestType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        name="rolexml"
+        type="s:string">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="createOrUpdateRoleSetResponseType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        name="return"
+        type="s:int">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="publishMsisdnRequestType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        nillable="true"
+        name="accountId"
+        type="s:int"
+        minOccurs="0">
+      </s:element>
+      <s:element        nillable="true"
+        name="custBusinessType"
+        type="ns:registrationTypeOfCustomerType"
+        minOccurs="0">
+      </s:element>
+      <s:element        nillable="true"
+        name="custDomain"
+        type="s:string"
+        minOccurs="0">
+      </s:element>
+      <s:element        nillable="true"
+        name="custId"
+        type="s:string"
+        minOccurs="0">
+      </s:element>
+      <s:element        nillable="true"
+        name="custNum"
+        type="s:int"
+        minOccurs="0">
+      </s:element>
+      <s:element        nillable="true"
+        name="custOwningBusinessDivision"
+        type="ns:registrationOwningBusinessDivisionType"
+        minOccurs="0">
+      </s:element>
+      <s:element        nillable="true"
+        name="custSegmentation"
+        type="ns:registrationCustomerSegmentationType"
+        minOccurs="0">
+      </s:element>
+      <s:element        nillable="true"
+        name="genevaAccountId"
+        type="s:string"
+        minOccurs="0">
+      </s:element>
+      <s:element        nillable="true"
+        name="msattr1"
+        type="s:string"
+        minOccurs="0">
+      </s:element>
+      <s:element        nillable="true"
+        name="msattr10"
+        type="s:string"
+        minOccurs="0">
+      </s:element>
+      <s:element        nillable="true"
+        name="msattr2"
+        type="s:string"
+        minOccurs="0">
+      </s:element>
+      <s:element        nillable="true"
+        name="msattr3"
+        type="s:string"
+        minOccurs="0">
+      </s:element>
+      <s:element        nillable="true"
+        name="msattr4"
+        type="s:string"
+        minOccurs="0">
+      </s:element>
+      <s:element        nillable="true"
+        name="msattr5"
+        type="s:string"
+        minOccurs="0">
+      </s:element>
+      <s:element        nillable="true"
+        name="msattr6"
+        type="s:string"
+        minOccurs="0">
+      </s:element>
+      <s:element        nillable="true"
+        name="msattr7"
+        type="s:string"
+        minOccurs="0">
+      </s:element>
+      <s:element        nillable="true"
+        name="msattr8"
+        type="s:string"
+        minOccurs="0">
+      </s:element>
+      <s:element        nillable="true"
+        name="msattr9"
+        type="s:string"
+        minOccurs="0">
+      </s:element>
+      <s:element        nillable="true"
+        name="msisdn"
+        type="s:string"
+        minOccurs="0">
+      </s:element>
+      <s:element        nillable="true"
+        name="msisdnId"
+        type="s:int"
+        minOccurs="0">
+      </s:element>
+      <s:element        nillable="true"
+        name="msisdnType"
+        type="ns:registrationMsisdnType"
+        minOccurs="0">
+      </s:element>
+      <s:element        nillable="true"
+        name="serviceStatus"
+        type="ns:registrationMsisdnServiceStatus"
+        minOccurs="0">
+      </s:element>
+      <s:element        nillable="true"
+        name="status"
+        type="ns:registrationMsisdnStatus"
+        minOccurs="0">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="createOrUpdateMsisdnProfileRequestType">
+    <s:annotation>
+     <s:documentation>representation of the user and msisdn details</s:documentation>
+    </s:annotation>
+    <s:complexType>
+     <s:sequence>
+      <s:element        maxOccurs="1"
+        name="userid"
+        type="s:string"
+        minOccurs="0">
+      </s:element>
+      <s:element        maxOccurs="1"
+        name="domain"
+        type="s:string"
+        minOccurs="0">
+      </s:element>
+      <s:element        maxOccurs="1"
+        name="msisdn"
+        type="s:string"
+        minOccurs="1">
+      </s:element>
+      <s:element        maxOccurs="1"
+        name="msisdnType"
+        type="ns:registrationMsisdnType"
+        minOccurs="1">
+      </s:element>
+      <s:element        maxOccurs="1"
+        name="msisdnStatus"
+        type="ns:registrationMsisdnStatus"
+        minOccurs="1">
+      </s:element>
+      <s:element        maxOccurs="1"
+        name="msisdnServiceStatus"
+        type="ns:registrationMsisdnServiceStatus"
+        minOccurs="1">
+      </s:element>
+      <s:element        maxOccurs="1"
+        name="genevaAccountId"
+        type="s:string"
+        minOccurs="0">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="createOrUpdateMsisdnProfileResponseType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        name="return"
+        type="s:int">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="setPasswordT1RequestType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        name="user"
+        type="ns:registrationUserCreationType">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="setPasswordT2RequestType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        name="user"
+        type="ns:registrationUserCreationType">
+      </s:element>
+      <s:element        name="password"
+        type="s:string">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="setPasswordT3RequestType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        name="user"
+        type="ns:registrationUserCreationType">
+      </s:element>
+      <s:element        name="password"
+        type="s:string">
+      </s:element>
+      <s:element        name="paswordProperties"
+        type="ns:map">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="setPasswordT4RequestType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        name="username"
+        type="s:string">
+      </s:element>
+      <s:element        name="domain"
+        type="s:string">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="setPasswordT5RequestType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        name="username"
+        type="s:string">
+      </s:element>
+      <s:element        name="domain"
+        type="s:string">
+      </s:element>
+      <s:element        name="paswordProperties"
+        type="ns:map">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="setPasswordT6RequestType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        name="username"
+        type="s:string">
+      </s:element>
+      <s:element        name="domain"
+        type="s:string">
+      </s:element>
+      <s:element        name="pasword"
+        type="s:string">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+   <s:element     name="setPasswordT7RequestType">
+    <s:complexType>
+     <s:sequence>
+      <s:element        name="username"
+        type="s:string">
+      </s:element>
+      <s:element        name="domain"
+        type="s:string">
+      </s:element>
+      <s:element        name="pasword"
+        type="s:string">
+      </s:element>
+      <s:element        name="paswordProperties"
+        type="ns:map">
+      </s:element>
+     </s:sequence>
+    </s:complexType>
+   </s:element>
+  </s:schema>
+ </types>
+ <message   name="setPasswordT6">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:setPasswordT6RequestType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="setPasswordT6Response">
+ </message>
+ <message   name="setPasswordT5">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:setPasswordT5RequestType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="setPasswordT5Response">
+ </message>
+ <message   name="getPhoneUsers">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:getPhoneUsersRequestType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="getPhoneUsersResponse">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:getPhoneUsersResponseType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="setPasswordT4">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:setPasswordT4RequestType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="setPasswordT4Response">
+ </message>
+ <message   name="getSearchCount">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:getSearchCountRequestType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="getSearchCountResponse">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:getSearchCountResponseType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="setPasswordT3">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:setPasswordT3RequestType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="setPasswordT3Response">
+ </message>
+ <message   name="getSuperChooser">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:getSuperChooserRequestType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="getSuperChooserResponse">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:getSuperChooserResponseType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="setPasswordT2">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:setPasswordT2RequestType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="setPasswordT2Response">
+ </message>
+ <message   name="setPasswordT1">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:setPasswordT1RequestType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="setPasswordT1Response">
+ </message>
+ <message   name="suggestUserName">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:suggestUserNameRequest"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="suggestUserNameResponse">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:suggestUserNameResponse"
+    name="result">
+  </part>
+ </message>
+ <message   name="getUserDetails">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:getUserDetailsRequestType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="getUserDetailsResponse">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:getUserDetailsResponseType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="createOrUpdateRoleSet">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:createOrUpdateRoleSetRequestType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="createOrUpdateRoleSetResponse">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:createOrUpdateRoleSetResponseType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="validateMSISDNVerificationCode">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:validateMSISDNVerificationCodeRequestType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="validateMSISDNVerificationCodeResponse">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:validateMSISDNVerificationCodeResponseType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="getAccountChoosers">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:getAccountChoosersRequestType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="getAccountChoosersResponse">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:getAccountChoosersResponseType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="publishMsisdn">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:publishMsisdnRequestType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="publishMsisdnResponse">
+ </message>
+ <message   name="searchByMsisdn">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:searchByMsisdnRequestType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="searchByMsisdnResponse">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:searchByMsisdnResponseType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="createUser">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:createUserRequest"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="createUserResponse">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:createUserResponse"
+    name="result">
+  </part>
+ </message>
+ <message   name="searchForMsisdn">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:searchForMsisdnRequestType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="searchForMsisdnResponse">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:searchForMsisdnResponseType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="createOrUpdateMsisdnProfile">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:createOrUpdateMsisdnProfileRequestType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="createOrUpdateMsisdnProfileResponse">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:createOrUpdateMsisdnProfileResponseType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="search">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:searchRequestType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="searchResponse">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:searchResponseType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="setPasswordT7">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:setPasswordT7RequestType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="setPasswordT7Response">
+ </message>
+ <message   name="getRolesForCustomer">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:getRolesForCustomerRequestType"
+    name="parameters">
+  </part>
+ </message>
+ <message   name="getRolesForCustomerResponse">
+  <part    xmlns:partns="http://registration.o2.co.uk/Registration/RegistrationTypes"
+    element="partns:getRolesForCustomerResponseType"
+    name="parameters">
+  </part>
+ </message>
+ <portType   name="RegistrationPortType">
+  <operation    name="setPasswordT6">
+   <input     message="tns:setPasswordT6">
+   </input>
+   <output     message="tns:setPasswordT6Response">
+   </output>
+  </operation>
+  <operation    name="setPasswordT5">
+   <input     message="tns:setPasswordT5">
+   </input>
+   <output     message="tns:setPasswordT5Response">
+   </output>
+  </operation>
+  <operation    name="getPhoneUsers">
+   <input     message="tns:getPhoneUsers">
+   </input>
+   <output     message="tns:getPhoneUsersResponse">
+   </output>
+  </operation>
+  <operation    name="setPasswordT4">
+   <input     message="tns:setPasswordT4">
+   </input>
+   <output     message="tns:setPasswordT4Response">
+   </output>
+  </operation>
+  <operation    name="getSearchCount">
+   <input     message="tns:getSearchCount">
+   </input>
+   <output     message="tns:getSearchCountResponse">
+   </output>
+  </operation>
+  <operation    name="setPasswordT3">
+   <input     message="tns:setPasswordT3">
+   </input>
+   <output     message="tns:setPasswordT3Response">
+   </output>
+  </operation>
+  <operation    name="getSuperChooser">
+   <input     message="tns:getSuperChooser">
+   </input>
+   <output     message="tns:getSuperChooserResponse">
+   </output>
+  </operation>
+  <operation    name="setPasswordT2">
+   <input     message="tns:setPasswordT2">
+   </input>
+   <output     message="tns:setPasswordT2Response">
+   </output>
+  </operation>
+  <operation    name="setPasswordT1">
+   <input     message="tns:setPasswordT1">
+   </input>
+   <output     message="tns:setPasswordT1Response">
+   </output>
+  </operation>
+  <operation    name="suggestUserName">
+   <input     message="tns:suggestUserName">
+   </input>
+   <output     message="tns:suggestUserNameResponse">
+   </output>
+  </operation>
+  <operation    name="getUserDetails">
+   <input     message="tns:getUserDetails">
+   </input>
+   <output     message="tns:getUserDetailsResponse">
+   </output>
+  </operation>
+  <operation    name="createOrUpdateRoleSet">
+   <input     message="tns:createOrUpdateRoleSet">
+   </input>
+   <output     message="tns:createOrUpdateRoleSetResponse">
+   </output>
+  </operation>
+  <operation    name="validateMSISDNVerificationCode">
+   <input     message="tns:validateMSISDNVerificationCode">
+   </input>
+   <output     message="tns:validateMSISDNVerificationCodeResponse">
+   </output>
+  </operation>
+  <operation    name="getAccountChoosers">
+   <input     message="tns:getAccountChoosers">
+   </input>
+   <output     message="tns:getAccountChoosersResponse">
+   </output>
+  </operation>
+  <operation    name="publishMsisdn">
+   <input     message="tns:publishMsisdn">
+   </input>
+   <output     message="tns:publishMsisdnResponse">
+   </output>
+  </operation>
+  <operation    name="searchByMsisdn">
+   <input     message="tns:searchByMsisdn">
+   </input>
+   <output     message="tns:searchByMsisdnResponse">
+   </output>
+  </operation>
+  <operation    name="createUser">
+   <input     message="tns:createUser">
+   </input>
+   <output     message="tns:createUserResponse">
+   </output>
+  </operation>
+  <operation    name="searchForMsisdn">
+   <input     message="tns:searchForMsisdn">
+   </input>
+   <output     message="tns:searchForMsisdnResponse">
+   </output>
+  </operation>
+  <operation    name="createOrUpdateMsisdnProfile">
+   <input     message="tns:createOrUpdateMsisdnProfile">
+   </input>
+   <output     message="tns:createOrUpdateMsisdnProfileResponse">
+   </output>
+  </operation>
+  <operation    name="search">
+   <input     message="tns:search">
+   </input>
+   <output     message="tns:searchResponse">
+   </output>
+  </operation>
+  <operation    name="setPasswordT7">
+   <input     message="tns:setPasswordT7">
+   </input>
+   <output     message="tns:setPasswordT7Response">
+   </output>
+  </operation>
+  <operation    name="getRolesForCustomer">
+   <input     message="tns:getRolesForCustomer">
+   </input>
+   <output     message="tns:getRolesForCustomerResponse">
+   </output>
+  </operation>
+ </portType>
+ <binding   name="RegistrationServicePort"
+   type="tns:RegistrationPortType">
+   <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+  <operation    name="setPasswordT6">
+    <soap:operation style="document" soapAction="" />
+   <input>
+     <soap:body use="literal" />
+   </input>
+   <output>
+     <soap:body use="literal" />
+   </output>
+  </operation>
+  <operation    name="setPasswordT5">
+    <soap:operation style="document" soapAction="" />
+   <input>
+     <soap:body use="literal" />
+   </input>
+   <output>
+     <soap:body use="literal" />
+   </output>
+  </operation>
+  <operation    name="getPhoneUsers">
+    <soap:operation style="document" soapAction="" />
+   <input>
+     <soap:body use="literal" />
+   </input>
+   <output>
+     <soap:body use="literal" />
+   </output>
+  </operation>
+  <operation    name="setPasswordT4">
+    <soap:operation style="document" soapAction="" />
+   <input>
+     <soap:body use="literal" />
+   </input>
+   <output>
+     <soap:body use="literal" />
+   </output>
+  </operation>
+  <operation    name="getSearchCount">
+    <soap:operation style="document" soapAction="" />
+   <input>
+     <soap:body use="literal" />
+   </input>
+   <output>
+     <soap:body use="literal" />
+   </output>
+  </operation>
+  <operation    name="setPasswordT3">
+    <soap:operation style="document" soapAction="" />
+   <input>
+     <soap:body use="literal" />
+   </input>
+   <output>
+     <soap:body use="literal" />
+   </output>
+  </operation>
+  <operation    name="getSuperChooser">
+    <soap:operation style="document" soapAction="" />
+   <input>
+     <soap:body use="literal" />
+   </input>
+   <output>
+     <soap:body use="literal" />
+   </output>
+  </operation>
+  <operation    name="setPasswordT2">
+    <soap:operation style="document" soapAction="" />
+   <input>
+     <soap:body use="literal" />
+   </input>
+   <output>
+     <soap:body use="literal" />
+   </output>
+  </operation>
+  <operation    name="setPasswordT1">
+    <soap:operation style="document" soapAction="" />
+   <input>
+     <soap:body use="literal" />
+   </input>
+   <output>
+     <soap:body use="literal" />
+   </output>
+  </operation>
+  <operation    name="suggestUserName">
+    <soap:operation style="document" soapAction="" />
+   <input>
+     <soap:body use="literal" />
+   </input>
+   <output>
+     <soap:body use="literal" />
+   </output>
+  </operation>
+  <operation    name="getUserDetails">
+    <soap:operation style="document" soapAction="" />
+   <input>
+     <soap:body use="literal" />
+   </input>
+   <output>
+     <soap:body use="literal" />
+   </output>
+  </operation>
+  <operation    name="createOrUpdateRoleSet">
+    <soap:operation style="document" soapAction="" />
+   <input>
+     <soap:body use="literal" />
+   </input>
+   <output>
+     <soap:body use="literal" />
+   </output>
+  </operation>
+  <operation    name="validateMSISDNVerificationCode">
+    <soap:operation style="document" soapAction="" />
+   <input>
+     <soap:body use="literal" />
+   </input>
+   <output>
+     <soap:body use="literal" />
+   </output>
+  </operation>
+  <operation    name="getAccountChoosers">
+    <soap:operation style="document" soapAction="" />
+   <input>
+     <soap:body use="literal" />
+   </input>
+   <output>
+     <soap:body use="literal" />
+   </output>
+  </operation>
+  <operation    name="publishMsisdn">
+    <soap:operation style="document" soapAction="" />
+   <input>
+     <soap:body use="literal" />
+   </input>
+   <output>
+     <soap:body use="literal" />
+   </output>
+  </operation>
+  <operation    name="searchByMsisdn">
+    <soap:operation style="document" soapAction="" />
+   <input>
+     <soap:body use="literal" />
+   </input>
+   <output>
+     <soap:body use="literal" />
+   </output>
+  </operation>
+  <operation    name="createUser">
+    <soap:operation style="document" soapAction="" />
+   <input>
+     <soap:body use="literal" />
+   </input>
+   <output>
+     <soap:body use="literal" />
+   </output>
+  </operation>
+  <operation    name="searchForMsisdn">
+    <soap:operation style="document" soapAction="" />
+   <input>
+     <soap:body use="literal" />
+   </input>
+   <output>
+     <soap:body use="literal" />
+   </output>
+  </operation>
+  <operation    name="createOrUpdateMsisdnProfile">
+    <soap:operation style="document" soapAction="" />
+   <input>
+     <soap:body use="literal" />
+   </input>
+   <output>
+     <soap:body use="literal" />
+   </output>
+  </operation>
+  <operation    name="search">
+    <soap:operation style="document" soapAction="" />
+   <input>
+     <soap:body use="literal" />
+   </input>
+   <output>
+     <soap:body use="literal" />
+   </output>
+  </operation>
+  <operation    name="setPasswordT7">
+    <soap:operation style="document" soapAction="" />
+   <input>
+     <soap:body use="literal" />
+   </input>
+   <output>
+     <soap:body use="literal" />
+   </output>
+  </operation>
+  <operation    name="getRolesForCustomer">
+    <soap:operation style="document" soapAction="" />
+   <input>
+     <soap:body use="literal" />
+   </input>
+   <output>
+     <soap:body use="literal" />
+   </output>
+  </operation>
+ </binding>
+ <service   name="RegistrationService">
+  <port    name="RegistrationServicePort"
+    binding="tns:RegistrationServicePort">
+    <soap:address location="https://speedy.london.02.net:8443/registration/RegistrationService" />
+  </port>
+ </service>
+</definitions>

@@ -1,0 +1,893 @@
+body {
+    margin: 0px;
+    background-color: #000;
+
+    /*font: 62.5%/1.5 Arial;*/
+
+    font-family: Arial,sans-serif;
+    font-size: 62.5%;
+    line-height: 1.5;
+
+
+
+
+    color: #FFF;
+    -webkit-text-size-adjust: none;
+    /*min-height: 422px;*/
+    /*Min height as defined in email from Aris Vidouros from IE on 31 Oct. 2011 */
+    min-height: 372px;
+
+}
+
+/**** HEADER *****/
+.header {
+    position: relative;
+    height: 43px;
+    color: #FFF;
+    font-size: 1.4em;
+    font-weight: bold;
+    background-color: #121A3C;
+    background: linear-gradient(top, rgb(11, 66, 123), rgb(19, 26, 60), color-stop(50%, rgb(22, 40, 85)), color-stop(50%, rgb(18, 26, 60)));
+    background: -webkit-linear-gradient(top, rgb(11, 66, 123), rgb(19, 26, 60), color-stop(50%, rgb(22, 40, 85)), color-stop(50%, rgb(18, 26, 60)));
+    background: -webkit-gradient(linear, left top, left bottom, from(rgb(11, 66, 123)), to(rgb(19, 26, 60)), color-stop(50%, rgb(22, 40, 85)), color-stop(50%, rgb(18, 26, 60)));
+    background: -moz-linear-gradient(top, rgb(11, 66, 123), rgb(19, 26, 60) 50%, rgb(22, 40, 85) 50%, rgb(18, 26, 60));
+    background: -o-linear-gradient(top, rgb(11, 66, 123), rgb(19, 26, 60) 50%, rgb(22, 40, 85) 50%, rgb(18, 26, 60));
+
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.header a {
+    border: 1px solid #00244D;
+
+    font-size: 0.85em;
+    font-weight: bold;
+
+    padding: 3px 8px 2px;
+
+    border-radius: 5px;
+    color: #FFF;
+    text-decoration: none;
+
+    -moz-box-shadow: 0 1px 0 0 #000 inset, 0 1px 0 0 #666666;
+    -webkit-box-shadow: 0 1px 0 0 #000 inset, 0 1px 0 0 #666666;
+    box-shadow: 0 1px 0 0 #000 inset, 0 1px 0 0 #666666;
+
+    position: absolute;
+    right: 8px;
+    top: 10px;
+    text-shadow: 0px -1px 0px #000
+
+}
+
+.header .corporate-logo {
+
+    position: absolute;
+    left: 6px;
+    top: 5px;
+    background: url('../img/corporate-logo-iphone3.png') 0 0 no-repeat;
+    width: 66px;
+    height: 68px
+}
+
+.header .title {
+    display: inline-block;
+    text-align: center;
+    line-height: 43px;
+    width: 100%;
+    text-shadow: 0px -1px 0px #000;
+    font-size: 1.2em;
+    text-indent: -15px
+}
+
+/**** PROGRESS MARKERS (MAIN STEPS) *****/
+.progress-steps {
+    background-color: #121A3C;
+    background: linear-gradient(top, rgb(11, 66, 123), rgb(19, 26, 60), color-stop(50%, rgb(22, 40, 85)), color-stop(50%, rgb(18, 26, 60)));
+    background: -webkit-linear-gradient(top, rgb(11, 66, 123), rgb(19, 26, 60), color-stop(50%, rgb(22, 40, 85)), color-stop(50%, rgb(18, 26, 60)));
+    background: -webkit-gradient(linear, left top, left bottom, from(rgb(11, 66, 123)), to(rgb(19, 26, 60)), color-stop(50%, rgb(22, 40, 85)), color-stop(50%, rgb(18, 26, 60)));
+    background: -moz-linear-gradient(top, rgb(11, 66, 123), rgb(19, 26, 60) 50%, rgb(22, 40, 85) 50%, rgb(18, 26, 60));
+    background: -o-linear-gradient(top, rgb(11, 66, 123), rgb(19, 26, 60) 50%, rgb(22, 40, 85) 50%, rgb(18, 26, 60));
+    display: inline-block;
+    width: 100%;
+    /*font-size: 1.46em;*/
+    font-size: 1.44em;
+    color: #76859C
+}
+
+.progress-steps span {
+    padding: 4px 14px;
+
+    -webkit-border-top-right-radius: 20px 20px;
+    -webkit-border-bottom-right-radius: 20px 20px;
+    -moz-border-radius-topright: 20px;
+    -moz-border-radius-bottomright: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+
+    -moz-box-shadow: inset -2px 0 #0E1935;
+    box-shadow: inset -2px 0 #0E1935;
+    -webkit-box-shadow: inset -2px 0 #0E1935;
+
+    display: inline-block;
+    float: left;
+
+    text-shadow: 0px -1px 0px #000;
+
+}
+
+.progress-steps span.active {
+    background-color: #3A8ABD;
+
+    background: linear-gradient(top, rgb(34, 67, 132), rgb(25, 54, 116), color-stop(50%, rgb(32, 63, 129)), color-stop(50%, rgb(25, 54, 116)));
+    background: -webkit-linear-gradient(top, rgb(34, 67, 132), rgb(25, 54, 116), color-stop(50%, rgb(32, 63, 129)), color-stop(50%, rgb(25, 54, 116)));
+    background: -webkit-gradient(linear, left top, left bottom, from(rgb(34, 67, 132)), to(rgb(25, 54, 116)), color-stop(50%, rgb(32, 63, 129)), color-stop(50%, rgb(25, 54, 116)));
+    background: -moz-linear-gradient(top, rgb(34, 67, 132), rgb(25, 54, 116) 50%, rgb(32, 63, 129) 50%, rgb(25, 54, 116));
+    background: -o-linear-gradient(top, rgb(34, 67, 132), rgb(25, 54, 116) 50%, rgb(32, 63, 129) 50%, rgb(25, 54, 116));
+    color: #FFF
+}
+
+.progress-steps span:first-child {
+    position: relative;
+    z-index: 20;
+
+}
+
+.progress-steps #step-two {
+    position: relative;
+    left: -20px;
+    text-indent: 12px;
+    z-index: 19;
+
+}
+
+.progress-steps span:last-child {
+    position: relative;
+    left: -25px;
+
+    z-index: 18;
+
+}
+
+/**** PROGRESS MARKERS (SUB STEPS) *****/
+.progress-substeps {
+    position: absolute;
+    top: 1px;
+    right: 0;
+    padding: 8px;
+    -webkit-border-bottom-left-radius: 6px 6px;;
+    -moz-border-radius-bottomleft: 6px;
+    border-bottom-left-radius: 6px;
+    box-shadow: 0 2px 6px #131E42;
+    -moz-box-shadow: 0 2px 6px #131E42;
+    -webkit-box-shadow: 0 2px 6px #131E42;
+    border-left: 1px solid #191A1B;
+    border-bottom: 1px solid #191A1B;
+    background: linear-gradient(top, rgba(20, 43, 90, 0.3), rgba(20, 41, 83, 0.3));
+    background: -webkit-linear-gradient(top, rgba(20, 43, 90, 0.3), rgba(20, 41, 83, 0.3));
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(20, 43, 90, 0.3)), to(rgba(20, 41, 83, 0.3)));
+    background: -moz-linear-gradient(top, rgba(20, 43, 90, 0.3), rgba(20, 41, 83, 0.3));
+    background: -o-linear-gradient(top, rgba(20, 43, 90, 0.3), rgba(20, 41, 83, 0.3))
+}
+
+.progress-substeps span {
+    border-radius: 8px;
+    background: #485C84;
+    float: left;
+    margin-right: 8px;
+    height: 14px;
+    width: 14px;
+    box-shadow: 0 2px 6px #131E42;
+    -moz-box-shadow: 0 2px 6px #131E42;
+    -webkit-box-shadow: 0 2px 6px #131E42
+}
+
+.progress-substeps span.active {
+    background: #D3E9FE
+}
+
+.progress-substeps span:last-child {
+    margin: 0
+}
+
+div.canvas {
+    font-size: 1.46em;
+
+    /*min-height: 436px;*/
+    /*Min height as defined in email from Aris Vidouros from IE on 31 Oct. 2011 */
+    min-height: 372px;
+
+    padding: 0 10px 0;
+    clear: both;
+
+    background: -webkit-gradient(linear, left top, left bottom, from(rgb(18, 24, 54)), to(rgb(161, 204, 230)), color-stop(52%, rgb(15, 61, 116)), color-stop(95%, rgb(17, 125, 182)), color-stop(100%, rgb(161, 204, 230)));
+    background-color: #223866;
+
+
+    -webkit-border-bottom-left-radius: 10px 10px;
+    -webkit-border-bottom-right-radius: 10px 10px;
+    -moz-border-radius-bottomleft: 10px;
+    -moz-border-radius-bottomright: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+}
+
+/***** GRADIENT WITH OPACITY ****/
+.description {
+    background-color: #16426C;
+
+    font-size: 1.1em;
+
+    background: linear-gradient(top, rgba(52, 52, 52, 0.3), rgba(52, 52, 52, 0.3));
+    background: -webkit-linear-gradient(top, rgba(52, 52, 52, 0.3), rgba(52, 52, 52, 0.3));
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(52, 52, 52, 0.3)), to(rgba(52, 52, 52, 0.3)));
+    background: -moz-linear-gradient(top, rgba(52, 52, 52, 0.3), rgba(52, 52, 52, 0.3));
+    background: -o-linear-gradient(top, rgba(52, 52, 52, 0.3), rgba(52, 52, 52, 0.3));
+
+    padding: 8px;
+    -webkit-border-bottom-left-radius: 8px 9px;
+    -webkit-border-bottom-right-radius: 8px 8px;
+    -moz-border-radius-bottomleft: 8px;
+    -moz-border-radius-bottomright: 8px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    box-shadow: 0 2px 6px #131E42;
+    -moz-box-shadow: 0 2px 6px #131E42;
+    -webkit-box-shadow: 0 2px 6px #131E42;
+    margin-bottom: 14px;
+    position: relative;
+}
+
+.description a {
+    text-decoration: underline;
+    color: inherit;
+}
+
+.description p {
+    line-height: 1.2em;
+}
+
+.description .icon {
+    position: relative;
+    display: inline-block;
+    width: 31px;
+    height: 31px;
+    top: 11px;
+}
+
+.description .bang {
+    background: url('../img/icons-map.png') no-repeat scroll -93px 0;
+
+}
+
+.description .tick {
+    background: url('../img/icons-map.png') no-repeat scroll -61px 0;
+}
+
+.description .errorbang {
+    background: url('../img/icons-map.png') no-repeat scroll -125px 0;
+}
+
+.smallicon {
+    position: absolute;
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    top: 7px;
+    left: 10px;
+}
+
+.smallerrorbang {
+    background: url('../img/icons-map.png') no-repeat scroll -60px -83px;
+}
+
+div.badger {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+}
+
+.errorText {
+    background-color: #F6F6F7;
+    color: #4e5256;
+    padding-left: 10px;
+    padding-bottom: 5px;
+
+    margin: 0 10px 25px;
+    border-radius: 8px;
+    border: solid 1px red;
+    font-size: 0.9em;
+}
+
+.errorText:before {
+    content: url(../img/smallbang.png);
+    position: relative;
+    top: 7px;
+    padding-right: 5px;
+
+}
+
+.error {
+    background-color: #F6F6F7;
+    color: #4e5256;
+    position: relative;
+    padding: 5px 8px 5px 38px;
+    margin: 5px 0;
+
+    border-radius: 8px;
+    border: solid 1px red;
+}
+
+.heading {
+    position: relative;
+    font-weight: bold;
+    clear: right;
+    display: inline-block;
+    margin-bottom: 0;
+    padding: 4px 4px 8px 6px
+}
+
+.noicon {
+    padding-left: 0;
+}
+
+.float-r {
+    float: right;
+}
+
+.float-l {
+    float: left;
+}
+
+a, a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+input.text {
+    font-size: 14px;
+    border: black solid 1px;
+}
+
+.mobileInput {
+    font-size: 1em;
+    width: 100%;
+    height: 40px;
+    padding-left: 10px;
+
+    color: #333;
+    border: 0;
+    outline: 0;
+    background-color: #F6F6F7;
+    border-radius: 8px;
+
+    box-shadow: 0 2px 6px #131E42;
+    -moz-box-shadow: 0 2px 6px #131E42;
+    -webkit-box-shadow: 0 2px 6px #131E42;
+
+    -webkit-appearance: none;
+
+    position: relative;
+    margin-bottom: 14px;
+
+}
+
+.cancelButton {
+    text-align: center;
+    background-color: #153064;
+    color: white;
+    border: 2px solid white;
+    width: 80px;
+    height: 30px;
+    font-size: 11pt;
+    -webkit-appearance: square-button;
+}
+
+.buttonBox {
+    position: relative;
+    text-align: right;
+    height: 40px;
+
+}
+
+.content a {
+    color: white;
+}
+
+.content.buttonbox {
+    color: red;
+}
+
+.formBoxCanvas {
+    text-align: center;
+    height: 100%;
+}
+
+#progressList {
+    display: table;
+    margin: 0 auto;
+    height: 30px;
+    border: black 1px solid;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: center;
+    width: 100%;
+    padding-left: 0;
+}
+
+
+.inputLabel {
+    padding-top: 5px;
+    padding-bottom: 3px;
+}
+
+label {
+    color: white;
+}
+
+.infobox {
+
+    position: relative;
+    color: #4E5256;
+    font-size: 0.9em;
+    padding: 10px 40px 10px;
+
+    background-color: #E1EFF9;
+
+    border-radius: 8px;
+
+    clear: both;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    line-height: 1.2em;
+
+}
+
+.infobox a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+.infoicon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: url('../img/icons-map.png') no-repeat scroll -60px -59px;
+
+    height: 23px;
+    width: 23px;
+}
+
+.infoheader {
+    font-weight: bold;
+}
+
+.content p.infobody {
+    margin-top: 0;
+    margin-bottom: 0;
+
+    color: #4E5256;
+    line-height: 1.2em;
+
+}
+
+.content p.infobody:last-child {
+    padding-bottom: 5px;
+}
+
+p.mandatory {
+    color: white;
+}
+
+.error .exclamation-mark {
+    color: #FFF;
+
+    padding: 0 5px;
+    font-weight: bold;
+    font-size: 0.75em;
+    text-indent: 0.2em;
+
+    background: linear-gradient(top, rgb(227, 0, 0), rgb(138, 12, 22));
+    background: -webkit-linear-gradient(top, rgb(227, 0, 0), rgb(138, 12, 22));
+    background: -webkit-gradient(linear, left top, left bottom, from(rgb(227, 0, 0)), to(rgb(138, 12, 22)));
+    background: -moz-linear-gradient(top, rgb(227, 0, 0), rgb(138, 12, 22));
+    background: -o-linear-gradient(top, rgb(227, 0, 0), rgb(138, 12, 22));
+    line-height: 1.3em;
+    width: 10px;
+
+}
+
+.content {
+    padding-bottom: 15px;
+    padding-top: 5px;
+    padding-left: 0;
+    padding-right: 0;
+    clear: both;
+    font-size: 1.1em;
+
+    background-color: transparent;
+}
+
+.content input[type=submit], a.button {
+
+    font-size: 1.2em;
+
+    float: right;
+
+    background-color: #3A8ABD;
+
+    background: linear-gradient(top, rgb(82, 176, 229), rgb(61, 138, 187), color-stop(50%, rgb(73, 161, 213)), color-stop(50%, rgb(64, 147, 198)));
+    background: -webkit-linear-gradient(top, rgb(82, 176, 229), rgb(61, 138, 187), color-stop(50%, rgb(73, 161, 213)), color-stop(50%, rgb(64, 147, 198)));
+    background: -webkit-gradient(linear, left top, left bottom, from(rgb(82, 176, 229)), to(rgb(61, 138, 187)), color-stop(50%, rgb(73, 161, 213)), color-stop(50%, rgb(64, 147, 198)));
+    background: -moz-linear-gradient(top, rgb(82, 176, 229), rgb(61, 138, 187) 50%, rgb(73, 161, 213) 50%, rgb(64, 147, 198));
+    background: -o-linear-gradient(top, rgb(82, 176, 229), rgb(61, 138, 187) 50%, rgb(73, 161, 213) 50%, rgb(64, 147, 198));
+
+    padding: 8px 20px;
+
+    border: 0px;
+
+    -moz-box-shadow: 0 1px 0 0 #438BB2 inset, 0 1px 0 0 #4E536D, 0 2px 6px #131E42;
+    -webkit-box-shadow: 0 1px 0 0 #438BB2 inset, 0 1px 0 0 #4E536D, 0 2px 6px #131E42;
+    box-shadow: 0 1px 0 0 #438BB2 inset, 0 1px 0 0 #4E536D, 0 2px 6px #131E42;
+
+    border-radius: 8px;
+    cursor: pointer;
+    color: #FFF;
+
+    margin: 0 0 15px 10px;
+    text-shadow: 0 1px 0 #8D8E8F;
+    text-decoration: none;
+
+}
+
+.content p.plainError {
+    color: white;
+}
+
+.content p {
+    color: white;
+}
+
+.error p {
+    color: red;
+}
+
+.content td {
+    color: white;
+    font-size: 12px;
+}
+
+.content td.prompt {
+    width: 30%;
+    padding-right: 5em;
+
+}
+
+.content td.data {
+    width: 70%;
+
+}
+
+.content td.notfound {
+    font-size: 15px;
+}
+
+.content td.option {
+    width: 10px;
+}
+
+.content td.address {
+    width: 432px;
+}
+
+.content table {
+    margin-bottom: 10px;
+}
+
+/***** SELECT BOX ******/
+.content select {
+    border: 0;
+    outline: 0;
+    display: inline;
+    overflow: hidden;
+    width: 100%;
+    height: 40px;
+    padding-left: 8px;
+    line-height: 40px;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /*background: transparent;*/
+    font-size: 1em;
+    color: #333;
+}
+
+
+.waitbox {
+    text-align: center;
+}
+
+.throbber {
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 35px;
+    margin-bottom: 35px;
+    width: 55px;
+    height: 55px;
+}
+
+.throbberbox {
+    margin: 0 auto;
+
+    width: 170px;
+    background-color: white;
+    border-radius: 8px;
+
+}
+
+.description span.static {
+    font-weight: bold;
+}
+
+.content div.static {
+    font-size: 1em;
+    font-weight: bold;
+    color: white;
+    margin-left: 11px;
+    padding-bottom: 5px;
+}
+
+.content div.label {
+    color: white;
+}
+
+.select-wrapper {
+
+    z-index: 100;
+    background-color: #F6F6F7;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px #131E42;
+    -moz-box-shadow: 0 2px 6px #131E42;
+    -webkit-box-shadow: 0 2px 6px #131E42;
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+    margin-bottom: 14px;
+}
+
+.arrow:before {
+        z-index: 101;
+    content: '\25bc';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    display: block;
+    text-align: center;
+    -webkit-border-top-right-radius: 8px 9px;
+    -webkit-border-bottom-right-radius: 8px 8px;
+    -moz-border-radius-topright: 8px;
+    -moz-border-radius-bottomright: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background-color: #3A8ABD;
+    background: linear-gradient(top, rgb(81, 175, 228), rgb(58, 139, 189), color-stop(50%, rgb(76, 166, 219)), color-stop(50%, rgb(65, 150, 200)));
+    background: -webkit-linear-gradient(top, rgb(81, 175, 228), rgb(58, 139, 189), color-stop(50%, rgb(76, 166, 219)), color-stop(50%, rgb(65, 150, 200)));
+    background: -webkit-gradient(linear, left top, left bottom, from(rgb(81, 175, 228)), to(rgb(58, 139, 189)), color-stop(50%, rgb(76, 166, 219)), color-stop(50%, rgb(65, 150, 200)));
+    background: -moz-linear-gradient(top, rgb(81, 175, 228), rgb(58, 139, 189) 50%, rgb(76, 166, 219) 50%, rgb(65, 150, 200));
+    background: -o-linear-gradient(top, rgb(81, 175, 228), rgb(58, 139, 189) 50%, rgb(76, 166, 219) 50%, rgb(65, 150, 200));
+    -moz-box-shadow: inset 2px 0 2px -2px #1E1E1E;
+    -webkit-box-shadow: inset 2px 0 2px -2px #1E1E1E;
+    box-shadow: inset 2px 0 2px -2px #1E1E1E;
+    text-shadow: 0px 1px 0 #000
+}
+
+label, input {
+    display: block;
+    z-index: 25;
+}
+
+input[placeholder], [placeholder], *[placeholder], .static {
+    font-size: 1em
+}
+
+input::-webkit-input-placeholder {
+    color: #4F5357;
+}
+
+input:-moz-placeholder {
+    color: #4F5357
+}
+
+input.radio {
+    display: inline;
+}
+
+.gender {
+    line-height: 2.2em;
+    margin-bottom: 10px;
+}
+
+hr {
+
+    width: 100%
+}
+
+fieldset {
+    overflow: hidden;
+    border: none;
+    text-align: center;
+}
+
+.pafrow {
+    display: table-row;
+}
+
+.pafradio {
+    display: table-cell;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+.paflabel {
+    display: table-cell;
+
+}
+
+.pafentry {
+    padding-bottom: 15px;
+}
+
+
+label.radio {
+    float: left;
+    clear: none;
+
+    display: block;
+    padding: 0 1em 0 0;
+    /*color: white;*/
+    text-align: right;
+    /*border: solid 1px red;*/
+
+}
+
+input.w2 {
+    width: 3em;
+}
+
+input.w4 {
+    width: 8em;
+}
+
+div.dayYearContainer {
+    width: 78%;
+    float: left;
+
+}
+
+div.dateOfBirth {
+    margin-top: 10px;
+    height: 48px
+}
+
+.ds_left {
+    float: left;
+}
+
+.ds_main {
+    margin-left: 55px;
+}
+
+.ds_sidebar {
+    display: inline;
+    float: right;
+    width: 20%;
+}
+
+input[type=checkbox] {
+
+    width: 13px;
+    height: 13px;
+    padding: 0;
+    margin: 0;
+    vertical-align: bottom;
+    position: relative;
+
+    margin-top: 5px;
+    display: inline;
+    float: left;
+}
+
+label.checkbox {
+
+    display: block;
+
+}
+
+div.checkboxes {
+    padding-left: 10px;
+    /*background-color: red;*/
+    line-height: 2.5em;
+}
+
+.checkboxes input
+{
+    margin-top: 10px;
+}
+
+
+span.marketingLabel {
+    display: block;
+    padding-left: 25px;
+    vertical-align: bottom;
+}
+
+.exclamation-mark {
+    color: #4E5256;
+    border-radius: 16px;
+    background-color: #E1E4E9;
+    background: linear-gradient(top, rgb(251, 251, 251), rgb(200, 200, 203));
+    background: -webkit-linear-gradient(top, rgb(251, 251, 251), rgb(200, 200, 203));
+    background: -webkit-gradient(linear, left top, left bottom, from(rgb(251, 251, 251)), to(rgb(200, 200, 203)));
+    background: -moz-linear-gradient(top, rgb(251, 251, 251), rgb(200, 200, 203));
+    background: -o-linear-gradient(top, rgb(251, 251, 251), rgb(200, 200, 203));
+    border: 1px solid #B1B1B6;
+    font-size: 1.4em;
+    padding: 0 9px;
+    line-height: 1.1em;
+    left: -2px;
+    top: 0;
+    box-shadow: 0 2px 3px #131E42;
+    -moz-box-shadow: 0 1px 3px #131E42;
+    -webkit-box-shadow: 0 2px 3px #131E42
+}
+
+.tick-mark {
+    color: white;
+    border-radius: 16px;
+    background-color: #1DB711;
+    border: 1px solid #B1B1B6;
+    font-size: 1.4em;
+    padding: 1px 5px 0 2px;
+    line-height: 1.1em;
+    left: -2px;
+    top: 0;
+    box-shadow: 0 2px 3px #131E42;
+    -moz-box-shadow: 0 1px 3px #131E42;
+    -webkit-box-shadow: 0 2px 3px #131E42;
+    margin-right: 7px;
+}
+
+#throbber {
+    width: 40px;
+    height: 50px;
+    border: solid 1px red;
+
+}
+
+.confirmDetailsTxt {
+    font: 1em arial, helvetica, clean, sans-serif;
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+.confirmDetailsTxt:last-child {
+    margin-bottom: 50px;
+}
+
+p.address {
+    margin-bottom: 2px;
+}
+
+
+hr {
+
+}
+
+.confirmBox {
+    padding-left: 7px;
+    margin-left: 0;
+    margin-bottom: 25px;
+}

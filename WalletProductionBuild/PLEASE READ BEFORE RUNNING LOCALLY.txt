@@ -1,0 +1,12 @@
+Please unzip the axislibs.tar.gz in the lib file of you weblogic to get the search service to work correctly.
+
+So for example axislibs.tar.gz should be unzipped to the following directory.
+C:\Oracle\Middleware\user_projects\domains\base_domain\lib
+
+If done correctly then there should be a directory in there called axislibs with 100 jar files. This will be used by
+the search service calls.
+
+To test this is working once installed. Go to the wallet app and enter mpn,otac etc and when you get to the following
+http://YOURHOSTNAME.o2.co.uk:7001/finance/chooseAccount.do 
+you should see a list of accounts registered for that msisdn. OBviously you have to use a account that has more than 
+one account associated with that msisdn.

@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="O2 Finance" default="build" basedir=".">
+    <description>"Build script for O2 Finance app"</description>
+    <property environment="env"/>
+    <property file="project.properties"/>
+    <property file="../CommonAntTargets/commonbuild.properties"/>
+    <import file="../CommonAntTargets/javatargets.xml"/>
+    <import file="../CommonAntTargets/wlstargets.xml"/>
+    <import file="../CommonAntTargets/axis2Targets.xml"/>
+
+
+
+
+
+    <!--<target name="PAA_clientGen">-->
+        <!--<wsdl2java-axis2 wsdl="schema/Paa_1_0.WSDL" output-dir="./" package-name="com.o2.finance.ws.paa"/>-->
+    <!--</target>-->
+    <!--
+	<target name="orange_registration_service_client">
+        <wsdl2java-axis2 wsdl="wsdl/orange/RegistrationService.wsdl" output-dir="./" package-name="com.o2.finance.ws.orange"/>
+    </target>
+-->
+
+    <target name="orange_avatar_service_client">
+        <antcall target="clear"/>
+        <wsdl2java-axis2 wsdl="${orange.avatarservice.wsdl}" output-dir="${directory.fromwsdl.tmp}/${orange.avatarservice.directory.wsdlgen}" package-name="${orange.avatarservice.client.package.name}"/>
+        <jar destfile="${directory.lib.generated}/${orange.avatarservice.generated.jar}">
+            <fileset dir="${directory.fromwsdl.tmp}/${orange.avatarservice.directory.wsdlgen}" includes="**/*.class"/>
+        </jar>
+    </target>
+
+
+
+    <target name="orange_registration_service_client">
+        <antcall target="clear"/>
+        <wsdl2java-axis2 wsdl="${orange.registrationservice.wsdl}" output-dir="${directory.fromwsdl.tmp}/${orange.registrationservice.directory.wsdlgen}" package-name="${orange.registrationservice.client.package.name}"/>
+        <jar destfile="${directory.lib.generated}/${orange.registrationservice.generated.jar}">
+            <fileset dir="${directory.fromwsdl.tmp}/${orange.registrationservice.directory.wsdlgen}" includes="**/*.class"/>
+        </jar>
+    </target>
+    <target name="online_customer_client">
+        <antcall target="clear"/>
+        <wsdl2java-axis2 wsdl="${online.wsdl}" output-dir="${directory.fromwsdl.tmp}/${online.directory.wsdlgen}" package-name="${online.client.package.name}"/>
+        <jar destfile="${directory.lib.generated}/${online.generated.jar}">
+            <fileset dir="${directory.fromwsdl.tmp}/${online.directory.wsdlgen}" includes="**/*.class"/>
+        </jar>
+    </target>
+    <target name="sms_service_client">
+        <antcall target="clear"/>
+        <wsdl2java-axis2 wsdl="${sms.wsdl}" output-dir="${directory.fromwsdl.tmp}/${sms.directory.wsdlgen}" package-name="${sms.client.package.name}"/>
+        <jar destfile="${directory.lib.generated}/${sms.generated.jar}">
+            <fileset dir="${directory.fromwsdl.tmp}/${sms.directory.wsdlgen}" includes="**/*.class"/>
+        </jar>
+    </target>
+
+    <target name="orange_search_service_client">
+        <antcall target="clear" />
+        <wsdl2java-axis2 wsdl="${search.wsdl}" output-dir="${directory.fromwsdl.tmp}/${search.directory.wsdlgen}" package-name="${search.client.package.name}" />
+        <jar destfile="${directory.lib.generated}/${search.generated.jar}">
+            <fileset dir="${directory.fromwsdl.tmp}/${search.directory.wsdlgen}" includes="**/*.class" />
+        </jar>
+    </target>
+
+
+
+
+    <!--<target name="orange_avatar_service_client">-->
+        <!--<wsdl2java-axis2 wsdl="wsdl/orange/AvatarService.wsdl" output-dir="./" package-name="com.o2.finance.ws.orange" classpath="project.src.classpath"/>-->
+    <!--</target>-->
+    <target name="copy.web.files">
+        <copy todir="${directory.build}">
+            <fileset dir="${directory.web}"/>
+        </copy>
+    </target>
+    <target name="copy.webservice.jaxrpc.clients">
+        <copy todir="${directory.lib}">
+            <fileset dir="${directory.build}" includes="*.jar"/>
+        </copy>
+    </target>
+    <target name="copy.webservice.axis2.clients">
+        <copy todir="${directory.lib}">
+            <fileset dir="${directory.lib.generated}" includes="*.jar"/>
+        </copy>
+    </target>
+    <target name="copy.libs">
+        <copy todir="${directory.build}/WEB-INF/lib">
+            <fileset dir="${directory.dist}" includes="*.jar"/>
+            <fileset dir="${directory.lib}" includes="*.jar" excludes="weblogic.jar, mockito*"/>
+        </copy>
+        <delete dir="${directory.dist}" includes="*.jar"/>
+    </target>
+    <target name="war.finance">
+        <zip basedir="${directory.build}" destfile="${directory.dist}/${project.output.name}.war"/>
+    </target>
+    <target name="compile-source">
+        <echo>Compiling source.</echo>
+        <echo>${java.jdk.home}/bin/javac</echo>
+        <echo message="Compiling all source files under ${directory.source} using ${java.jdk.home}/bin/javac" level="info"/>
+        <javac includeantruntime="true" srcdir="${directory.source}" destdir="${directory.source.output}" debug="true" verbose="false">
+            <classpath>
+                <fileset dir="${directory.lib}" includes="**/*.jar"/>
+                <fileset dir="${directory.common.lib}/weblogic-8.1" includes="weblogic.jar, webservices.jar"/>
+                <fileset dir="${directory.lib.generated}" includes="**/*.jar"/>
+            </classpath>
+        </javac>
+        <echo message="Source compile complete"/>
+    </target>
+    <!-- Jar Project: Creates a JAR file for the project using only the source files (i.e. test files are not included -->
+    <target name="jar-finance">
+        <echo message="Creating ${project.output.name}.jar for ${project.name}" level="info"/>
+        <!-- JAR the project -->
+        <jar destfile="${directory.dist}/${project.output.name}.jar" duplicate="preserve">
+            <manifest>
+                <attribute name="Built-By" value="${user.name}, Smart421"/>
+                <attribute name="Project-Version" value="${project.version}"/>
+                <attribute name="Java-Compatibility-Version" value="${java.version}"/>
+                <attribute name="Class-Path" value="${project.output.manifest.classpath}"/>
+                <attribute name="Main-Class" value="${project.output.manifest.mainclass}"/>
+            </manifest>
+            <fileset dir="${directory.source.output}" includes="**/*"/>
+            <fileset dir="${directory.source}" excludes="**/*.java"/>
+            <fileset dir="${directory.source.generated}" excludes="**/*.java"/>
+        </jar>
+    </target>
+    <!--
+    The plan for client web services is to compile them into separate jar files and then copy into
+    ${directory.build}/WEB-INF/lib by adding filesets to the copy.libs target
+    -->
+    <target name="autotype_otacservice">
+        <echo>Creating xml/java mapping for OtacService ...</echo>
+        <antcall target="autotype-wsdl">
+            <param name="webapp.context.uri" value="OtacService"/>
+            <param name="service.name" value="OtacService"/>
+            <param name="service.wsdl.file" value="orange/OtacService.wsdl"/>
+            <param name="ws.package.name" value="com.o2.smart421.ws.otac"/>
+            <param name="model.package.name" value="com.o2.smart421.ws.otac.model"/>
+        </antcall>
+    </target>
+
+    <target name="autotype_pafservice">
+        <echo>Creating xml/java mapping for OtacService ...</echo>
+        <antcall target="autotype-wsdl">
+            <param name="webapp.context.uri" value="PafService"/>
+            <param name="service.name" value="PafService"/>
+            <param name="service.wsdl.file" value="orange/paf.wsdl"/>
+            <param name="ws.package.name" value="com.o2.smart421.ws.paf"/>
+            <param name="model.package.name" value="com.o2.smart421.ws.paf.model"/>
+        </antcall>
+    </target>
+
+    <target name="autotype_onlineCustomerservice">
+        <echo>Creating xml/java mapping for OnlineCustomerService ...</echo>
+        <antcall target="autotype-wsdl">
+            <param name="webapp.context.uri" value="OnlineCustomerService"/>
+            <param name="service.name" value="OnlineCustomerService"/>
+            <param name="service.wsdl.file" value="onlineCustomer/V1_1/jaxrpc/onlinecustomerservice_1_1.wsdl"/>
+            <param name="ws.package.name" value="com.o2.smart421.ws.onlineCustomer"/>
+            <param name="model.package.name" value="com.o2.smart421.ws.onlineCustomer.model"/>
+        </antcall>
+    </target>
+
+    <target name="autotype_smsservice">
+        <echo>Creating xml/java mapping for OtacService ...</echo>
+        <antcall target="autotype-wsdl">
+            <param name="webapp.context.uri" value="SendMessage"/>
+            <param name="service.name" value="SendMessage"/>
+            <param name="service.wsdl.file" value="sms/jaxrpc/sendmessageservice_1_1.wsdl"/>
+            <param name="ws.package.name" value="com.o2.smart421.ws.sms"/>
+            <param name="model.package.name" value="com.o2.smart421.ws.sms.model"/>
+        </antcall>
+    </target>
+
+
+    <target name="autotype_searchservice">
+        <echo>Creating xml/java for SearchService ...</echo>
+        <antcall target="autotype-wsdl">
+            <param name="webapp.context.uri" value="SearchService" />
+            <param name="service.name" value="SearchService" />
+            <param name="service.wsdl.file" value="search/SearchService.wsdl" />
+            <param name="ws.package.name" value="com.o2.smart421.ws.search" />
+            <param name="model.package.name" value="com.o2.smart421.ws.search.model" />
+        </antcall>
+    </target>
+
+
+
+
+
+    <target name="autotype_client" description="Create autotype.jar from WSDL file" depends="clean, init">
+        <antcall target="autotype_otacservice"/>
+        <antcall target="autotype_pafservice"/>
+        <antcall target="autotype_onlineCustomerservice" />
+        <antcall target="autotype_smsservice" />
+
+
+
+        <!-- Create library file for all generated type classes (used in build) -->
+        <antcall target="autotype-jar"/>
+        <!-- project defined to use library from lib sub-directory, so copy it there -->
+        <!--<copy todir="${directory.lib}" file="${directory.build}/autotype.jar"/>-->
+        <!--<copy todir="ejb/lib" file="${directory.build}/autotype.jar"/>-->
+        <!--<copy todir="${orange.deploy.dir}/lib" file="${directory.build}/autotype.jar"/>-->
+        <!--<echo>${directory.lib}/autotype.jar now available for project build</echo>-->
+    </target>
+    <target name="generate_otac_service_client">
+        <antcall target="clientgen-wsdl">
+            <param name="webapp.context.uri" value="OtacService"/>
+            <param name="service.name" value="OtacService"/>
+            <param name="service.wsdl.file" value="orange/OtacService.wsdl"/>
+            <param name="ws.package.name" value="com.o2.smart421.ws.otac"/>
+            <param name="model.package.name" value="com.o2.smart421.ws.otac.model"/>
+        </antcall>
+    </target>
+    <target name="generate_paf_service_client">
+        <antcall target="clientgen-wsdl">
+            <param name="webapp.context.uri" value="PafService"/>
+            <param name="service.name" value="PafService"/>
+            <param name="service.wsdl.file" value="orange/paf.wsdl"/>
+            <param name="ws.package.name" value="com.o2.smart421.ws.paf"/>
+            <param name="model.package.name" value="com.o2.smart421.ws.paf.model"/>
+        </antcall>
+    </target>
+
+
+    <target name="generate_onlineClient_service_client">
+        <antcall target="clientgen-wsdl">
+            <param name="webapp.context.uri" value="OnlineCustomerService"/>
+            <param name="service.name" value="OnlineCustomerService"/>
+            <param name="service.wsdl.file" value="onlineCustomer/V1_1/jaxrpc/onlinecustomerservice_1_1.wsdl"/>
+            <param name="ws.package.name" value="com.o2.smart421.ws.onlineCustomer"/>
+            <param name="model.package.name" value="com.o2.smart421.ws.onlineCustomer.model"/>
+        </antcall>
+    </target>
+
+    <target name="generate_sms_service_client">
+        <antcall target="clientgen-wsdl">
+            <param name="webapp.context.uri" value="SendMessage"/>
+            <param name="service.name" value="SendMessage"/>
+            <param name="service.wsdl.file" value="sms/jaxrpc/sendmessageservice_1_1.wsdl"/>
+            <param name="ws.package.name" value="com.o2.smart421.ws.sms"/>
+            <param name="model.package.name" value="com.o2.smart421.ws.sms.model"/>
+        </antcall>
+    </target>
+
+    <target name="generate_search_service_client">
+        <antcall target="clientgen-wsdl">
+            <param name="webapp.context.uri" value="SearchService"/>
+            <param name="service.name" value="SearchService" />
+            <param name="service.wsdl.file" value="search/SearchService.wsdl" />
+            <param name="ws.package.name" value="com.o2.smart421.ws.search" />
+            <param name="model.package.name" value="com.o2.smart421.ws.search.model" />
+        </antcall>
+    </target>
+
+
+
+
+    <target name="generate_jaxrpc_clients" depends="autotype_client, generate_otac_service_client, generate_paf_service_client,
+                    generate_onlineClient_service_client, generate_sms_service_client, generate_search_service_client">
+        <antcall target="copy.webservice.jaxrpc.clients"/>
+    </target>
+
+
+
+
+
+    <!--<target name="generate_axis2_clients" depends="orange_avatar_service_client, orange_registration_service_client, sms_service_client, online_customer_client">-->
+    <target name="generate_axis2_clients" depends="orange_avatar_service_client, orange_registration_service_client, sms_service_client, orange_search_service_client">
+        <antcall target="copy.webservice.axis2.clients"/>
+    </target>
+    <!--<target name="orange_otac_service_client" depends="prep">-->
+    <!--<antcall target="clear"/>-->
+    <!--<wsdl2java-axis2 wsdl="${orange.otacservice.wsdl}" output-dir="${directory.fromwsdl.tmp}/$orange.otacservice.directory.wsdlgen}" package-name="${orange.otacservice.client.package.name}"/>-->
+    <!--<jar destfile="${directory.lib.generated}/${orange.otacservice.generated.jar}">-->
+    <!--<fileset dir="${directory.fromwsdl.tmp}/${orange.otacservice.directory.wsdlgen}" includes="**/*.class"/>-->
+    <!--</jar>-->
+    <!--</target>-->
+    <!--<target name="generate_paf_service_client" depends="prep">-->
+    <!--<antcall target="clear"/>-->
+    <!--<wsdl2java-axis2 wsdl="${orange.paf.wsdl}" output-dir="${directory.fromwsdl.tmp}/${orange.paf.directory.wsdlgen}" package-name="${orange.paf.client.package.name}"/>-->
+    <!--<jar destfile="${directory.lib.generated}/${orange.paf.generated.jar}">-->
+    <!--<fileset dir="${directory.fromwsdl.tmp}/${orange.paf.directory.wsdlgen}" includes="**/*.class"/>-->
+    <!--</jar>-->
+    <!--</target>-->
+    <!--
+
+
+          		clientJar="${directory.build}/${service.name}_client.jar"
+    		wsdl="${directory.wsdl}/${service.wsdl.file}"
+	    	packageName="${ws.package.name}"
+    		serviceName="${service.name}"
+	    	typePackageName="${model.package.name}"
+			typeMappingFile="${autotype.mapping.file}"
+			autotype="true"
+    		keepGenerated="true"
+    		overwrite="true"
+    		saveWSDL="true"
+    		usePortNameAsMethodName="false"
+			classpathref="clientgen.classpath" />
+
+
+      -->
+    <target name="build" depends="clean, prep, generate_jaxrpc_clients, generate_axis2_clients, copy.web.files, compile-source, jar-finance, copy.libs, war.finance">
+        <!--<target name="build" depends="clean, prep, generate_jaxrpc_clients, generate_axis2_clients">-->
+        <description>
+            copy /web to /build ${directory.build}
+            compile files in /src into /bin
+            create jar of compiled src
+            copy jar to WEB-INF/lib in /build ${directory.build}
+            create war file from /build into /dist
+        </description>
+        <!--<antcall target="document"/>-->
+    </target>
+
+
+    <target name="test" depends="clean, prep, generate_jaxrpc_clients, generate_axis2_clients, copy.web.files, compile-source" />
+
+    <!--, generate_axis2_clients, copy.web.files, compile-source, jar-finance, copy.libs, war.finance"/>-->
+
+    <!--<target name="test" depends="clean, prep, generate_jaxrpc_clients"/>-->
+</project>

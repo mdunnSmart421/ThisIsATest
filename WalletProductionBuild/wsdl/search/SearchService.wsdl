@@ -1,0 +1,296 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Oracle JAX-WS 2.1.5. --><WL5G3N0:definitions xmlns="" xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/" xmlns:WL5G3N1="http://registration.o2.co.uk/registration/SearchTypes" xmlns:WL5G3N2="http://registration.o2.co.uk/registration/SearchService" xmlns:WL5G3N3="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://registration.o2.co.uk/registration/SearchService" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wssutil="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"><wsp:UsingPolicy wssutil:Required="true"/><wsp:Policy wssutil:Id="Wssp1.2-2007-Https-UsernameToken-Plain.xml"><ns0:TransportBinding xmlns:ns0="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702"><wsp:Policy><ns0:TransportToken><wsp:Policy><ns0:HttpsToken/></wsp:Policy></ns0:TransportToken><ns0:AlgorithmSuite><wsp:Policy><ns0:Basic256/></wsp:Policy></ns0:AlgorithmSuite><ns0:Layout><wsp:Policy><ns0:Lax/></wsp:Policy></ns0:Layout><ns0:IncludeTimestamp/></wsp:Policy></ns0:TransportBinding><ns1:SupportingTokens xmlns:ns1="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702"><wsp:Policy><ns1:UsernameToken ns1:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/AlwaysToRecipient"><wsp:Policy><ns1:WssUsernameToken10/></wsp:Policy></ns1:UsernameToken></wsp:Policy></ns1:SupportingTokens></wsp:Policy>
+  <WL5G3N0:types>
+    <xs:schema xmlns:bbcom="http://soa.o2.co.uk/broadband/pscommonbroadbanddata_1" xmlns:core="http://soa.o2.co.uk/coredata_1" xmlns:rdcom="http://soa.o2.co.uk/pscommonregistrationdata_1" xmlns:rdlt="urn:o2:accessregistration:types:xsd:LegacyTypes:v1" xmlns:rscor="urn:o2:accessregistration:types:xsd:CoommonTypes:v1" xmlns:rsdm="urn:o2:accessregistration:types:xsd:DataModel:v1" xmlns:rsns="http://registration.o2.co.uk/Registration/RegistrationTypes" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ss="http://registration.o2.co.uk/registration/SearchService" xmlns:st="http://registration.o2.co.uk/registration/SearchTypes" xmlns:stcor="urn:o2:orange:search:types:xsd:CommonTypes:v1" xmlns:stdm="urn:o2:orange:search:types:xsd:DataModel:v1" xmlns:svcdm="urn:o2:customerproduct:types:xsd:DataModel:v1" xmlns:tns="http://registration.o2.co.uk/registration/SearchService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://registration.o2.co.uk/registration/SearchTypes">
+      <xs:import namespace="urn:o2:accessregistration:types:xsd:CoommonTypes:v1" schemaLocation="https://registration.o2.co.uk:443/orangeServices-JaxWs/SearchService?xsd=1"/>
+      <xs:import namespace="urn:o2:accessregistration:types:xsd:DataModel:v1" schemaLocation="https://registration.o2.co.uk:443/orangeServices-JaxWs/SearchService?xsd=2"/>
+      <xs:import namespace="http://soa.o2.co.uk/pscommonregistrationdata_1" schemaLocation="https://registration.o2.co.uk:443/orangeServices-JaxWs/SearchService?xsd=10"/>
+      <xs:import namespace="urn:o2:accessregistration:types:xsd:LegacyTypes:v1" schemaLocation="https://registration.o2.co.uk:443/orangeServices-JaxWs/SearchService?xsd=3"/>
+      <xs:import namespace="urn:o2:customerproduct:types:xsd:DataModel:v1" schemaLocation="https://registration.o2.co.uk:443/orangeServices-JaxWs/SearchService?xsd=6"/>
+      <xs:import namespace="http://soa.o2.co.uk/broadband/pscommonbroadbanddata_1" schemaLocation="https://registration.o2.co.uk:443/orangeServices-JaxWs/SearchService?xsd=8"/>
+      <xs:import namespace="urn:o2:orange:search:types:xsd:CommonTypes:v1" schemaLocation="https://registration.o2.co.uk:443/orangeServices-JaxWs/SearchService?xsd=4"/>
+      <xs:import namespace="urn:o2:orange:search:types:xsd:DataModel:v1" schemaLocation="https://registration.o2.co.uk:443/orangeServices-JaxWs/SearchService?xsd=5"/>
+      <xs:import namespace="http://soa.o2.co.uk/coredata_1" schemaLocation="https://registration.o2.co.uk:443/orangeServices-JaxWs/SearchService?xsd=7"/>
+      <xs:complexType name="criteriaType">
+        <xs:annotation>
+          <xs:documentation>Type used for holding the search criteria parameters to be used in the search</xs:documentation>
+        </xs:annotation>
+        <xs:sequence maxOccurs="1" minOccurs="1">
+          <xs:element maxOccurs="1" minOccurs="0" name="custnum">
+            <xs:annotation>
+              <xs:documentation>Unique identifier for a portal account</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:simpleContent>
+                <xs:extension base="xs:integer"/>
+              </xs:simpleContent>
+            </xs:complexType>
+          </xs:element>
+          <xs:element maxOccurs="1" minOccurs="0" name="msisdn">
+            <xs:annotation>
+              <xs:documentation>Registered msisdn for a portal account</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:simpleContent>
+                <xs:extension base="core:msisdnType"/>
+              </xs:simpleContent>
+            </xs:complexType>
+          </xs:element>
+          <xs:element maxOccurs="1" minOccurs="0" name="username">
+            <xs:annotation>
+              <xs:documentation>Username for portal or identity (switched by search option)</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:simpleContent>
+                <xs:extension base="xs:string">
+                  <xs:attribute name="matchingCondition" type="stcor:searchConditionType" use="required"/>
+                </xs:extension>
+              </xs:simpleContent>
+            </xs:complexType>
+          </xs:element>
+          <xs:element maxOccurs="1" minOccurs="0" name="firstname">
+            <xs:annotation>
+              <xs:documentation>Portal account first name</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:simpleContent>
+                <xs:extension base="xs:string">
+                  <xs:attribute name="matchingCondition" type="stcor:searchConditionType" use="required"/>
+                </xs:extension>
+              </xs:simpleContent>
+            </xs:complexType>
+          </xs:element>
+          <xs:element maxOccurs="1" minOccurs="0" name="lastname">
+            <xs:annotation>
+              <xs:documentation>Portal account last name</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:simpleContent>
+                <xs:extension base="xs:string">
+                  <xs:attribute name="matchingCondition" type="stcor:searchConditionType" use="required"/>
+                </xs:extension>
+              </xs:simpleContent>
+            </xs:complexType>
+          </xs:element>
+          <xs:element maxOccurs="1" minOccurs="0" name="password">
+            <xs:annotation>
+              <xs:documentation>Portal account password</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:simpleContent>
+                <xs:extension base="xs:string"/>
+              </xs:simpleContent>
+            </xs:complexType>
+          </xs:element>
+          <xs:element maxOccurs="1" minOccurs="0" name="postcode">
+            <xs:annotation>
+              <xs:documentation>Portal account postcode</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:simpleContent>
+                <xs:extension base="core:postcodeType">
+                  <xs:attribute name="matchingCondition" type="stcor:searchConditionType" use="required"/>
+                </xs:extension>
+              </xs:simpleContent>
+            </xs:complexType>
+          </xs:element>
+          <xs:element maxOccurs="1" minOccurs="0" name="UID">
+            <xs:annotation>
+              <xs:documentation>Identity ID</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:simpleContent>
+                <xs:extension base="rscor:UID"/>
+              </xs:simpleContent>
+            </xs:complexType>
+          </xs:element>
+          <xs:element maxOccurs="1" minOccurs="0" name="BFID">
+            <xs:annotation>
+              <xs:documentation>Portal account BFID (BabelFish ID)
+					</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:simpleContent>
+                <xs:extension base="core:customerIDType"/>
+              </xs:simpleContent>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="searchOptionsType">
+        <xs:annotation>
+          <xs:documentation>Defines other aspects of the search behaviour.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element name="usernameNamespace">
+            <xs:annotation>
+              <xs:documentation>Whether to search for Username in portal or identity</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:simpleContent>
+                <xs:extension base="xs:string">
+                  <xs:attribute name="source" type="stcor:usernameNamespaceType" use="required"/>
+                </xs:extension>
+              </xs:simpleContent>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="summaryListOnMultipleMatch">
+            <xs:annotation>
+              <xs:documentation>Whether to return a summary or all data as specified</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:simpleContent>
+                <xs:extension base="xs:string">
+                  <xs:attribute name="summaryMode" type="stcor:summaryResultsType" use="required"/>
+                </xs:extension>
+              </xs:simpleContent>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="resultDataType">
+        <xs:annotation>
+          <xs:documentation>Data type used for defining the information in the results of the search if specific data is requested.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element maxOccurs="11" minOccurs="0" name="returnData" type="stcor:resultDataListType"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="sortOrderDataType">
+        <xs:annotation>
+          <xs:documentation>Type used for holding the sort order to be applied to the search results.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element maxOccurs="1" minOccurs="1" name="sortOrderData" type="st:fieldSortOrderType"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="fieldSortOrderType">
+        <xs:annotation>
+          <xs:documentation>Defines the sort order</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="sortBy" type="stcor:sortByListType" use="required">
+          <xs:annotation>
+            <xs:documentation>The criteria the results will be sorted by</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="sortDirection" type="stcor:sortDirectionType" use="required">
+          <xs:annotation>
+            <xs:documentation>Defines the direction of sort as ascending or descending.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:complexType>
+      <xs:complexType name="userListType">
+        <xs:annotation>
+          <xs:documentation>List of zero or more user identities</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="user" type="stdm:userDataType">
+            <xs:annotation>
+              <xs:documentation/>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="count" type="xs:integer" use="required">
+          <xs:annotation>
+            <xs:documentation/>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:complexType>
+      <xs:complexType name="searchUserInformationRequestType">
+        <xs:annotation>
+          <xs:documentation>Payload schema for the searchUserInformationRequest web method</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element maxOccurs="1" minOccurs="1" name="searchCriteria" type="st:criteriaType">
+            <xs:annotation>
+              <xs:documentation>The values to search on</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="1" minOccurs="1" name="searchOptions" type="st:searchOptionsType">
+            <xs:annotation>
+              <xs:documentation>Parameters which define how the search works</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="1" minOccurs="0" name="sortOrder" type="st:sortOrderDataType">
+            <xs:annotation>
+              <xs:documentation>The order the results should appear in</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="1" minOccurs="0" name="returnSpecificDataTypes" type="st:resultDataType">
+            <xs:annotation>
+              <xs:documentation>The specific data types to return, depending on the search options specified</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="searchUserInformationResponseType">
+        <xs:annotation>
+          <xs:documentation>Payload schema for the searchUserInformationResponse</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+          <xs:element maxOccurs="1" minOccurs="0" name="searchCriteria" type="st:criteriaType">
+            <xs:annotation>
+              <xs:documentation>The values searched on</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="1" minOccurs="0" name="userInformation" type="st:userListType">
+            <xs:annotation>
+              <xs:documentation>The search results</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="1" minOccurs="0" name="fault" type="st:FaultType">
+            <xs:annotation>
+              <xs:documentation>Any business faults</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="FaultType">
+        <xs:sequence>
+          <xs:element maxOccurs="1" name="faultcode" type="xs:string"/>
+          <xs:element maxOccurs="1" name="faultstring" type="xs:string"/>
+          <xs:element maxOccurs="1" name="faultactor" type="xs:string"/>
+          <xs:element maxOccurs="1" name="detail" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="searchUserInformationRequest" type="st:searchUserInformationRequestType">
+        <xs:annotation>
+          <xs:documentation>Request message for Orange user search service</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="searchUserInformationResponse" type="st:searchUserInformationResponseType">
+        <xs:annotation>
+          <xs:documentation>Response message for Orange user search service</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:schema>
+  </WL5G3N0:types>
+  <WL5G3N0:message name="SearchUserInformationRequest">
+    <WL5G3N0:part element="WL5G3N1:searchUserInformationRequest" name="parameters"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="SearchUserInformationResponse">
+    <WL5G3N0:part element="WL5G3N1:searchUserInformationResponse" name="result"/>
+  </WL5G3N0:message>
+  <WL5G3N0:portType name="SearchServiceSoapPortType">
+    <WL5G3N0:operation name="searchUserInformation">
+      <WL5G3N0:input message="WL5G3N2:SearchUserInformationRequest"/>
+      <WL5G3N0:output message="WL5G3N2:SearchUserInformationResponse"/>
+    </WL5G3N0:operation>
+  </WL5G3N0:portType>
+  <WL5G3N0:binding name="SearchServiceSoapBinding" type="WL5G3N2:SearchServiceSoapPortType"><wsp:PolicyReference URI="#Wssp1.2-2007-Https-UsernameToken-Plain.xml"/>
+    <WL5G3N3:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <WL5G3N0:operation name="searchUserInformation">
+      <WL5G3N3:operation soapAction="searchUserInformation"/>
+      <WL5G3N0:input>
+        <WL5G3N3:body namespace="http://registration.o2.co.uk/registration/SearchService" use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N3:body namespace="http://registration.o2.co.uk/registration/SearchService" use="literal"/>
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+  </WL5G3N0:binding>
+  <WL5G3N0:service name="SearchService">
+    <WL5G3N0:port binding="WL5G3N2:SearchServiceSoapBinding" name="SearchServiceSoapPort">
+      <WL5G3N3:address location="https://registration.o2.co.uk:8443/orangeServices-JaxWs/SearchService"/>
+    </WL5G3N0:port>
+  </WL5G3N0:service>
+</WL5G3N0:definitions>

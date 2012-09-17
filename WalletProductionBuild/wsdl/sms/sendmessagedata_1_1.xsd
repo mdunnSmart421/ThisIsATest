@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Date            	Change#       	Author            	Change Description-->
+<!--26/03/2010  		1.0.1         		Subramanyam	Added new operations queryReceiptStatus,sendDynamicSMS and sendMultiSMS-->
+<!--18/12/2008  		1.0.0         		Sumanth AV		Initial Version-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xcore="http://soa.o2.co.uk/coredata_1" xmlns:smd="http://soa.o2.co.uk/sendmessagedata_1" targetNamespace="http://soa.o2.co.uk/sendmessagedata_1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:import namespace="http://soa.o2.co.uk/coredata_1" schemaLocation="coredata_1_1.xsd"/>
+	<xsd:element name="sendSMS" type="smd:sendSMS">
+		<xsd:annotation>
+			<xsd:documentation>Input message type for sendSMS operation.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="sendSMSResponse" type="smd:sendSMSResponse">
+		<xsd:annotation>
+			<xsd:documentation>Response type from sendSMS operation.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="sendSMSFault" type="xcore:SOAFaultType">
+		<xsd:annotation>
+			<xsd:documentation>Fault response type from sendSMS operation</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="sendMMS" type="smd:sendMMS">
+		<xsd:annotation>
+			<xsd:documentation>Input message type to sendMMS operation</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="sendMMSResponse" type="smd:sendMMSResponse">
+		<xsd:annotation>
+			<xsd:documentation>Response from sendMMS operation.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="sendMMSFault" type="xcore:SOAFaultType">
+		<xsd:annotation>
+			<xsd:documentation>Fault response from sendMMS operation.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="sendEmail" type="smd:sendEmail">
+		<xsd:annotation>
+			<xsd:documentation>Input parameter to send email.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="sendEmailResponse" type="smd:sendEmailResponse">
+		<xsd:annotation>
+			<xsd:documentation>Response type from sendEmail operation</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="sendEmailFault" type="xcore:SOAFaultType">
+		<xsd:annotation>
+			<xsd:documentation>Fault message as response</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="queryReceiptStatus" type="smd:queryReceiptStatus">
+		<xsd:annotation>
+			<xsd:documentation>Query receipt status</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="queryReceiptStatusResponse" type="smd:queryReceiptStatusResponse">
+		<xsd:annotation>
+			<xsd:documentation>Query receipt status response</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="queryReceiptStatusFault" type="xcore:SOAFaultType">
+		<xsd:annotation>
+			<xsd:documentation>Query receipt status Fault</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="sendDynamicSMS" type="smd:sendDynamicSMS">
+		<xsd:annotation>
+			<xsd:documentation>Send dynamic SMS</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="sendDynamicSMSResponse" type="smd:sendDynamicSMSResponse">
+		<xsd:annotation>
+			<xsd:documentation>Send dynamic SMS response</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="sendDynamicSMSFault" type="xcore:SOAFaultType">
+		<xsd:annotation>
+			<xsd:documentation>Send dynamic SMS Fault</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="sendMultiSMS" type="smd:sendMultiSMS">
+		<xsd:annotation>
+			<xsd:documentation>Send multi SMS</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="sendMultiSMSResponse" type="smd:sendMultiSMSResponse">
+		<xsd:annotation>
+			<xsd:documentation>Send MultiSMS response type</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="sendMultiSMSFault" type="xcore:SOAFaultType">
+		<xsd:annotation>
+			<xsd:documentation>Send multi SMS Fault</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:complexType name="sendSMS">
+		<xsd:annotation>
+			<xsd:documentation>Send SMS</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="mtProfile" type="xsd:string"/>
+			<xsd:element name="msisdnList" type="smd:msisdnList"/>
+			<xsd:element name="receiptURL" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="message" type="xsd:string"/>
+			<xsd:element name="messageType" type="smd:messageType"/>
+			<xsd:element name="ttl" type="xsd:int"/>
+			<xsd:element name="applicationReference" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="subMerchantId" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="sendSMSResponse">
+		<xsd:annotation>
+			<xsd:documentation>Send SMS response</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="result" type="smd:resultType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="resultType">
+		<xsd:annotation>
+			<xsd:documentation>Response Result type</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="statusCode" type="xsd:string"/>
+			<xsd:element name="statusDescription" type="xsd:string"/>
+			<xsd:element name="transactionId" type="xsd:string"/>
+			<xsd:element name="applicationReference" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="messageReceipt" type="smd:messageReceipt" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="msisdnStatus">
+		<xsd:annotation>
+			<xsd:documentation>This indicates if the message reached a particular MSISDN</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="msisdn" type="xcore:msisdnType"/>
+			<xsd:element name="status" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="messageReceipt">
+		<xsd:annotation>
+			<xsd:documentation>Indicates the message receipt for all the msisdns mentioned in the request</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="msisdnStatus" type="smd:msisdnStatus" maxOccurs="100"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="msisdnList">
+		<xsd:annotation>
+			<xsd:documentation>MSISDN list</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="msisdn" type="xcore:msisdnType" maxOccurs="100"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="msisdnUnlimitedList">
+		<xsd:annotation>
+			<xsd:documentation>MSISDN Unlimited list</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="msisdn" type="xcore:msisdnType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="messagePriority">
+		<xsd:annotation>
+			<xsd:documentation>Priority of the message to be emailed</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Default"/>
+			<xsd:enumeration value="Low"/>
+			<xsd:enumeration value="Normal"/>
+			<xsd:enumeration value="High"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="sendEmail">
+		<xsd:annotation>
+			<xsd:documentation>The request structure to send email</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="senderAddress" type="smd:senderAddress"/>
+			<xsd:element name="toAddress" type="smd:recipientAddress"/>
+			<xsd:element name="subject" type="xsd:string"/>
+			<xsd:element name="format" type="smd:format"/>
+			<xsd:element name="message" type="xsd:string"/>
+			<xsd:element name="disclaimerMessage" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="sendEmailResponse">
+		<xsd:annotation>
+			<xsd:documentation>
+				The response structure to hold the response after dispatch of Email
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="status" type="xcore:ServiceResultType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="queryReceiptStatus">
+		<xsd:annotation>
+			<xsd:documentation>Query receipt status</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="queryTransactionId" type="xsd:string"/>
+			<xsd:element name="applicationReference" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="subMerchantId" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="queryReceiptStatusResponse">
+		<xsd:annotation>
+			<xsd:documentation>Query receipt status response</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="result" type="smd:resultType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="sendDynamicSMS">
+		<xsd:annotation>
+			<xsd:documentation>Send dynamic SMS</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="msisdnList" type="smd:msisdnList"/>
+			<xsd:element name="originator" type="xsd:string"/>
+			<xsd:element name="receiptURL" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="message" type="xsd:anyType"/>
+			<xsd:element name="messageType" type="smd:messageType"/>
+			<xsd:element name="ttl" type="xsd:int"/>
+			<xsd:element name="mtprofile" type="xsd:string"/>
+			<xsd:element name="applicationReference" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="subMerchantId" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="sendDynamicSMSResponse">
+		<xsd:annotation>
+			<xsd:documentation>Send dynamic SMS response</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="result" type="smd:resultType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="sendMultiSMS">
+		<xsd:annotation>
+			<xsd:documentation>Send multi SMS</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:sequence>
+				<xsd:element name="receiptURL" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="messageType" type="smd:messageType"/>
+				<xsd:element name="ttl" type="xsd:int"/>
+				<xsd:element name="mtprofile" type="xsd:string"/>
+				<xsd:element name="messageRecipient" type="smd:messageRecipient" maxOccurs="100"/>
+				<xsd:element name="applicationReference" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="subMerchantId" type="xsd:string" minOccurs="0"/>
+			</xsd:sequence>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="sendMultiSMSResponse">
+		<xsd:annotation>
+			<xsd:documentation>Send multi SMS response</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="result" type="smd:resultType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="senderAddress">
+		<xsd:annotation>
+			<xsd:documentation>The sender address structure</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="friendlyName" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="emailAddress" type="smd:emailAddressType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="recipientAddress">
+		<xsd:annotation>
+			<xsd:documentation>The recipient address structure</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="friendlyName" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="emailAddress" type="smd:emailAddressType"/>
+			<xsd:element name="recipientType" type="smd:recipientType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="recipientType">
+		<xsd:annotation>
+			<xsd:documentation>The recipient type structure</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="to"/>
+			<xsd:enumeration value="cc"/>
+			<xsd:enumeration value="bcc"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="format">
+		<xsd:annotation>
+			<xsd:documentation>The email format</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="plain"/>
+			<xsd:enumeration value="html"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="sendMMS">
+		<xsd:annotation>
+			<xsd:documentation>Request to send MMS to MSISDN mentioned in addresses</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="msisdnList" type="smd:msisdnUnlimitedList"/>
+			<xsd:element name="senderAddress" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="subject" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="priority" type="smd:messagePriority" minOccurs="0"/>
+			<xsd:element name="charging" type="smd:chargingInformation" minOccurs="0"/>
+			<xsd:element name="receiptRequest" type="smd:simpleReference" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="sendMMSResponse">
+		<xsd:annotation>
+			<xsd:documentation>send MMS Response</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="result" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="chargingInformation">
+		<xsd:annotation>
+			<xsd:documentation>Charging information</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="description" type="xsd:string"/>
+			<xsd:element name="currency" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="amount" type="xsd:decimal" minOccurs="0"/>
+			<xsd:element name="code" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="simpleReference">
+		<xsd:annotation>
+			<xsd:documentation>Simple Reference</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="endpoint" type="xsd:anyURI"/>
+			<xsd:element name="interfaceName" type="xsd:string"/>
+			<xsd:element name="correlator" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="messageRecipient">
+		<xsd:annotation>
+			<xsd:documentation>Message recipient</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="msisdn" type="xcore:msisdnType"/>
+			<xsd:element name="message" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="messageType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="TXT"/>
+			<xsd:enumeration value="FLA"/>
+			<xsd:enumeration value="PIC"/>
+			<xsd:enumeration value="LOG"/>
+			<xsd:enumeration value="RTN"/>
+			<xsd:enumeration value="RPR"/>
+			<xsd:enumeration value="WAP"/>
+			<xsd:enumeration value="BIN"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="emailAddressType">
+		<xsd:annotation>
+			<xsd:documentation>The restriction for an email address format</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="([\.a-zA-Z0-9_\-])+@([a-zA-Z0-9_\-])+(([a-zA-Z0-9_\-])*\.([a-zA-Z0-9_\-])+)+"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

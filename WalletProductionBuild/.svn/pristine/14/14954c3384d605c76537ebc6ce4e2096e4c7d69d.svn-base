@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html>
+	<head>
+	<title>O2 Finance error</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="Cache-control" content="no-cache"/>
+
+	
+			
+			<meta name="viewport" content="width=320; initial-scale=1.0; maximum-scale=1.0; width=device-width"/>
+
+	
+		    <!-- Don't display phone numbers as links -->
+		    <meta name="format-detection" content="telephone=no">
+		
+		
+		    <link rel="stylesheet" href="/finance/css/blackberry.css" type="text/css" />
+	
+	
+			</head>
+			<body>
+	
+			<div id="cmTPpageID" style="display:none;">O2 Money - Registration failure</div>
+			<div id="cmTPcatID" style="display:none;">O2 Money - Prepaid Card - Authentication</div>
+			
+			
+			<div class="header">
+
+			    <span class="corporate-logo"></span>
+			
+			    <div class="title">Register</div>
+			    <a href="#">Cancel</a>
+			</div>
+	
+	
+			<div class="canvas">
+			
+			    <div class="description">
+			        <div class="icon errorbang"></div>
+			        <div class="heading">
+
+			            Sorry, registration is currently unavailable
+			        </div>
+	
+		        <p>Registration is currently down for maintenance. Please try again later.</p>
+		    </div>
+		
+			</div>
+			</body>
+			</html>
